@@ -255,38 +255,15 @@
     </section>
     <!--end of part 3-->
 
-    <!--part 4-->
-    <div id="top-three-rest">
+    <!--part 4,5-->
+    <div id="top-rest">
         <top-restaurants></top-restaurants>
     </div>
-
     <!--end of part 4-->
 
-    <!--part 5-->
-    <section id="promoted-restaurants" class="promoted-restaurants-group_1 promoted-restaurants-group">
-        <div class="m_header_1">
-            <div class="promoted-restaurants-container" id="restaurant_no_image">
-                <h2 class="promoted-restaurants-header">رستوران‌های خوب تهران در ریحون</h2>
-                <!-- data from server, json-->
-            </div>
-        </div>
-    </section>
-    <!--end of part 5-->
-
     <!--part 6-->
-    <div id="cuisines-and-tags" class="m_sec6_outer1 m_sec6_outer2 m_sec6_outer3">
-        <div class="m_header_1 cuisine-cards">
-            <div class="m_ranking_header_text">
-                <h2 class="m_sec6_header">غذا چی میل دارید؟</h2>
-                <h3 class="m_sec6_header_2">صبحانه، ناهار، شام یا هر چیزی که میل دارید را انتخاب کنید</h3></div>
-            <div class="m_sec6_food_1" id="food_container_image">
-
-            </div>
-        </div>
-        <div class="m_header_1 m_sec6_food_1_more tags" id="food_container_no_image">
-            <h2 class="m_sec6_food_1_more_h">انتخاب غذا‌های بیشتر</h2>
-            <!-- data from server, xml-->
-        </div>
+    <div id="cuisines-and-tags">
+        <food-list-component></food-list-component>
     </div>
     <!--end of part-->
 
@@ -365,7 +342,7 @@
 <script src="../JavaScript/vue.js"></script>
 <script src="../JavaScript/header-component.js"></script>
 <script src="../JavaScript/footer-component.js"></script>
-<script src="../JavaScript/top-restaurants.js"></script>
-
+<script src="../JavaScript/top-restaurants-component.js"></script>
+<script src="../JavaScript/food-list-component.js"></script>
 </body>
 </html>

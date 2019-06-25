@@ -3,7 +3,7 @@
 Vue.component('star-rating', VueStarRating.default);
 
 Vue.component('top-restaurants', {
-    template: '   <div class="m_ranking_outer_1">\n' +
+    template: ' <div><div class="m_ranking_outer_1">\n' +
         '        <div class="m_header_1">\n' +
         '            <section class="m_ranking_outer_2">\n' +
         '                <div class="m_ranking_header_text">\n' +
@@ -25,7 +25,7 @@ Vue.component('top-restaurants', {
         '                                    </div>\n' +
         '                                </div>\n' +
         '                                <ul class="m_ranking_food_category">\n' +
-        '                                    <li class="m_ranking_food_category_item" v-for="food in item.foods">{{startsWithChar(food)}}</li>\n' +
+        '                                    <li class="m_ranking_food_category_item" v-for="food in item.foods">{{translateEnglishToPersian(food)}}</li>\n' +
         '                                    </ul><address :title=item.address class="m_ranking_food_category_add">{{item.address}}</address>\n' +
         '                                <button class="rey-btn m_ranking_food_order_1 m_ranking_food_order_2 m_ranking_food_order_3">\n' +
         '                                    شروع سفارش\n' +
@@ -37,7 +37,19 @@ Vue.component('top-restaurants', {
         '\n' +
         '            </section>\n' +
         '        </div>\n' +
-        '    </div>',
+        '    </div>\n' +
+        '<section id="promoted-restaurants" class="promoted-restaurants-group_1 promoted-restaurants-group">\n' +
+        '                <div class="m_header_1">\n' +
+        '                    <div class="promoted-restaurants-container" id = "restaurant_no_image">\n' +
+        '                        <h2 class="promoted-restaurants-header">رستوران‌های خوب تهران در ریحون</h2>\n' +
+        '                        <a href="#" class="promoted-restaurants-link" v-for="item in other_best_res">\n' +
+        '\t\t\t\t\t\t\t<img class="promoted-restaurants-img" :src="item.imgUrl" :alt="item.name">\n' +
+        '                            <h3 class="promoted-restaurants-res_name-">{{item.name}}</h3>\n' +
+        '\t\t\t\t\t\t</a>\n' +
+        '                    </div>\n' +
+        '                </div>\n' +
+        '            </section> \n' +
+        '</div>  ',
 
     data() {
         return {
@@ -61,9 +73,9 @@ Vue.component('top-restaurants', {
         }
     },
     methods:{
-        startsWithChar(whichChar){
+        translateEnglishToPersian(word){
             for (let i = 0; i < this.dictionaryArr.length ; i++) {
-                if (this.dictionaryArr[i].key == whichChar )
+                if (this.dictionaryArr[i].key == word )
                     return this.dictionaryArr[i].value
             }
         },
@@ -93,5 +105,6 @@ Vue.component('top-restaurants', {
 
 
 new Vue({
-    el: '#top-three-rest',
+    el: '#top-rest',
 })
+

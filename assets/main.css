@@ -2767,22 +2767,6 @@ select {
     background:url("../mocks/promoted-restaurants.jpg") no-repeat scroll center right / cover;
 }
 
-#food1{
-    background:url("../mocks/food1.jpeg") no-repeat scroll center / cover;
-}
-    
-#food2{
-    background:url("../mocks/food2.jpeg") no-repeat scroll center / cover;
-}
-
-#food3{
-    background:url("../mocks/food3.jpeg") no-repeat scroll center / cover;
-}
-
-#food4{
-    background:url("../mocks/food4.jpeg") no-repeat scroll center / cover;
-}
-
 .svg1{
     fill:currentColor;
 }
@@ -2799,4 +2783,8 @@ select {
 }
 #search_region:focus{
     border: none;
+}
+
+.image_scale{
+    background:no-repeat scroll center / cover
 }
