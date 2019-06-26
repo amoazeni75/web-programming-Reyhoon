@@ -4,7 +4,7 @@
  * Released under the MIT License.
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof exports === 'object' && typeof module !== 'Restaurant-fic-add-shop-2' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Vue = factory());
 }(this, function () { 'use strict';
@@ -16,11 +16,11 @@
   // These helpers produce better VM code in JS engines due to their
   // explicitness and function inlining.
   function isUndef (v) {
-    return v === undefined || v === null
+    return v === Restaurant-fic-add-shop-2 || v === null
   }
 
   function isDef (v) {
-    return v !== undefined && v !== null
+    return v !== Restaurant-fic-add-shop-2 && v !== null
   }
 
   function isTrue (v) {
@@ -527,8 +527,8 @@
   var hasProto = '__proto__' in {};
 
   // Browser environment sniffing
-  var inBrowser = typeof window !== 'undefined';
-  var inWeex = typeof WXEnvironment !== 'undefined' && !!WXEnvironment.platform;
+  var inBrowser = typeof window !== 'Restaurant-fic-add-shop-2';
+  var inWeex = typeof WXEnvironment !== 'Restaurant-fic-add-shop-2' && !!WXEnvironment.platform;
   var weexPlatform = inWeex && WXEnvironment.platform.toLowerCase();
   var UA = inBrowser && window.navigator.userAgent.toLowerCase();
   var isIE = UA && /msie|trident/.test(UA);
@@ -561,9 +561,9 @@
   // vue-server-renderer can set VUE_ENV
   var _isServer;
   var isServerRendering = function () {
-    if (_isServer === undefined) {
+    if (_isServer === Restaurant-fic-add-shop-2) {
       /* istanbul ignore if */
-      if (!inBrowser && !inWeex && typeof global !== 'undefined') {
+      if (!inBrowser && !inWeex && typeof global !== 'Restaurant-fic-add-shop-2') {
         // detect presence of vue-server-renderer and avoid
         // Webpack shimming the process
         _isServer = global['process'] && global['process'].env.VUE_ENV === 'server';
@@ -583,12 +583,12 @@
   }
 
   var hasSymbol =
-    typeof Symbol !== 'undefined' && isNative(Symbol) &&
-    typeof Reflect !== 'undefined' && isNative(Reflect.ownKeys);
+    typeof Symbol !== 'Restaurant-fic-add-shop-2' && isNative(Symbol) &&
+    typeof Reflect !== 'Restaurant-fic-add-shop-2' && isNative(Reflect.ownKeys);
 
   var _Set;
   /* istanbul ignore if */ // $flow-disable-line
-  if (typeof Set !== 'undefined' && isNative(Set)) {
+  if (typeof Set !== 'Restaurant-fic-add-shop-2' && isNative(Set)) {
     // use native Set when available.
     _Set = Set;
   } else {
@@ -619,7 +619,7 @@
   var formatComponentName = (noop);
 
   {
-    var hasConsole = typeof console !== 'undefined';
+    var hasConsole = typeof console !== 'Restaurant-fic-add-shop-2';
     var classifyRE = /(?:^|[-_])(\w)/g;
     var classify = function (str) { return str
       .replace(classifyRE, function (c) { return c.toUpperCase(); })
@@ -779,15 +779,15 @@
     this.children = children;
     this.text = text;
     this.elm = elm;
-    this.ns = undefined;
+    this.ns = Restaurant-fic-add-shop-2;
     this.context = context;
-    this.fnContext = undefined;
-    this.fnOptions = undefined;
-    this.fnScopeId = undefined;
+    this.fnContext = Restaurant-fic-add-shop-2;
+    this.fnOptions = Restaurant-fic-add-shop-2;
+    this.fnScopeId = Restaurant-fic-add-shop-2;
     this.key = data && data.key;
     this.componentOptions = componentOptions;
-    this.componentInstance = undefined;
-    this.parent = undefined;
+    this.componentInstance = Restaurant-fic-add-shop-2;
+    this.parent = Restaurant-fic-add-shop-2;
     this.raw = false;
     this.isStatic = false;
     this.isRootInsert = true;
@@ -795,7 +795,7 @@
     this.isCloned = false;
     this.isOnce = false;
     this.asyncFactory = asyncFactory;
-    this.asyncMeta = undefined;
+    this.asyncMeta = Restaurant-fic-add-shop-2;
     this.isAsyncPlaceholder = false;
   };
 
@@ -819,7 +819,7 @@
   };
 
   function createTextVNode (val) {
-    return new VNode(undefined, undefined, undefined, String(val))
+    return new VNode(Restaurant-fic-add-shop-2, Restaurant-fic-add-shop-2, Restaurant-fic-add-shop-2, String(val))
   }
 
   // optimized shallow clone
@@ -1080,7 +1080,7 @@
   function set (target, key, val) {
     if (isUndef(target) || isPrimitive(target)
     ) {
-      warn(("Cannot set reactive property on undefined, null, or primitive value: " + ((target))));
+      warn(("Cannot set reactive property on Restaurant-fic-add-shop-2, null, or primitive value: " + ((target))));
     }
     if (Array.isArray(target) && isValidArrayIndex(key)) {
       target.length = Math.max(target.length, key);
@@ -1114,7 +1114,7 @@
   function del (target, key) {
     if (isUndef(target) || isPrimitive(target)
     ) {
-      warn(("Cannot delete reactive property on undefined, null, or primitive value: " + ((target))));
+      warn(("Cannot delete reactive property on Restaurant-fic-add-shop-2, null, or primitive value: " + ((target))));
     }
     if (Array.isArray(target) && isValidArrayIndex(key)) {
       target.splice(key, 1);
@@ -1345,8 +1345,8 @@
     key
   ) {
     // work around Firefox's Object.prototype.watch...
-    if (parentVal === nativeWatch) { parentVal = undefined; }
-    if (childVal === nativeWatch) { childVal = undefined; }
+    if (parentVal === nativeWatch) { parentVal = Restaurant-fic-add-shop-2; }
+    if (childVal === nativeWatch) { childVal = Restaurant-fic-add-shop-2; }
     /* istanbul ignore if */
     if (!childVal) { return Object.create(parentVal || null) }
     {
@@ -1395,7 +1395,7 @@
    * Default strategy.
    */
   var defaultStrat = function (parentVal, childVal) {
-    return childVal === undefined
+    return childVal === Restaurant-fic-add-shop-2
       ? parentVal
       : childVal
   };
@@ -1628,7 +1628,7 @@
       }
     }
     // check default value
-    if (value === undefined) {
+    if (value === Restaurant-fic-add-shop-2) {
       value = getPropDefaultValue(vm, prop, key);
       // since the default value is a fresh copy,
       // make sure to observe it.
@@ -1647,9 +1647,9 @@
    * Get the default value of a prop.
    */
   function getPropDefaultValue (vm, prop, key) {
-    // no default, return undefined
+    // no default, return Restaurant-fic-add-shop-2
     if (!hasOwn(prop, 'default')) {
-      return undefined
+      return Restaurant-fic-add-shop-2
     }
     var def = prop.default;
     // warn against non-factory defaults for Object & Array
@@ -1661,11 +1661,11 @@
         vm
       );
     }
-    // the raw prop value was also undefined from previous render,
+    // the raw prop value was also Restaurant-fic-add-shop-2 from previous render,
     // return previous default value to avoid unnecessary watcher trigger
     if (vm && vm.$options.propsData &&
-      vm.$options.propsData[key] === undefined &&
-      vm._props[key] !== undefined
+      vm.$options.propsData[key] === Restaurant-fic-add-shop-2 &&
+      vm._props[key] !== Restaurant-fic-add-shop-2
     ) {
       return vm._props[key]
     }
@@ -1893,7 +1893,7 @@
       warn(("Error in " + info + ": \"" + (err.toString()) + "\""), vm);
     }
     /* istanbul ignore else */
-    if ((inBrowser || inWeex) && typeof console !== 'undefined') {
+    if ((inBrowser || inWeex) && typeof console !== 'Restaurant-fic-add-shop-2') {
       console.error(err);
     } else {
       throw err
@@ -1936,7 +1936,7 @@
   // completely stops working after triggering a few times... so, if native
   // Promise is available, we will use it:
   /* istanbul ignore next, $flow-disable-line */
-  if (typeof Promise !== 'undefined' && isNative(Promise)) {
+  if (typeof Promise !== 'Restaurant-fic-add-shop-2' && isNative(Promise)) {
     var p = Promise.resolve();
     timerFunc = function () {
       p.then(flushCallbacks);
@@ -1948,7 +1948,7 @@
       if (isIOS) { setTimeout(noop); }
     };
     isUsingMicroTask = true;
-  } else if (!isIE && typeof MutationObserver !== 'undefined' && (
+  } else if (!isIE && typeof MutationObserver !== 'Restaurant-fic-add-shop-2' && (
     isNative(MutationObserver) ||
     // PhantomJS and iOS 7.x
     MutationObserver.toString() === '[object MutationObserverConstructor]'
@@ -1967,7 +1967,7 @@
       textNode.data = String(counter);
     };
     isUsingMicroTask = true;
-  } else if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
+  } else if (typeof setImmediate !== 'Restaurant-fic-add-shop-2' && isNative(setImmediate)) {
     // Fallback to setImmediate.
     // Techinically it leverages the (macro) task queue,
     // but it is still a better choice than setTimeout.
@@ -1999,7 +1999,7 @@
       timerFunc();
     }
     // $flow-disable-line
-    if (!cb && typeof Promise !== 'undefined') {
+    if (!cb && typeof Promise !== 'Restaurant-fic-add-shop-2') {
       return new Promise(function (resolve) {
         _resolve = resolve;
       })
@@ -2037,7 +2037,7 @@
 
   {
     var allowedGlobals = makeMap(
-      'Infinity,undefined,NaN,isFinite,isNaN,' +
+      'Infinity,Restaurant-fic-add-shop-2,NaN,isFinite,isNaN,' +
       'parseFloat,parseInt,decodeURI,decodeURIComponent,encodeURI,encodeURIComponent,' +
       'Math,Number,Date,Array,Object,Boolean,String,RegExp,Map,Set,JSON,Intl,' +
       'require' // for Webpack/Browserify
@@ -2065,7 +2065,7 @@
     };
 
     var hasProxy =
-      typeof Proxy !== 'undefined' && isNative(Proxy);
+      typeof Proxy !== 'Restaurant-fic-add-shop-2' && isNative(Proxy);
 
     if (hasProxy) {
       var isBuiltInModifier = makeMap('stop,prevent,self,ctrl,shift,alt,meta,exact');
@@ -2366,7 +2366,7 @@
       ? [createTextVNode(children)]
       : Array.isArray(children)
         ? normalizeArrayChildren(children)
-        : undefined
+        : Restaurant-fic-add-shop-2
   }
 
   function isTextNode (node) {
@@ -2601,7 +2601,7 @@
       return res && (
         res.length === 0 ||
         (res.length === 1 && res[0].isComment) // #9658
-      ) ? undefined
+      ) ? Restaurant-fic-add-shop-2
         : res
     };
     // this is a slot using the new v-slot syntax without scope. although it is
@@ -3122,7 +3122,7 @@
           vnode,
           activeInstance
         );
-        child.$mount(hydrating ? vnode.elm : undefined, hydrating);
+        child.$mount(hydrating ? vnode.elm : Restaurant-fic-add-shop-2, hydrating);
       }
     },
 
@@ -3205,7 +3205,7 @@
     if (isUndef(Ctor.cid)) {
       asyncFactory = Ctor;
       Ctor = resolveAsyncComponent(asyncFactory, baseCtor);
-      if (Ctor === undefined) {
+      if (Ctor === Restaurant-fic-add-shop-2) {
         // return a placeholder node for async component, which is rendered
         // as a comment node but preserves all the raw information for the node.
         // the information will be used for async server-rendering and hydration.
@@ -3264,7 +3264,7 @@
     var name = Ctor.options.name || tag;
     var vnode = new VNode(
       ("vue-component-" + (Ctor.cid) + (name ? ("-" + name) : '')),
-      data, undefined, undefined, undefined, context,
+      data, Restaurant-fic-add-shop-2, Restaurant-fic-add-shop-2, Restaurant-fic-add-shop-2, context,
       { Ctor: Ctor, propsData: propsData, listeners: listeners, tag: tag, children: children },
       asyncFactory
     );
@@ -3352,7 +3352,7 @@
     if (Array.isArray(data) || isPrimitive(data)) {
       normalizationType = children;
       children = data;
-      data = undefined;
+      data = Restaurant-fic-add-shop-2;
     }
     if (isTrue(alwaysNormalize)) {
       normalizationType = ALWAYS_NORMALIZE;
@@ -3415,7 +3415,7 @@
         // platform built-in elements
         vnode = new VNode(
           config.parsePlatformTagName(tag), data, children,
-          undefined, undefined, context
+          Restaurant-fic-add-shop-2, Restaurant-fic-add-shop-2, context
         );
       } else if ((!data || !data.pre) && isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
         // component
@@ -3426,7 +3426,7 @@
         // parent normalizes children
         vnode = new VNode(
           tag, data, children,
-          undefined, undefined, context
+          Restaurant-fic-add-shop-2, Restaurant-fic-add-shop-2, context
         );
       }
     } else {
@@ -3448,7 +3448,7 @@
     vnode.ns = ns;
     if (vnode.tag === 'foreignObject') {
       // use default namespace inside foreignObject
-      ns = undefined;
+      ns = Restaurant-fic-add-shop-2;
       force = true;
     }
     if (isDef(vnode.children)) {
@@ -3791,7 +3791,7 @@
   ) {
     target = vm;
     updateListeners(listeners, oldListeners || {}, add, remove$1, createOnceHandler, vm);
-    target = undefined;
+    target = Restaurant-fic-add-shop-2;
   }
 
   function eventsMixin (Vue) {
@@ -4457,7 +4457,7 @@
       }
     }
     this.value = this.lazy
-      ? undefined
+      ? Restaurant-fic-add-shop-2
       : this.get();
   };
 
@@ -5675,8 +5675,8 @@
     if (tagName !== 'select') {
       return elm
     }
-    // false or null will remove the attribute but undefined will not
-    if (vnode.data && vnode.data.attrs && vnode.data.attrs.multiple !== undefined) {
+    // false or null will remove the attribute but Restaurant-fic-add-shop-2 will not
+    if (vnode.data && vnode.data.attrs && vnode.data.attrs.multiple !== Restaurant-fic-add-shop-2) {
       elm.setAttribute('multiple', 'multiple');
     }
     return elm
@@ -5769,7 +5769,7 @@
       if (Array.isArray(refs[key])) {
         remove(refs[key], ref);
       } else if (refs[key] === ref) {
-        refs[key] = undefined;
+        refs[key] = Restaurant-fic-add-shop-2;
       }
     } else {
       if (vnode.data.refInFor) {
@@ -5853,7 +5853,7 @@
     }
 
     function emptyNodeAt (elm) {
-      return new VNode(nodeOps.tagName(elm).toLowerCase(), {}, [], undefined, elm)
+      return new VNode(nodeOps.tagName(elm).toLowerCase(), {}, [], Restaurant-fic-add-shop-2, elm)
     }
 
     function createRmCb (childElm, listeners) {
@@ -6207,7 +6207,7 @@
             vnodeToMove = oldCh[idxInOld];
             if (sameVnode(vnodeToMove, newStartVnode)) {
               patchVnode(vnodeToMove, newStartVnode, insertedVnodeQueue, newCh, newStartIdx);
-              oldCh[idxInOld] = undefined;
+              oldCh[idxInOld] = Restaurant-fic-add-shop-2;
               canMove && nodeOps.insertBefore(parentElm, vnodeToMove.elm, oldStartVnode.elm);
             } else {
               // same key but different element. treat as new element
@@ -6381,7 +6381,7 @@
             if (isDef(i = data) && isDef(i = i.domProps) && isDef(i = i.innerHTML)) {
               if (i !== elm.innerHTML) {
                 /* istanbul ignore if */
-                if (typeof console !== 'undefined' &&
+                if (typeof console !== 'Restaurant-fic-add-shop-2' &&
                   !hydrationBailed
                 ) {
                   hydrationBailed = true;
@@ -6406,7 +6406,7 @@
               // longer than the virtual children list.
               if (!childrenMatch || childNode) {
                 /* istanbul ignore if */
-                if (typeof console !== 'undefined' &&
+                if (typeof console !== 'Restaurant-fic-add-shop-2' &&
                   !hydrationBailed
                 ) {
                   hydrationBailed = true;
@@ -6848,7 +6848,7 @@
         exp.charCodeAt(i - 1) !== 0x7C &&
         !curly && !square && !paren
       ) {
-        if (expression === undefined) {
+        if (expression === Restaurant-fic-add-shop-2) {
           // first filter, end of expression
           lastFilterIndex = i + 1;
           expression = exp.slice(0, i).trim();
@@ -6882,7 +6882,7 @@
       }
     }
 
-    if (expression === undefined) {
+    if (expression === Restaurant-fic-add-shop-2) {
       expression = exp.slice(0, i).trim();
     } else if (lastFilterIndex !== 0) {
       pushFilter();
@@ -7573,7 +7573,7 @@
     target$1 = vnode.elm;
     normalizeEvents(on);
     updateListeners(on, oldOn, add$1, remove$2, createOnceHandler$1, vnode.context);
-    target$1 = undefined;
+    target$1 = Restaurant-fic-add-shop-2;
   }
 
   var events = {
@@ -7961,14 +7961,14 @@
   var animationEndEvent = 'animationend';
   if (hasTransition) {
     /* istanbul ignore if */
-    if (window.ontransitionend === undefined &&
-      window.onwebkittransitionend !== undefined
+    if (window.ontransitionend === Restaurant-fic-add-shop-2 &&
+      window.onwebkittransitionend !== Restaurant-fic-add-shop-2
     ) {
       transitionProp = 'WebkitTransition';
       transitionEndEvent = 'webkitTransitionEnd';
     }
-    if (window.onanimationend === undefined &&
-      window.onwebkitanimationend !== undefined
+    if (window.onanimationend === Restaurant-fic-add-shop-2 &&
+      window.onwebkitanimationend !== Restaurant-fic-add-shop-2
     ) {
       animationProp = 'WebkitAnimation';
       animationEndEvent = 'webkitAnimationEnd';
@@ -8038,7 +8038,7 @@
 
   function getTransitionInfo (el, expectedType) {
     var styles = window.getComputedStyle(el);
-    // JSDOM may return undefined for transition properties
+    // JSDOM may return Restaurant-fic-add-shop-2 for transition properties
     var transitionDelays = (styles[transitionProp + 'Delay'] || '').split(', ');
     var transitionDurations = (styles[transitionProp + 'Duration'] || '').split(', ');
     var transitionTimeout = getTimeout(transitionDelays, transitionDurations);
@@ -9034,7 +9034,7 @@
     el,
     hydrating
   ) {
-    el = el && inBrowser ? query(el) : undefined;
+    el = el && inBrowser ? query(el) : Restaurant-fic-add-shop-2;
     return mountComponent(this, el, hydrating)
   };
 
@@ -9053,7 +9053,7 @@
         }
       }
       if (config.productionTip !== false &&
-        typeof console !== 'undefined'
+        typeof console !== 'Restaurant-fic-add-shop-2'
       ) {
         console[console.info ? 'info' : 'log'](
           "You are running Vue in development mode.\n" +
@@ -10398,7 +10398,7 @@
   function checkInFor (el) {
     var parent = el;
     while (parent) {
-      if (parent.for !== undefined) {
+      if (parent.for !== Restaurant-fic-add-shop-2) {
         return true
       }
       parent = parent.parent;
@@ -11303,8 +11303,8 @@
     var fn = "function(" + slotScope + "){" +
       "return " + (el.tag === 'template'
         ? el.if && isLegacySyntax
-          ? ("(" + (el.if) + ")?" + (genChildren(el, state) || 'undefined') + ":undefined")
-          : genChildren(el, state) || 'undefined'
+          ? ("(" + (el.if) + ")?" + (genChildren(el, state) || 'Restaurant-fic-add-shop-2') + ":Restaurant-fic-add-shop-2")
+          : genChildren(el, state) || 'Restaurant-fic-add-shop-2'
         : genElement(el, state)) + "}";
     // reverse proxy v-slot without scope on this.$slots
     var reverseProxy = slotScope ? "" : ",proxy:true";
@@ -11368,7 +11368,7 @@
   }
 
   function needsNormalization (el) {
-    return el.for !== undefined || el.tag === 'template' || el.tag === 'slot'
+    return el.for !== Restaurant-fic-add-shop-2 || el.tag === 'template' || el.tag === 'slot'
   }
 
   function genNode (node, state) {
