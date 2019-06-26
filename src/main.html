@@ -14,7 +14,6 @@
     <link rel="icon" type="image/ico" href="../mocks/favicon.ico">
     <link rel="stylesheet" href="../assets/global.css">
     <link rel="stylesheet" href="../assets/main.css">
-    <script src="../JavaScript/main.js" defer="defer"></script>
 </head>
 
 <body>
@@ -71,71 +70,8 @@
                     را وارد کنید.</p>
                 <div class="m_banner_outer_1">
                     <div class="m_banner_outer_2">
-                        <div class="m_banner_outer_3">
-                            <div class="m_banner_outer_4">
-                                <div class="m_banner_outer_5">
-                                    <div>
-                                        <div class="m_banner_search_section">
-                                            <div class="m_banner_search_pre">
-                                                <div class="m_banner_search_box">
-                                                            <span class="m_banner_search_box_1 m_banner_search_box_2 m_banner_search_box_3">
-                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                     viewBox="0 0 11 20"><path fill="currentColor"
-                                                                                               fill-rule="evenodd"
-                                                                                               d="M9.17 19.708L.607 11.444a1.95 1.95 0 0 1 0-2.827L9.232.292c.4-.385 1.048-.39 1.454-.01a.976.976 0 0 1 .011 1.425L2.803 9.324a.975.975 0 0 0 0 1.414l7.831 7.557a.974.974 0 0 1 0 1.413c-.405.39-1.06.39-1.464 0z"></path>
-                                                                </svg>
-                                                            </span>
-                                                </div>
-                                                <select class="m_banner_city_box city_selectBox">
-                                                    <option value="تهران">تهران</option>
-                                                    <option value="اصفهان">اصفهان</option>
-                                                    <option value="شیراز">شیراز</option>
-                                                </select>
-                                            </div>
-                                            <div class="m_banner_empty"></div>
-                                        </div>
-                                        <div class="m_banner_empty1 m_banner_empty2"></div>
-                                    </div>
-                                </div>
-                                <div class="m_banner_region_search">
-                                    <div>
-                                        <button class="cross_select_city">X</button>
-                                        <div class="m_banner_region_search_in">
-                                            <div class="m_banner_region_svg1 m_banner_region_svg2">
-                                                        <span class="m_banner_region_span1 m_banner_region_span2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="13"
-                                                                 height="17" viewBox="0 0 13 17"><path
-                                                                    fill="currentColor" fill-rule="evenodd"
-                                                                    d="M6 0C2.683 0 0 2.66 0 5.95 0 10.412 6 17 6 17s6-6.588 6-11.05C12 2.66 9.317 0 6 0zm0 8a2 2 0 1 1 .001-4.001A2 2 0 0 1 6 8z"></path>
-                                                            </svg>
-                                                        </span>
-                                                <input size="55" list="districts" name="district" id="search_region">
-                                                <datalist id="districts">
-                                                    <option value="جستجو خودکار منطقه شما">
-                                                    <option value="یوسف آباد">
-                                                    <option value="میدان ولیعصر">
-                                                </datalist>
-                                            </div>
-                                        </div>
-                                        <div class="m_banner_empty1 m_banner_empty2"></div>
-                                    </div>
-                                </div>
-                                <button class="m_baner_button_search">
-                                            <span class="m_baner_button_search_s1 m_baner_button_search_s2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                                     viewBox="0 0 18 18"><g fill="none" fill-rule="evenodd"><path
-                                                        d="M0 0h18v18H0z"></path><g stroke="currentColor"
-                                                                                    stroke-linecap="round"
-                                                                                    stroke-linejoin="round"
-                                                                                    stroke-width="2"
-                                                                                    transform="translate(2 2)"><circle
-                                                        cx="6.125" cy="6.125" r="6.125"></circle><path
-                                                        d="M13.373 13.373l-2.767-2.767"></path></g><path
-                                                        d="M0 0h18v18H0z"></path></g>
-                                                </svg>
-                                            </span>
-                                </button>
-                            </div>
+                        <div class="m_banner_outer_3" id = "home_search">
+                            <home-search-component></home-search-component>
                         </div>
                     </div>
                     <div class="m_baner_last_search_outer">
@@ -340,9 +276,11 @@
 
 <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
 <script src="../JavaScript/vue.js"></script>
+<script src="../JavaScript/home-search-component.js"></script>
 <script src="../JavaScript/header-component.js"></script>
 <script src="../JavaScript/footer-component.js"></script>
 <script src="../JavaScript/top-restaurants-component.js"></script>
 <script src="../JavaScript/food-list-component.js"></script>
+
 </body>
 </html>

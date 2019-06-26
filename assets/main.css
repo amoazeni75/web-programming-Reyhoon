@@ -1484,13 +1484,13 @@ body {
     box-shadow: 0 .3rem 2rem rgba(0, 0, 0, .2)
 }
 
-.m_ranking_inner2._clQj {
+.m_ranking_inner2.rest-item-inner-3 {
     -webkit-box-shadow: inset 0 0 3rem #e2e2e2;
     box-shadow: inset 0 0 3rem #e2e2e2;
     background-color: rgba(0, 0, 0, .04)
 }
 
-.m_ranking_inner2._clQj:hover {
+.m_ranking_inner2.rest-item-inner-3:hover {
     -webkit-box-shadow: none;
     box-shadow: none;
     border: 1.6px solid #e9e9e9;
