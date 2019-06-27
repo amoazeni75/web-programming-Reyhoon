@@ -61,6 +61,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * These routes are typically stateless.
      *
+     * if you want to bulid an api that it's coressponding request does not have /api/
+     * you must delete prefix('api') from below otherwise your request should be like this :
+     * restfulapi.test/api/...
      * @return void
      */
     protected function mapApiRoutes()
