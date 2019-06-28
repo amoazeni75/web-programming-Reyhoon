@@ -25,6 +25,11 @@ third paremeter is for saying to laravel that resterict this route just to show 
 or specific buyer because we do not want that people can dirceltly create,delete or update buyers from this api and in next we provide these action for user route, because it's user duty to do these
 */
 Route::resource('buyers','Buyer\BuyerController', ['only' => ['index', 'show']]);
+Route::resource('buyers.transactions','Buyer\BuyerTransactionController', ['only' => ['index']]);
+Route::resource('buyers.products','Buyer\BuyerProductController', ['only' => ['index']]);
+Route::resource('buyers.sellers','Buyer\BuyerSellerController', ['only' => ['index']]);
+Route::resource('buyers.categories','Buyer\BuyerCategoryController', ['only' => ['index']]);
+
 
 Route::resource('categories','Category\CategoryController', ['except' => ['create', 'edit']]);
 
@@ -33,5 +38,9 @@ Route::resource('products','Product\ProductController', ['only' => ['index', 'sh
 Route::resource('sellers','Seller\SellerController', ['only' => ['index', 'show']]);
 
 Route::resource('transactions','Transaction\TransactionController', ['only' => ['index', 'show']]);
+
+//following route means /api/transactions/transaction_id/categories  it will concate and product by it self
+Route::resource('transactions.categories','Transaction\TransactionCategoryController', ['only' => ['index']]);
+Route::resource('transactions.sellers','Transaction\TransactionSellerController', ['only' => ['index']]);
 
 Route::resource('users','User\UserController', ['except' => ['create', 'edit']]);
