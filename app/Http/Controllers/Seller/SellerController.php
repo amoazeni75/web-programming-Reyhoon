@@ -15,14 +15,13 @@ class SellerController extends ApiController
      */
     public function index()
     {
-        $sellers = Seller::has('products')->get();
+        $sellers = Seller::all();
         return $this->showAll($sellers);
     }
 
     
     public function show($id)
     {
-        $seller = Seller::has('products')->findOrFail($id);
         return $this->showOne($seller);
     }
 
