@@ -37,14 +37,21 @@ class User extends Authenticatable
         'remember_token',
         'verification_token',
     ];
+
+    //every time with want to set value for name and email two following func will be call
+    //and every time we want to get value of name second func will be call
+
+    //defining mutator for name attribute it's struc is  : set + name of attr + Attribute
     public function setNameAttribute($name)
     {
         $this->attributes['name'] = strtolower($name);
     }
+    //defing accessor : get + name of attr + Attribute
     public function getNameAttribute($name)
     {
         return ucwords($name);
     }
+
     public function setEmailAttribute($email)
     {
         $this->attributes['email'] = strtolower($email);
