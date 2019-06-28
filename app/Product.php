@@ -1,19 +1,13 @@
 <?php
-
 namespace App;
-
-use Illuminate\Database\Eloquent\Model;
-
-use App\Category;
 use App\Seller;
+use App\Category;
 use App\Transaction;
-
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
-	/*
-	in this class value for status has two specific condiftion: available or unavailable
-	so we create const var to maintain this state
-	*/
+    use SoftDeletes;
 	const AVAILABLE_PRODUCT = 'available';
 	const UNAVAILABLE_PRODUCT = 'unavailable';
 
@@ -25,20 +19,23 @@ class Product extends Model
     	'image',
     	'seller_id',
     ];
-
-    public function isAvailable(){
+    protected $hidden = [
+        'pivot'
+    ];
+    public function isAvailable()
+    {
     	return $this->status == Product::AVAILABLE_PRODUCT;
     }
-
-    public function seller(){
-    	return $this->belongsTo(Seller::class);
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
     }
-
-    public function categories(){
-    	return $this->belongsToMany(Category::class);
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
-
-    public function transactions(){
-    	return $this->hasMany(Transaction::class);
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 }
