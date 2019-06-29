@@ -26,7 +26,7 @@ class SellerProductController extends ApiController
     // in future we can control access
     // we pass instance of user insead of seller in order to provide ability
     // of registering a product for a person who has not any product yet
-    **
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -42,8 +42,8 @@ class SellerProductController extends ApiController
         ];
         $this->validate($request, $rules);
         $data = $request->all();
-        $data['status'] = Pr oduct::UNAVAILABLE_PRODUCT;
-        $data['image'] = $request->image->store('');
+        $data['status'] = Product::UNAVAILABLE_PRODUCT;
+        $data['image'] = $request->file('image')->storeAs('', $seller->id.'.jpg');
         $data['seller_id'] = $seller->id;
         $product = Product::create($data);
         return $this->showOne($product);
@@ -78,12 +78,32 @@ class SellerProductController extends ApiController
         }
         if ($request->hasFile('image')) {
             Storage::delete($product->image);
-            $product->image = $request->image->store('');
+            $product->image =  $request->file('image')->storeAs('', $seller->id.'.jpg');
         }
         if ($product->isClean()) {
             return $this->errorResponse('You need to specify a different value to update', 422);
         }
         $product->save();
         return $this->showOne($product);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Seller  $seller
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Seller $seller, Product $product)
+    {
+        $this->checkSeller($seller, $product);
+        $product->delete();
+        Storage::delete($product->image);
+        return $this->showOne($product);
+    }
+    protected function checkSeller(Seller $seller, Product $product)
+    {
+        if ($seller->id != $product->seller_id) {
+            throw new HttpException(422, 'The specified seller is not the actual seller of the product');            
+        }
     }
 }
