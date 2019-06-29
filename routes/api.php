@@ -56,3 +56,31 @@ Route::resource('transactions.categories','Transaction\TransactionCategoryContro
 Route::resource('transactions.sellers','Transaction\TransactionSellerController', ['only' => ['index']]);
 
 Route::resource('users','User\UserController', ['except' => ['create', 'edit']]);
+
+
+
+/*
+Restaurant
+*/
+Route::resource('retaurants','Restaurant\RestaurantController', ['except' => ['create']]);
+
+/*
+Comment
+*/
+Route::resource('comments','Comment\CommentController', ['only' => ['index', 'show',
+ 'store']]);
+
+/*
+Food
+*/
+Route::resource('foods','Food\FoodController', ['only' => ['index', 'show']]);
+
+/*
+Address
+*/
+Route::resource('address','Address\AddressController', ['only' => ['index', 'show']]);
+
+/*
+Restaurant foodset
+*/
+Route::resource('foodsets','Foodset\FoodsetController', ['only' => ['index', 'show']]);
