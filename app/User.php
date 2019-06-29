@@ -1,6 +1,6 @@
 <?php
 namespace App;
-
+use App\Transformers\UserTransformer;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +11,7 @@ class User extends Authenticatable
     const UNVERIFIED_USER = '0';
     const ADMIN_USER = 'true';
     const REGULAR_USER = 'false';
-    
+    public $transformer = UserTransformer::class;
     protected $table = 'users';
     protected $dates = ['deleted_at'];
     /**
@@ -37,21 +37,14 @@ class User extends Authenticatable
         'remember_token',
         'verification_token',
     ];
-
-    //every time with want to set value for name and email two following func will be call
-    //and every time we want to get value of name second func will be call 
-
-    //defining mutator for name attribute it's struc is  : set + name of attr + Attribute
     public function setNameAttribute($name)
     {
         $this->attributes['name'] = strtolower($name);
     }
-    //defing accessor : get + name of attr + Attribute
     public function getNameAttribute($name)
     {
         return ucwords($name);
     }
-
     public function setEmailAttribute($email)
     {
         $this->attributes['email'] = strtolower($email);
@@ -67,5 +60,10 @@ class User extends Authenticatable
     public static function generateVerificationCode()
     {
         return str_random(40);
+    }
+    protected function transformData($data, $transformer)
+    {
+        $transformation = fractal($data, new $transformer);
+        return $transformation->toArray();
     }
 }
