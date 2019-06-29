@@ -20,6 +20,7 @@ class CreateCommentsTable extends Migration
             $table->float('packing');
             $table->float('deliveryRate');
             $table->string('text', 1000);
+            $table->integer('retaurant_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 

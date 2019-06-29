@@ -17,11 +17,13 @@ class CreateAddressesTable extends Migration
             $table->increments('id');
             $table->string('city');
             $table->string('area');
-            $table->string('address', 1000);
+            $table->string('addressLine', 1000);
+            $table->integer('retaurant_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('retaurant_id')->references('id')->on('restaurants');
+
         });
     }
 

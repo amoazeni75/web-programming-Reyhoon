@@ -61,9 +61,4 @@ class User extends Authenticatable
     {
         return str_random(40);
     }
-    protected function transformData($data, $transformer)
-    {
-        $transformation = fractal($data, new $transformer);
-        return $transformation->toArray();
-    }
 }
