@@ -13,7 +13,7 @@ class User extends Authenticatable
     const REGULAR_USER = 'false';
     
     protected $table = 'users';
-    
+    protected $dates = ['deleted_at'];
     /**
      * The attributes that are mass assignable.
      *
@@ -39,7 +39,7 @@ class User extends Authenticatable
     ];
 
     //every time with want to set value for name and email two following func will be call
-    //and every time we want to get value of name second func will be call
+    //and every time we want to get value of name second func will be call 
 
     //defining mutator for name attribute it's struc is  : set + name of attr + Attribute
     public function setNameAttribute($name)
