@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Address;
 
 use App\Address;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class AddressController extends Controller
+class AddressController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class AddressController extends Controller
      */
     public function index()
     {
-        //
+        $addresses = Address::all();
+        return $this->showAll($addresses);
     }
 
     /**

@@ -19,11 +19,11 @@ class CreateFoodsTable extends Migration
             $table->string('description', 1000);
             $table->float('price');
             $table->string('foodSet');
-            $table->integer('retaurant_id')->unsigned();
+            $table->integer('restaurant_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('retaurant_id')->references('id')->on('restaurants');
+            $table->foreign('restaurant_id')->references('id')->on('restaurants');
         });
     }
 

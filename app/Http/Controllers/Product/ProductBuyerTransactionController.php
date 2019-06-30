@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Product;
 
+use App\User;
 use App\Product;
+use App\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApiController;
 
 class ProductBuyerTransactionController extends ApiController
@@ -17,7 +20,7 @@ class ProductBuyerTransactionController extends ApiController
      */
     public function store(Request $request, Product $product, User $buyer)
     {
-         $rules = [
+        $rules = [
             'quantity' => 'required|integer|min:1'
         ];
         $this->validate($request, $rules);
@@ -33,6 +36,19 @@ class ProductBuyerTransactionController extends ApiController
         if (!$product->isAvailable()) {
             return $this->errorResponse('The product is not available', 409);   
         }
+        if ($product->quantity < $request->quantity) {
+            return $this->errorResponse('The product does not have enough units for this transaction', 409);   
+        }
+        return DB::transaction(function() use ($request, $product, $buyer) {
+            $product->quantity -= $request->quantity;
+            $product->save();
+            $transaction = Transaction::create([
+                'quantity' => $request->quantity,
+                'buyer_id' => $buyer->id,
+                'product_id' => $product->id,
+            ]);
+            return $this->showOne($transaction, 201);
+        });
     }
 
 }

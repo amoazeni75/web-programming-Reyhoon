@@ -20,11 +20,11 @@ class CreateCommentsTable extends Migration
             $table->float('packing');
             $table->float('deliveryRate');
             $table->string('text', 1000);
-            $table->integer('retaurant_id')->unsigned();
+            $table->integer('restaurant_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('retaurant_id')->references('id')->on('restaurants');
+            $table->foreign('restaurant_id')->references('id')->on('restaurants');
         });
     }
 

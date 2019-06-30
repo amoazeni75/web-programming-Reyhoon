@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Food;
 
 use App\Food;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class FoodController extends Controller
+class FoodController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class FoodController extends Controller
      */
     public function index()
     {
-        //
+        $foods = Food::all();
+        return $this->showAll($foods);
     }
 
     /**

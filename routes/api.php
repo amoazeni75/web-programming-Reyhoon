@@ -62,7 +62,9 @@ Route::resource('users','User\UserController', ['except' => ['create', 'edit']])
 /*
 Restaurant
 */
-Route::resource('retaurants','Restaurant\RestaurantController', ['except' => ['create']]);
+Route::resource('restaurants','Restaurant\RestaurantController', ['except' => ['create']]);
+Route::resource('restaurants.comments','Restaurant\RestaurantCommentController', ['only' => ['index',
+'store']]);
 
 /*
 Comment
