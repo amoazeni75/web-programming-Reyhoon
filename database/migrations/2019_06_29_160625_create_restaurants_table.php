@@ -17,6 +17,7 @@ class CreateRestaurantsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('logo');
+            $table->string('background');
             $table->integer('openingTime')->unsigned();
             $table->integer('closingTime')->unsigned();
             $table->timestamps();

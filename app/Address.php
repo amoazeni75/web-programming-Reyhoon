@@ -16,7 +16,7 @@ class Address extends Model
         'city',
         'area',
         'addressLine',
-        'retaurant_id',
+        'restaurant_id',
     ];
 
     public function restaurant()

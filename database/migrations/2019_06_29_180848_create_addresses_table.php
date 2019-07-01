@@ -23,7 +23,6 @@ class CreateAddressesTable extends Migration
             $table->softDeletes();
 
             $table->foreign('restaurant_id')->references('id')->on('restaurants');
-
         });
     }
 

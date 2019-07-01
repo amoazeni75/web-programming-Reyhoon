@@ -66,9 +66,74 @@ class RestaurantController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Restaurant $restaurant, Request $request)
     {
-        //
+        $rules = [
+            'name'          => 'required',
+            'logo'          => 'required|image',
+            'background'    => 'required|image',
+            'openingTime'   => 'required|numeric|min:0|max:24',
+            'closeTime'     => 'required|numeric|min:0|max:24',
+            'area'          => 'required',
+            'city'          => 'required',
+            'addressLine'   => 'required',
+            'categories'    => 'required'
+        ];
+        $this->validate($request, $rules);
+        
+        $newRestaurantID = count(Restaurant::all()) + 1;
+
+        //create restaurant
+        $restaurant_data = array(
+            'name' => $request->name,
+            'logo' => $request->file('logo')->storeAs('/restaurants_logo/', $newRestaurantID.'.png'),
+            'background' => $request->file('background')->storeAs('/restaurants_background/', $newRestaurantID.'.png'),
+            'openingTime' => $request->openingTime,
+            'closingTime' => $request->closeTime,
+             );
+        $restaurant = Restaurant::create($restaurant_data);
+
+        //create address
+        $address_data = array(
+            'restaurant_id' => $restaurant->id,
+            'city'          => $request->city,
+            'area'          => $request->area,
+            'addressLine'   => $request->addressLine,
+        );
+        $address = Address::create($address_data);
+
+
+        //create category
+
+
+        // $data = array(
+        //     'restaurant_id' => $restaurant->id,
+        //     'author'        => $request->author,
+        //     'quality'       => $request->quality,
+        //     'packing'       => $request->packing,
+        //     'deliveryRate'  => $request->deliveryRate,
+        //     'text'          => $request->text,            
+        //  );
+         
+        // $comment = Comment::create($data);
+        // return $this->showOne($comment);
+
+        //         $rules = [
+        //     'name' => 'required',
+        //     'description' => 'required',
+        //     'quantity' => 'required|integer|min:1',
+        //     'image' => 'required|image',
+        // ];
+        // $this->validate($request, $rules);
+        // $data = $request->all();
+        // $data['status'] = Product::UNAVAILABLE_PRODUCT;
+        // $data['image'] = $request->file('image')->storeAs('', $seller->id.'.jpg');
+        // $data['seller_id'] = $seller->id;
+        // $product = Product::create($data);
+        // return $this->showOne($product);
+
+
+
     }
 
     /**
