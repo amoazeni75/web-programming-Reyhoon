@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Restaurant;
 
 use App\Address;
+use App\Foodset;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -104,36 +105,17 @@ class RestaurantController extends ApiController
 
 
         //create category
-
-
-        // $data = array(
-        //     'restaurant_id' => $restaurant->id,
-        //     'author'        => $request->author,
-        //     'quality'       => $request->quality,
-        //     'packing'       => $request->packing,
-        //     'deliveryRate'  => $request->deliveryRate,
-        //     'text'          => $request->text,            
-        //  );
-         
-        // $comment = Comment::create($data);
-        // return $this->showOne($comment);
-
-        //         $rules = [
-        //     'name' => 'required',
-        //     'description' => 'required',
-        //     'quantity' => 'required|integer|min:1',
-        //     'image' => 'required|image',
-        // ];
-        // $this->validate($request, $rules);
-        // $data = $request->all();
-        // $data['status'] = Product::UNAVAILABLE_PRODUCT;
-        // $data['image'] = $request->file('image')->storeAs('', $seller->id.'.jpg');
-        // $data['seller_id'] = $seller->id;
-        // $product = Product::create($data);
-        // return $this->showOne($product);
-
-
-
+        $categories = $this->getListOfParemeterFromInput($request->get('categories'));
+        foreach ($categories as $category) {
+            $foodset_id =  DB::table('foodsets')
+            ->where('name', '=', $category)
+            ->get()
+            ->pluck('id');
+            
+            DB::table('foodset_restaurant')->insert(
+                ['foodset_id' => $foodset_id[0], 'restaurant_id' =>  $restaurant->id]
+            );
+        }
     }
 
     /**
@@ -229,9 +211,7 @@ class RestaurantController extends ApiController
 
         $result_temp = array();
         $result = array();
-        $categories = str_replace('[','',$categories);
-        $categories = str_replace(']','',$categories);
-        $categories = explode("/",$categories);
+        $categories = $this->getListOfParemeterFromInput($categories);
         
         //get list of restaurant in specified city and area      
         $resturantsInCity = DB::table('restaurants')
@@ -318,6 +298,17 @@ $restaurant['categories'] = $rest_foodset;
         $average_rating /= sizeof($comments);
     }
     $restaurant['average_rating'] = $average_rating;
+    }
+
+    private function getListOfParemeterFromInput($input){
+        //echo $input;
+        $input = str_replace('[','',$input);
+        $input = str_replace(']','',$input);
+        $input = explode("|",$input);
+        // foreach ($input as $inp) {
+        //     echo $inp.'\n';
+        // }
+        return $input;
     }
 
 }

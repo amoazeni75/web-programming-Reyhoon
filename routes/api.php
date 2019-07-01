@@ -67,6 +67,9 @@ Route::get('restaurants/search', 'Restaurant\RestaurantController@search');
 Route::resource('restaurants','Restaurant\RestaurantController', ['except' => ['create']]);
 Route::resource('restaurants.comments','Restaurant\RestaurantCommentController', ['only' => ['index',
 'store']]);
+Route::resource('restaurants.foods','Restaurant\RestaurantFoodController', ['only' => ['store']]);
+
+
 //Route::resource('restaurants_search','Restaurant\RestaurantController@search');
 
 /*
