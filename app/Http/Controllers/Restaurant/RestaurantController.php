@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Restaurant;
 use App\Address;
 use App\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApiController;
 
 class RestaurantController extends ApiController
@@ -17,15 +18,24 @@ class RestaurantController extends ApiController
     public function index(Request $request)
     {   
 
-        if($request->has('category')){
-            echo $request->get("category");
-        }
+        $restaurants = array();
+        if($request->has('area') && $request->has('city')){
+            $cate = 'empty';
+            if( $request->has('categories')){
+                $cate = $request->get('categories');
+            }
+            $restaurants = $this->filterRestaurants(
+                $request->get('city'),
+                $request->get('area'), 
+                $cate);
 
-        $restaurants = Restaurant::all();
-        
-        foreach ($restaurants as $rest) {
-            $this->buildDetailsOfRestaurant($rest);
-        }   
+        }
+        else{
+            $restaurants = Restaurant::all();
+            foreach ($restaurants as $rest) {
+                $this->buildDetailsOfRestaurant($rest);
+            }   
+        }
         return response()->json($restaurants, 200);
     }
 
@@ -34,7 +44,7 @@ class RestaurantController extends ApiController
     */
     public function search(Request $request){
         if(!($request->has('search') && $request->has('city'))){
-         return response()->json("there is not suitable input", 404);
+         return response()->json("empty", 404);
      }
      $areas = $this->suggestArea($request->get('city'), $request->get('search'));
      return response()->json($areas, 200);
@@ -111,48 +121,21 @@ class RestaurantController extends ApiController
     append address,foods and categories of a restaurant into it
     */
     private function buildDetailsOfRestaurant(Restaurant $restaurant){
-        $restaurant['city'] = $restaurant->address['city'];
-        $restaurant['area'] = $restaurant->address['area'];
-        $restaurant['addressLine'] = $restaurant->address['addressLine'];
+        //append address
+        $this->appendAddressToRestaurant($restaurant);
+        
+        //append category
+        $this->appendCategoryToRestaurant($restaurant);
 
-        //adding category
-        $rest_foodset = array();
-        $categories = $restaurant->foodsets;
-        foreach($categories as $category){
-            $temp_category = array("id"=>$category->id, "name"=>$category->name);
-            array_push($rest_foodset, $temp_category);
-        }
-        $restaurant['categories'] = $rest_foodset;
+        //append foods
+        $this->appendFoodsToRestaurant($restaurant);
 
-        //adding foods
-        $rest_foods = array();
-        $foods = $restaurant->foods;
-        foreach($foods as $foo){
-            $temp_category = array(
-                "id"=>$foo->id,
-                "name"=>$foo->name,
-                "category" => $foo->foodSet,
-                "description" => $foo->description,
-                "price" => $foo->price,
-            );
-            array_push($rest_foods, $temp_category);
-        }
-        $restaurant['foods'] = $rest_foods;
-
-        //calculating average rating
-        $comments = $restaurant->comments;
-        $average_rating = 0.0;
-        if(sizeof($comments) != 0){
-            foreach($comments as $com){
-                $average_rating += $com->quality; 
-            }
-            $average_rating /= sizeof($comments);
-        }
-        $restaurant['average_rating'] = $average_rating;
+        //append average rating
+        $this->appendAverageRatingToRestaurant($restaurant);
     }
 
     /**
-    
+    suggest area to user depends on it's input
     */
     private function suggestArea($city, $searchInput){
         $addresses = Address::where('city', $city)->get();
@@ -172,4 +155,100 @@ class RestaurantController extends ApiController
         $areas = array_unique($areas);
         return $areas;
     }
+
+    private function filterRestaurants($city, $area, $categories){
+
+        $result_temp = array();
+        $result = array();
+        $categories = str_replace('[','',$categories);
+        $categories = str_replace(']','',$categories);
+        $categories = explode("/",$categories);
+        
+        //get list of restaurant in specified city and area      
+        $resturantsInCity = DB::table('restaurants')
+        ->join('addresses','restaurants.id', '=', 'addresses.restaurant_id')
+        ->where('addresses.city', '=', $city)
+        ->where('addresses.area' , '=', $area)
+        ->get();
+
+        $addAll = false;
+        //check category
+        if($categories[0] == 'empty'){
+         $addAll = true;
+     }
+
+     foreach ($resturantsInCity as $restaurant) {
+        $acceptable = false;
+        $foods = DB::table('foods')
+        ->where('foods.restaurant_id', '=', $restaurant->restaurant_id)
+        ->get();
+        $rest_foods = array();
+        foreach($foods as $foo){
+            if(in_array($foo->foodSet, $categories)){
+                $acceptable = true;
+            }
+            array_push($rest_foods, $foo->foodSet);
+        }
+        if($acceptable == true || $addAll){
+            $rest_foods = array_unique($rest_foods);
+            array_push($result_temp, $restaurant);
+        }
+    }
+
+
+        //adding category
+    foreach ($result_temp as $res_tmp) {
+        $rest = Restaurant::find($res_tmp->id);
+        $this->appendAddressToRestaurant($rest);
+        $this->appendCategoryToRestaurant($rest);
+        $this->appendAverageRatingToRestaurant($rest);
+        array_push($result, $rest);
+    }
+    return $result;
+}
+
+private function appendAddressToRestaurant(Restaurant $restaurant){
+    $restaurant['city'] = $restaurant->address['city'];
+    $restaurant['area'] = $restaurant->address['area'];
+    $restaurant['addressLine'] = $restaurant->address['addressLine'];
+}
+
+private function appendCategoryToRestaurant(Restaurant $restaurant){
+   $rest_foodset = array();
+   $categories = $restaurant->foodsets;
+   foreach($categories as $category){
+    $temp_category = array("id"=>$category->id, "name"=>$category->name);
+    array_push($rest_foodset, $temp_category);
+}
+$restaurant['categories'] = $rest_foodset;
+}
+
+private function appendFoodsToRestaurant(Restaurant $restaurant){
+    $rest_foods = array();
+    $foods = $restaurant->foods;
+    foreach($foods as $foo){
+        $temp_category = array(
+            "id"=>$foo->id,
+            "name"=>$foo->name,
+            "category" => $foo->foodSet,
+            "description" => $foo->description,
+            "price" => $foo->price,
+        );
+        array_push($rest_foods, $temp_category);
+    }
+    $restaurant['foods'] = $rest_foods;
+}
+
+private function appendAverageRatingToRestaurant(Restaurant $restaurant){
+    $comments = $restaurant->comments;
+    $average_rating = 0.0;
+    if(sizeof($comments) != 0){
+        foreach($comments as $com){
+            $average_rating += $com->quality; 
+        }
+        $average_rating /= sizeof($comments);
+    }
+    $restaurant['average_rating'] = $average_rating;
+}
+
 }
