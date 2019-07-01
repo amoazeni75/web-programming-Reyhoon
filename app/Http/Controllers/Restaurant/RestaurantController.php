@@ -193,7 +193,7 @@ class RestaurantController extends ApiController
 
                 $sub = substr($address->area, 0, strlen($searchInput));
                 
-                if(strcasecmp($sub, $searchInput) == 0){
+                if(strcasecmp($sub, $searchInput) == 0 && $searchInput != ''){
                     array_push($areas, $address->area); 
                 }
             }
