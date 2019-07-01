@@ -45,10 +45,10 @@ class RestaurantController extends ApiController
     public function search(Request $request){
         if(!($request->has('search') && $request->has('city'))){
          return response()->json("empty", 404);
-     }
-     $areas = $this->suggestArea($request->get('city'), $request->get('search'));
-     return response()->json($areas, 200);
- }
+        }
+        $areas = $this->suggestArea($request->get('city'), $request->get('search'));
+        return response()->json($areas, 200);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -153,7 +153,11 @@ class RestaurantController extends ApiController
         }
         //remove duplicates elements
         $areas = array_unique($areas);
-        return $areas;
+        $arr = array();
+        foreach ($areas as $a => $value) {
+            array_push($arr, $value);
+        }
+        return $arr;
     }
 
     private function filterRestaurants($city, $area, $categories){
@@ -175,7 +179,7 @@ class RestaurantController extends ApiController
         //check category
         if($categories[0] == 'empty'){
          $addAll = true;
-     }
+        }
 
      foreach ($resturantsInCity as $restaurant) {
         $acceptable = false;
@@ -193,27 +197,27 @@ class RestaurantController extends ApiController
             $rest_foods = array_unique($rest_foods);
             array_push($result_temp, $restaurant);
         }
-    }
+        }
 
 
         //adding category
-    foreach ($result_temp as $res_tmp) {
+        foreach ($result_temp as $res_tmp) {
         $rest = Restaurant::find($res_tmp->id);
         $this->appendAddressToRestaurant($rest);
         $this->appendCategoryToRestaurant($rest);
         $this->appendAverageRatingToRestaurant($rest);
         array_push($result, $rest);
+        }
+        return $result;
     }
-    return $result;
-}
 
-private function appendAddressToRestaurant(Restaurant $restaurant){
+    private function appendAddressToRestaurant(Restaurant $restaurant){
     $restaurant['city'] = $restaurant->address['city'];
     $restaurant['area'] = $restaurant->address['area'];
     $restaurant['addressLine'] = $restaurant->address['addressLine'];
-}
+    }
 
-private function appendCategoryToRestaurant(Restaurant $restaurant){
+    private function appendCategoryToRestaurant(Restaurant $restaurant){
    $rest_foodset = array();
    $categories = $restaurant->foodsets;
    foreach($categories as $category){
@@ -221,9 +225,9 @@ private function appendCategoryToRestaurant(Restaurant $restaurant){
     array_push($rest_foodset, $temp_category);
 }
 $restaurant['categories'] = $rest_foodset;
-}
+    }
 
-private function appendFoodsToRestaurant(Restaurant $restaurant){
+    private function appendFoodsToRestaurant(Restaurant $restaurant){
     $rest_foods = array();
     $foods = $restaurant->foods;
     foreach($foods as $foo){
@@ -237,9 +241,9 @@ private function appendFoodsToRestaurant(Restaurant $restaurant){
         array_push($rest_foods, $temp_category);
     }
     $restaurant['foods'] = $rest_foods;
-}
+    }
 
-private function appendAverageRatingToRestaurant(Restaurant $restaurant){
+    private function appendAverageRatingToRestaurant(Restaurant $restaurant){
     $comments = $restaurant->comments;
     $average_rating = 0.0;
     if(sizeof($comments) != 0){
@@ -249,6 +253,6 @@ private function appendAverageRatingToRestaurant(Restaurant $restaurant){
         $average_rating /= sizeof($comments);
     }
     $restaurant['average_rating'] = $average_rating;
-}
+    }
 
 }
