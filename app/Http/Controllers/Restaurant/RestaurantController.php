@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Restaurant;
 
+use App\Address;
 use App\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
@@ -13,8 +14,13 @@ class RestaurantController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {   
+
+        if($request->has('category')){
+            echo $request->get("category");
+        }
+
         $restaurants = Restaurant::all();
         
         foreach ($restaurants as $rest) {
@@ -22,6 +28,17 @@ class RestaurantController extends ApiController
         }   
         return response()->json($restaurants, 200);
     }
+
+    /**
+    in this method we try to suggest area to user
+    */
+    public function search(Request $request){
+        if(!($request->has('search') && $request->has('city'))){
+         return response()->json("there is not suitable input", 404);
+     }
+     $areas = $this->suggestArea($request->get('city'), $request->get('search'));
+     return response()->json($areas, 200);
+ }
 
     /**
      * Show the form for creating a new resource.
@@ -90,6 +107,9 @@ class RestaurantController extends ApiController
         //
     }
 
+    /**
+    append address,foods and categories of a restaurant into it
+    */
     private function buildDetailsOfRestaurant(Restaurant $restaurant){
         $restaurant['city'] = $restaurant->address['city'];
         $restaurant['area'] = $restaurant->address['area'];
@@ -129,5 +149,27 @@ class RestaurantController extends ApiController
             $average_rating /= sizeof($comments);
         }
         $restaurant['average_rating'] = $average_rating;
-     }
+    }
+
+    /**
+    
+    */
+    private function suggestArea($city, $searchInput){
+        $addresses = Address::where('city', $city)->get();
+        $areas = array();
+        foreach ($addresses as $address) {
+
+            if(strlen($address->area) >= strlen($searchInput)){
+
+                $sub = substr($address->area, 0, strlen($searchInput));
+                
+                if(strcasecmp($sub, $searchInput) == 0){
+                    array_push($areas, $address->area); 
+                }
+            }
+        }
+        //remove duplicates elements
+        $areas = array_unique($areas);
+        return $areas;
+    }
 }

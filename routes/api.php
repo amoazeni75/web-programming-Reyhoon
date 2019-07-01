@@ -62,9 +62,12 @@ Route::resource('users','User\UserController', ['except' => ['create', 'edit']])
 /*
 Restaurant
 */
+//If it becomes necessary for you to add additional routes to a resource controller beyond the default //resource routes, you should define those routes before your call to Route::resource:
+Route::get('restaurants/search', 'Restaurant\RestaurantController@search');
 Route::resource('restaurants','Restaurant\RestaurantController', ['except' => ['create']]);
 Route::resource('restaurants.comments','Restaurant\RestaurantCommentController', ['only' => ['index',
 'store']]);
+//Route::resource('restaurants_search','Restaurant\RestaurantController@search');
 
 /*
 Comment
