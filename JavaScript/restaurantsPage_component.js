@@ -5,6 +5,7 @@ new Vue({
         area: "",
         activeRestaurants : [],
         deactivateRestaurants : [],
+        categories: ['ساندویچ','برگر','پاستا','کباب','خورشت','غذای ایرانی','خوراک'],
 
     },
     methods: {

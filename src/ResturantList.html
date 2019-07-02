@@ -79,36 +79,17 @@
                                    id="branchNameSearch">
                         </div>
                         <div class="filters-checkbox-container">
-                            <div class="filters-item-div">
+
+                            <div class="filters-item-div" v-for="filter in categories">
                                 <fieldset class="filters-item-field-1 filters-item-field-2">
-                                    <input type="checkbox" class="filters-item-checkbox" id="cuisine-sandwich"
-                                           value="sandwich">
-                                    <label class="filters-item-label" for="cuisine-sandwich"></label>
+                                    <input type="checkbox" class="filters-item-checkbox" value="{{filter}}">
+                                    <label class="filters-item-label"></label>
                                 </fieldset>
-                                <label class="filters-item-label-2" for="cuisine-sandwich">
-                                    <span class="filters-item-label-span">ساندویچ</span>
+                                <label class="filters-item-label-2">
+                                    <span class="filters-item-label-span">{{filter}}</span>
                                 </label>
                             </div>
-                            <div class="filters-item-div">
-                                <fieldset class="filters-item-field-1 filters-item-field-2">
-                                    <input type="checkbox" class="filters-item-checkbox" id="cuisine-hamburger"
-                                           value="hamburger">
-                                    <label class="filters-item-label" for="cuisine-hamburger"></label>
-                                </fieldset>
-                                <label class="filters-item-label-2" for="cuisine-hamburger"><span
-                                        class="filters-item-label-span">برگر</span><span
-                                        class="filters-item-label-span-2"></span></label>
-                            </div>
-                            <div class="filters-item-div">
-                                <fieldset class="filters-item-field-1 filters-item-field-2">
-                                    <input type="checkbox" class="filters-item-checkbox" id="cuisine-salad"
-                                           value="salad">
-                                    <label class="filters-item-label" for="cuisine-salad"></label>
-                                </fieldset>
-                                <label class="filters-item-label-2" for="cuisine-salad"><span
-                                        class="filters-item-label-span">سالاد</span><span
-                                        class="filters-item-label-span-2"></span></label>
-                            </div>
+
                             <button class="filters-more-item">بیشتر</button>
                         </div>
                     </div>
