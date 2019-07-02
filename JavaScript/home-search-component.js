@@ -14,7 +14,7 @@ Vue.component('home-search-component', {
         '                                                                </svg>\n' +
         '                                                            </span>\n' +
         '                                                </div>\n' +
-        '                                                <select class="m_banner_city_box city_selectBox">\n' +
+        '                                                <select class="m_banner_city_box city_selectBox" id = "select_city">\n' +
         '                                                    <option value="تهران">تهران</option>\n' +
         '                                                    <option value="اصفهان">اصفهان</option>\n' +
         '                                                    <option value="شیراز">شیراز</option>\n' +
@@ -39,16 +39,13 @@ Vue.component('home-search-component', {
         '                                                        </span>\n' +
         '                                                <input size="55" list="districts" name="district" id="search_region">\n' +
         '                                                <datalist id="districts">\n' +
-        '                                                    <option value="جستجو خودکار منطقه شما"></option>\n' +
-        '                                                    <option value="یوسف آباد"></option>\n' +
-        '                                                    <option value="میدان ولیعصر"></option>\n' +
         '                                                </datalist>\n' +
         '                                            </div>\n' +
         '                                        </div>\n' +
         '                                        <div class="m_banner_empty1 m_banner_empty2"></div>\n' +
         '                                    </div>\n' +
         '                                </div>\n' +
-        '                                <button class="m_baner_button_search">\n' +
+        '                                <button class="m_baner_button_search" id = "search_button">\n' +
         '                                            <span class="m_baner_button_search_s1 m_baner_button_search_s2">\n' +
         '                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"\n' +
         '                                                     viewBox="0 0 18 18"><g fill="none" fill-rule="evenodd"><path\n' +
@@ -66,4 +63,6 @@ Vue.component('home-search-component', {
         '                            </div>'
 })
 
-new Vue({ el: '#home_search' })
+new Vue({
+    el: '#home_search'
+})
