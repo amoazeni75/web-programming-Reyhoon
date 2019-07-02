@@ -58,6 +58,6 @@ function showSuggestion(xhttp) {
 function navigateToRestaurantsPage(){
     let city = document.getElementById("select_city").value;
     let area = document.getElementById("search_region").value;
+    window.open("../src/ResturantList.html?city=" + city + "&area=" + area , '_blank');
 
-    location.replace("../src/ResturantList.html?city=" + city + "&area=" + area);
 }
