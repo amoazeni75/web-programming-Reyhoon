@@ -22,12 +22,16 @@ class RestaurantController extends ApiController
         $restaurants = array();
         if($request->has('area') && $request->has('city')){
             $cate = 'empty';
+            $area = true;
             if( $request->has('categories')){
                 $cate = $request->get('categories');
             }
+            if($request->get('area') != ''){
+                $area = $request->area;
+            }
             $restaurants = $this->filterRestaurants(
                 $request->get('city'),
-                $request->get('area'), 
+                $area, 
                 $cate);
 
         }
@@ -208,17 +212,27 @@ class RestaurantController extends ApiController
     }
 
     private function filterRestaurants($city, $area, $categories){
-
         $result_temp = array();
         $result = array();
         $categories = $this->getListOfParemeterFromInput($categories);
         
         //get list of restaurant in specified city and area      
-        $resturantsInCity = DB::table('restaurants')
+        $resturantsInCity = [];
+        if($area == 1){
+            $resturantsInCity = DB::table('restaurants')
+        ->join('addresses','restaurants.id', '=', 'addresses.restaurant_id')
+        ->where('addresses.city', '=', $city)
+        ->get();
+        }else{
+            $resturantsInCity = DB::table('restaurants')
         ->join('addresses','restaurants.id', '=', 'addresses.restaurant_id')
         ->where('addresses.city', '=', $city)
         ->where('addresses.area' , '=', $area)
         ->get();
+
+        }
+
+
 
         $addAll = false;
         //check category
@@ -253,6 +267,31 @@ class RestaurantController extends ApiController
         $this->appendAverageRatingToRestaurant($rest);
         array_push($result, $rest);
         }
+
+
+        $foodsets_array = [
+           'sandwich' => 0,
+            'berger' => 0,
+            'khoresht'=> 0,
+            'kabab'=> 0,
+            'pasta'=> 0,
+            'irani'=> 0,
+            'khourak'=> 0,
+        ];
+
+        //prepare list of categoryies
+        foreach ($result as $res) {
+             foreach ($res->categories as $cate) {
+                 foreach ($foodsets_array as $key_set => $value_set)
+                 {
+                    if($cate['name'] == $key_set){
+                         $foodsets_array[$key_set] = $value_set + 1; 
+                    }
+                }
+            }
+        }
+        
+        array_push($result, $foodsets_array);
         return $result;
     }
 
