@@ -62,7 +62,11 @@ new Vue({
         },
         handleListOfComments(xhttp){
             jsonDOM = JSON.parse(xhttp.responseText);
-            this.avg_ratings = jsonDOM.pop();
+            temp_rate = jsonDOM.pop();
+            for(rates_name in temp_rate){
+                this.avg_ratings.push({key: rates_name, value: temp_rate[rates_name]});
+            }
+
             for (comment in jsonDOM){
                this.comments.push(jsonDOM[comment]);
             }

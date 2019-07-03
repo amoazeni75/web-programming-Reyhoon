@@ -310,11 +310,11 @@
                      Restaurant-rating-parameters-item-2" v-for="rate in avg_ratings">
                         <div class="Restaurant-rpi-value-container">
                             <div class="Restaurant-rpi-value-slider">
-                                <div class="Restaurant-rpi-value-slider-inner" style="width: 70%;"></div>
+                                <div class="Restaurant-rpi-value-slider-inner" :style="'width:'+(100*rate.value)/5 +'%'"></div>
                             </div>
-                            <div class="Restaurant-rpi-value-slider-number">{{rate}}</div>
+                            <div class="Restaurant-rpi-value-slider-number">{{rate.value}}</div>
                         </div>
-                        <h3 class="Restaurant-rpi-value-slider-title">{{translateEnglishToPersian(rate)}}</h3>
+                        <h3 class="Restaurant-rpi-value-slider-title">{{translateEnglishToPersian(rate.key)}}</h3>
                     </div>
                 </div>
             </div>
