@@ -21,7 +21,7 @@ class RestaurantCommentController extends ApiController
         //here we must use the name of parameter that exist in database
         //because here we do not have Transformer object 
         $comments = $comments->sortBy->{'created_at'};
-        return $this->showAll($comments);
+        return response()->json($comments, 200);
     }
 
     /**
@@ -50,7 +50,7 @@ class RestaurantCommentController extends ApiController
          );
          
         $comment = Comment::create($data);
-        return $this->showOne($comment);
+        return response()->json($comment, 200);
     }
 
 }

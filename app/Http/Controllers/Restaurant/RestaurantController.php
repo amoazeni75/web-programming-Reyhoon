@@ -131,7 +131,11 @@ class RestaurantController extends ApiController
     public function show(Restaurant $restaurant)
     {
         $this->buildDetailsOfRestaurant($restaurant);
-        return response()->json($restaurant, 200);
+        return  response()->json($restaurant, 200)
+            ->header('Access-Control-Allow-Credentials', true)
+            ->header('Access-Control-Allow-Origin', '*')
+            ->header('Access-Control-Allow-Headers', 'application/json');
+       
     }
 
     /**
@@ -336,7 +340,7 @@ $restaurant['categories'] = $rest_foodset;
         }
         $average_rating /= sizeof($comments);
     }
-     $average_rating = intval( $average_rating * ($p = pow(10, 2))) / $p;
+    $average_rating = intval( $average_rating * ($p = pow(10, 2))) / $p;
     $restaurant['average_rating'] = $average_rating;
     }
 
