@@ -21,7 +21,41 @@ class RestaurantCommentController extends ApiController
         //here we must use the name of parameter that exist in database
         //because here we do not have Transformer object 
         $comments = $comments->sortBy->{'created_at'};
-        return response()->json($comments, 200);
+
+        $average_quality = 0.0;
+        $average_packing = 0.0;
+        $average_delivery = 0.0;
+
+        $result = array();
+        
+        foreach ($comments as $com) {
+            $average_quality += $com->quality;
+            $average_packing += $com->packing;
+            $average_delivery += $com->deliveryRate;
+            array_push($result, $com);
+        }
+
+        $average_quality  /= sizeof($comments); 
+        $average_packing  /= sizeof($comments);
+        $average_delivery /= sizeof($comments);
+
+
+        $average_quality  =  intval( $average_quality  * ($p = pow(10, 2))) / $p;
+        $average_packing  =  intval( $average_packing  * ($p = pow(10, 2))) / $p;
+        $average_delivery =  intval( $average_delivery * ($p = pow(10, 2))) / $p;
+
+        $ratings = array(
+            "quality"=> $average_quality,
+            "packing" => $average_packing,
+            "deliveryRate" => $average_delivery);
+
+
+        array_push($result, $ratings);
+
+        return response()->json($result, 200)
+        ->header('Access-Control-Allow-Credentials', true)
+        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Headers', 'application/json');
     }
 
     /**

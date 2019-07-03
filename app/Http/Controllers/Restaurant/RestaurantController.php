@@ -311,8 +311,8 @@ class RestaurantController extends ApiController
    foreach($categories as $category){
     $temp_category = array("id"=>$category->id, "name"=>$category->name);
     array_push($rest_foodset, $temp_category);
-}
-$restaurant['categories'] = $rest_foodset;
+    }
+    $restaurant['categories'] = $rest_foodset;
     }
 
     private function appendFoodsToRestaurant(Restaurant $restaurant){
@@ -336,9 +336,11 @@ $restaurant['categories'] = $rest_foodset;
     $average_rating = 0.0;
     if(sizeof($comments) != 0){
         foreach($comments as $com){
-            $average_rating += $com->quality; 
+            $average_rating += $com->quality;
+            $average_rating += $com->packing;
+            $average_rating += $com->deliveryRate; 
         }
-        $average_rating /= sizeof($comments);
+        $average_rating /= (sizeof($comments) * 3);
     }
     $average_rating = intval( $average_rating * ($p = pow(10, 2))) / $p;
     $restaurant['average_rating'] = $average_rating;
