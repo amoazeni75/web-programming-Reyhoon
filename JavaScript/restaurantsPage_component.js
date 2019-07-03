@@ -35,6 +35,12 @@ new Vue({
             this.city = page_url[0].slice(5);
             this.area = page_url[1].slice(5);
         },
+        isThereAnayDeactive(){
+            if(this.deactivateRestaurants.length == 0)
+                return false;
+            else
+                return true;
+        },
         prepareCategories(categories_server) {
             for (cat in categories_server) {
                 this.categories.push(

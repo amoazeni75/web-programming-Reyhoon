@@ -2058,10 +2058,10 @@ section {
     cursor: pointer;
     text-align: center;
 }
-._19NVD{
+.button-closedRestauran-1{
     margin: auto;
 }
-._2WKoH {
+.button-closedRestauran-5 {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2090,7 +2090,7 @@ section {
     color: #000;
 }
 
-._2i4iO {
+.button-closedRestauran-2 {
     display: inline-block;
     width: 40px;
     width: 2.5rem;
@@ -2098,7 +2098,7 @@ section {
     height: 2.5rem;
 }
 
-._2WKoH {
+.button-closedRestauran-5 {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2127,24 +2127,24 @@ section {
     color: #000;
 }
 
-._2_-Ye ._3zOIE {
+.button-closedRestauran-3 .button-closedRestauran-6 {
     fill: #f9acae;
 }
 
-._1bWlq ._3zOIE {
+.button-closedRestauran-4 .button-closedRestauran-6 {
     -webkit-animation: cG2d- 1s ease-in-out infinite alternate;
     animation: cG2d- 1s ease-in-out infinite alternate;
 }
 
-._3zOIE {
+.button-closedRestauran-6 {
     fill: #9cf1a9;
 }
 
-._2_-Ye ._1rR4Y {
+.button-closedRestauran-3 .button-closedRestauran-7 {
     fill: #ff0613;
 }
 
-._1rR4Y {
+.button-closedRestauran-7 {
     -webkit-box-shadow: 0 2px 4px 0 #26d18f;
     box-shadow: 0 2px 4px 0 #26d18f;
 }

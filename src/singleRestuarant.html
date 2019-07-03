@@ -22,11 +22,11 @@
 </div>
 
 
-<div>
+<div id ="app">
     <!-- banner / restaurant details -->
     <section class="Banner-section">
         <div class="Banner-Background-image">
-            <img class="Banner-Background-image-inner" src="https://dist.reyhoon-static.com/uploads/images/restaurant-types/misc/tahiye-ghaza_1537356184.jpeg?x-oss-process=image/resize,w_1600/interlace,1" alt="">
+            <img class="Banner-Background-image-inner" :src=" 'http://restfulapi.test/img/'+ this.restaurant_object.background" alt="">
         </div>
         <div class="Restaurant-overview-div">
             <div class="Restaurant-overview-inner">
@@ -484,5 +484,6 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 <script src="../JavaScript/header-component.js"></script>
 <script src="../JavaScript/footer-component.js"></script>
+<script src="../JavaScript/singleRestaurant_component.js"></script>
 </body>
 </html>

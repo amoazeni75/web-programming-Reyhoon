@@ -143,7 +143,7 @@
 
                 </div>
 
-                <p class="disable-p">رستوران های بسته</p>
+                <p class="disable-p" v-show=isThereAnayDeactive()>رستوران های بسته</p>
                 <div class="all-restaurant-active close-branches">
                     <!--- inactive --->
                     <div class="inactive-active-rest-item-div" v-for="rest in deactivateRestaurants" v-show="rest.display">
@@ -173,9 +173,11 @@
                                     </div>
                                 </div>
                                 <div class="rest-start-order">
-                                    <div class="_19NVD">
-                                        <div class="_2WKoH">
-                                            <span class="_2i4iO _2_-Ye _1bWlq" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" ><defs ><linearGradient id="innerGradiant" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#50d258;stop-opacity:0.3;" ></stop><stop offset="100%" style="stop-color:#0dd0af;stop-opacity:0.3;"></stop></linearGradient></defs><circle class="_3zOIE" cx="50%" cy="50%" r="7.5"></circle><circle class="_1rR4Y" cx="50%" cy="50%" r="3.5" fill="url(#innerGradiant)"></circle></svg></span>
+                                    <div class="button-closedRestauran-1">
+                                        <div class="button-closedRestauran-5">
+                                            <span class="button-closedRestauran-2 button-closedRestauran-3 button-closedRestauran-4" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" ><defs ><linearGradient id="innerGradiant" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#50d258;stop-opacity:0.3;" ></stop><stop offset="100%" style="stop-color:#0dd0af;stop-opacity:0.3;"></stop></linearGradient></defs>
+                                                <circle class="button-closedRestauran-6" cx="50%" cy="50%" r="7.5">
+                                                </circle><circle class="button-closedRestauran-7" cx="50%" cy="50%" r="3.5" fill="url(#innerGradiant)"></circle></svg></span>
                                             شروع سفارش از  {{rest.openingTime}}
                                         </div>
                                     </div>
