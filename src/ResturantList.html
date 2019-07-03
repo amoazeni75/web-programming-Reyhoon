@@ -79,7 +79,7 @@
                                    id="branchNameSearch">
                         </div>
                         <div class="filters-checkbox-container">
-
+                            <!-- category item -->
                             <div class="filters-item-div" v-for="filter in categories">
                                 <fieldset class="filters-item-field-1 filters-item-field-2">
                                     <input type="checkbox" class="filters-item-checkbox" :id="filter.name" :value="filter.name">
@@ -89,19 +89,6 @@
                                     <span class="filters-item-label-span">{{filter.name}} ({{filter.quantity}})</span>
                                 </label>
                             </div>
-
-<!--                            <div class="filters-item-div">-->
-<!--                                <fieldset class="filters-item-field-1 filters-item-field-2">-->
-<!--                                    <input type="checkbox" class="filters-item-checkbox" >-->
-<!--                                    <label class="filters-item-label">-->
-
-<!--                                    </label>-->
-<!--                                </fieldset>-->
-<!--                                <label class="filters-item-label-2" for="cuisine-iranian">-->
-<!--                                    <span class="filters-item-label-span">غذای ایرانی</span>-->
-<!--                                    <span class="_29ZS9">(67)</span>-->
-<!--                                </label>-->
-<!--                            </div>-->
 
                             <button class="filters-more-item">بیشتر</button>
                         </div>
@@ -114,118 +101,31 @@
             <div>
                 <div class="all-restaurant-active open-branches">
                     <!--- active --->
-                    <div class="inactive-active-rest-item-div">
+                    <div class="inactive-active-rest-item-div" v-for="rest in activeRestaurants" v-show="rest.display">
                         <div class="rest-item-inner-1 rest-item-inner-2 branch-card">
-                            <a href="/restaurants/downtown" class="rest-item-a-link-1">
+                            <a :href="'singleRestuarant.html?restaurant_id=' + rest.id" class="rest-item-a-link-1" target="_blank">
                                 <div class="rest-item-details-div">
                                     <div class="rest-item-image-section">
                                         <div class="rest-item-image-inner-1 rest-item-image-inner-2 rest-item-image-inner-3">
-                                            <img src="https://dist.reyhoon-static.com/uploads/images/restaurants/logos/downtown_6473_1549979103.jpeg@!branch_logo_web_default"
-                                                 class="rest-item-image-inner-4 rest-item-image-inner-3"
-                                                 alt="لوگو آرم رستوران دان تان"></div>
+                                            <img :src=" 'http://restfulapi.test/img/' + rest.logo"
+                                                 class="rest-item-image-inner-4 rest-item-image-inner-3"></div>
                                         <div class="rest-item-image-empty"></div>
                                     </div>
                                     <div class="rest-item-name-outer">
-                                        <h2 class="rest-item-name-p">دان تان</h2>
-                                        <div class="rest-item-rating-section">
-                                            <div class="rest-item-rating-star">
-                                                <!-- star component here -->
+                                        <h2 class="rest-item-name-p">{{rest.name}}</h2>
+                                        <div class="rest-item-rating-section" style="padding-right: 28%">
+
+                                            <div class="rest-item-rating-star" style="display: inline">
+                                                <star-rating style="direction: ltr" :star-size="14" :rating=rest.average_rating :read-only="true" :show-rating="false" :increment="0.01"></star-rating>
                                             </div>
-                                            <p class="rest-item-rating-count">4.1</p>
+                                            <p class="rest-item-rating-count" style="padding-top: 9px">{{rest.average_rating}}</p>
                                         </div>
                                         <div class="rest-item-food-list-div">
                                             <ul class="rest-item-food-ul">
-                                                <li class="rest-item-food-li">فست فود</li>
-                                                <li class="rest-item-food-li">برگر</li>
-                                                <li class="rest-item-food-li">قهوه</li>
-                                                <li class="rest-item-food-li">شیک</li>
+                                                <li class="rest-item-food-li" v-for="category in rest.categories"> {{translateEnglishToPersian(category.name)}} </li>
                                             </ul>
-                                            <address title="جردن، نبش خیابان ایرج، پلاک ۱۱۷" class="rest-item-address">
-                                                تهران، جردن، نبش خیابان ایرج، پلاک ۱۱۷
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rest-item-extra-1">
-                                    <div class="rest-item-extra-inner">
-                                        <button class="rey-btn rest-item-button-order-1 rest-item-button-order-2 rest-item-button-order-3">
-                                            شروع سفارش
-                                        </button>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="inactive-active-rest-item-div">
-                        <div class="rest-item-inner-1 rest-item-inner-2 branch-card">
-                            <a href="/restaurants/downtown" class="rest-item-a-link-1">
-                                <div class="rest-item-details-div">
-                                    <div class="rest-item-image-section">
-                                        <div class="rest-item-image-inner-1 rest-item-image-inner-2 rest-item-image-inner-3">
-                                            <img src="https://dist.reyhoon-static.com/uploads/images/restaurants/logos/downtown_6473_1549979103.jpeg@!branch_logo_web_default"
-                                                 class="rest-item-image-inner-4 rest-item-image-inner-3"
-                                                 alt="لوگو آرم رستوران دان تان"></div>
-                                        <div class="rest-item-image-empty"></div>
-                                    </div>
-                                    <div class="rest-item-name-outer">
-                                        <h2 class="rest-item-name-p">دان تان</h2>
-                                        <div class="rest-item-rating-section">
-                                            <div class="rest-item-rating-star">
-                                                <!-- star component here -->
-                                            </div>
-                                            <p class="rest-item-rating-count">4.1</p>
-                                        </div>
-                                        <div class="rest-item-food-list-div">
-                                            <ul class="rest-item-food-ul">
-                                                <li class="rest-item-food-li">فست فود</li>
-                                                <li class="rest-item-food-li">برگر</li>
-                                                <li class="rest-item-food-li">قهوه</li>
-                                                <li class="rest-item-food-li">شیک</li>
-                                            </ul>
-                                            <address title="جردن، نبش خیابان ایرج، پلاک ۱۱۷" class="rest-item-address">
-                                                تهران، جردن، نبش خیابان ایرج، پلاک ۱۱۷
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rest-item-extra-1">
-                                    <div class="rest-item-extra-inner">
-                                        <button class="rey-btn rest-item-button-order-1 rest-item-button-order-2 rest-item-button-order-3">
-                                            شروع سفارش
-                                        </button>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="inactive-active-rest-item-div">
-                        <div class="rest-item-inner-1 rest-item-inner-2 branch-card">
-                            <a href="/restaurants/downtown" class="rest-item-a-link-1">
-                                <div class="rest-item-details-div">
-                                    <div class="rest-item-image-section">
-                                        <div class="rest-item-image-inner-1 rest-item-image-inner-2 rest-item-image-inner-3">
-                                            <img src="https://dist.reyhoon-static.com/uploads/images/restaurants/logos/downtown_6473_1549979103.jpeg@!branch_logo_web_default"
-                                                 class="rest-item-image-inner-4 rest-item-image-inner-3"
-                                                 alt="لوگو آرم رستوران دان تان"></div>
-                                        <div class="rest-item-image-empty"></div>
-                                    </div>
-                                    <div class="rest-item-name-outer">
-                                        <h2 class="rest-item-name-p">دان تان</h2>
-                                        <div class="rest-item-rating-section">
-                                            <div class="rest-item-rating-star">
-                                                <!-- star component here -->
-                                            </div>
-                                            <p class="rest-item-rating-count">4.1</p>
-                                        </div>
-                                        <div class="rest-item-food-list-div">
-                                            <ul class="rest-item-food-ul">
-                                                <li class="rest-item-food-li">فست فود</li>
-                                                <li class="rest-item-food-li">برگر</li>
-                                                <li class="rest-item-food-li">قهوه</li>
-                                                <li class="rest-item-food-li">شیک</li>
-                                            </ul>
-                                            <address title="جردن، نبش خیابان ایرج، پلاک ۱۱۷" class="rest-item-address">
-                                                تهران، جردن، نبش خیابان ایرج، پلاک ۱۱۷
+                                            <address class="rest-item-address">
+                                                {{rest.addressLine}}
                                             </address>
                                         </div>
                                     </div>
@@ -246,124 +146,43 @@
                 <p class="disable-p">رستوران های بسته</p>
                 <div class="all-restaurant-active close-branches">
                     <!--- inactive --->
-                    <div class="inactive-active-rest-item-div">
+                    <div class="inactive-active-rest-item-div" v-for="rest in deactivateRestaurants" v-show="rest.display">
                         <div class="rest-item-inner-1 rest-item-inner-2 branch-card rest-item-inner-3">
-                            <a href="/restaurants/vitrinekitchen" class="rest-item-a-link-1 rest-item-a-link-2">
+                            <a :href="'singleRestuarant.html?restaurant_id=' + rest.id"  class="rest-item-a-link-1 rest-item-a-link-2">
                                 <div class="rest-item-details-div">
                                     <div class="rest-item-image-section">
                                         <div class="rest-item-image-inner-1 rest-item-image-inner-2 rest-item-image-inner-3">
-                                            <img src="https://dist.reyhoon-static.com/uploads/images/restaurants/logos/vitrin_6482_1547633681.jpeg@!branch_logo_web_default"
-                                                 class="rest-item-image-inner-4 rest-item-image-inner-3"
-                                                 alt="لوگو آرم رستوران ویترین"></div>
+                                            <img :src=" 'http://restfulapi.test/img/' + rest.logo"
+                                                 class="rest-item-image-inner-4 rest-item-image-inner-3"></div>
                                         <div class="rest-item-image-empty"></div>
                                     </div>
                                     <div class="rest-item-name-outer">
-                                        <h2 class="rest-item-name-p">ویترین</h2>
-                                        <div class="rest-item-rating-section">
+                                        <h2 class="rest-item-name-p">{{rest.name}}</h2>
+                                        <div class="rest-item-rating-section" style="padding-right: 28%">
                                             <div class="rest-item-rating-star">
-                                                <!-- star component here -->
+                                                <star-rating style="direction: ltr" :star-size="14" :rating=rest.average_rating :read-only="true" :show-rating="false" :increment="0.01"></star-rating>
                                             </div>
-                                            <p class="rest-item-rating-count">4.4</p>
+                                            <p class="rest-item-rating-count" style="padding-top: 9px">{{rest.average_rating}}</p>
                                         </div>
                                         <div class="rest-item-food-list-div">
                                             <ul class="rest-item-food-ul">
-                                                <li class="rest-item-food-li">غذای پلویی</li>
-                                                <li class="rest-item-food-li">برگر</li>
-                                                <li class="rest-item-food-li">ساندویچ</li>
-                                                <li class="rest-item-food-li">سالاد</li>
+                                                <li class="rest-item-food-li" v-for="category in rest.categories"> {{translateEnglishToPersian(category.name)}} </li>
                                             </ul>
-                                            <address title="خیابان شیخ بهایی، مجتمع آ اس پ، واحد ۴۰/۲"
-                                                     class="rest-item-address">تهران، خیابان شیخ بهایی، مجتمع آ اس پ،
-                                                واحد ۴۰/۲
-                                            </address>
+                                            <address class="rest-item-address">{{rest.addressLine}}</address>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="rest-item-extra-1 rest-item-extra-2">
-                                    <div class="rest-item-extra-inner"></div>
+                                <div class="rest-start-order">
+                                    <div class="_19NVD">
+                                        <div class="_2WKoH">
+                                            <span class="_2i4iO _2_-Ye _1bWlq" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" ><defs ><linearGradient id="innerGradiant" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#50d258;stop-opacity:0.3;" ></stop><stop offset="100%" style="stop-color:#0dd0af;stop-opacity:0.3;"></stop></linearGradient></defs><circle class="_3zOIE" cx="50%" cy="50%" r="7.5"></circle><circle class="_1rR4Y" cx="50%" cy="50%" r="3.5" fill="url(#innerGradiant)"></circle></svg></span>
+                                            شروع سفارش از  {{rest.openingTime}}
+                                        </div>
+                                    </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <div class="inactive-active-rest-item-div">
-                        <div class="rest-item-inner-1 rest-item-inner-2 branch-card rest-item-inner-3">
-                            <a href="/restaurants/vitrinekitchen" class="rest-item-a-link-1 rest-item-a-link-2">
-                                <div class="rest-item-details-div">
-                                    <div class="rest-item-image-section">
-                                        <div class="rest-item-image-inner-1 rest-item-image-inner-2 rest-item-image-inner-3">
-                                            <img src="https://dist.reyhoon-static.com/uploads/images/restaurants/logos/vitrin_6482_1547633681.jpeg@!branch_logo_web_default"
-                                                 class="rest-item-image-inner-4 rest-item-image-inner-3"
-                                                 alt="لوگو آرم رستوران ویترین"></div>
-                                        <div class="rest-item-image-empty"></div>
-                                    </div>
-                                    <div class="rest-item-name-outer">
-                                        <h2 class="rest-item-name-p">ویترین</h2>
-                                        <div class="rest-item-rating-section">
-                                            <div class="rest-item-rating-star">
-                                                <!-- star component here -->
-                                            </div>
-                                            <p class="rest-item-rating-count">4.4</p>
-                                        </div>
-                                        <div class="rest-item-food-list-div">
-                                            <ul class="rest-item-food-ul">
-                                                <li class="rest-item-food-li">غذای پلویی</li>
-                                                <li class="rest-item-food-li">برگر</li>
-                                                <li class="rest-item-food-li">ساندویچ</li>
-                                                <li class="rest-item-food-li">سالاد</li>
-                                            </ul>
-                                            <address title="خیابان شیخ بهایی، مجتمع آ اس پ، واحد ۴۰/۲"
-                                                     class="rest-item-address">تهران، خیابان شیخ بهایی، مجتمع آ اس پ،
-                                                واحد ۴۰/۲
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rest-item-extra-1 rest-item-extra-2">
-                                    <div class="rest-item-extra-inner"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="inactive-active-rest-item-div">
-                        <div class="rest-item-inner-1 rest-item-inner-2 branch-card rest-item-inner-3">
-                            <a href="/restaurants/vitrinekitchen" class="rest-item-a-link-1 rest-item-a-link-2">
-                                <div class="rest-item-details-div">
-                                    <div class="rest-item-image-section">
-                                        <div class="rest-item-image-inner-1 rest-item-image-inner-2 rest-item-image-inner-3">
-                                            <img src="https://dist.reyhoon-static.com/uploads/images/restaurants/logos/vitrin_6482_1547633681.jpeg@!branch_logo_web_default"
-                                                 class="rest-item-image-inner-4 rest-item-image-inner-3"
-                                                 alt="لوگو آرم رستوران ویترین"></div>
-                                        <div class="rest-item-image-empty"></div>
-                                    </div>
-                                    <div class="rest-item-name-outer">
-                                        <h2 class="rest-item-name-p">ویترین</h2>
-                                        <div class="rest-item-rating-section">
-                                            <div class="rest-item-rating-star">
-                                                <!-- star component here -->
-                                            </div>
-                                            <p class="rest-item-rating-count">4.4</p>
-                                        </div>
-                                        <div class="rest-item-food-list-div">
-                                            <ul class="rest-item-food-ul">
-                                                <li class="rest-item-food-li">غذای پلویی</li>
-                                                <li class="rest-item-food-li">برگر</li>
-                                                <li class="rest-item-food-li">ساندویچ</li>
-                                                <li class="rest-item-food-li">سالاد</li>
-                                            </ul>
-                                            <address title="خیابان شیخ بهایی، مجتمع آ اس پ، واحد ۴۰/۲"
-                                                     class="rest-item-address">تهران، خیابان شیخ بهایی، مجتمع آ اس پ،
-                                                واحد ۴۰/۲
-                                            </address>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rest-item-extra-1 rest-item-extra-2">
-                                    <div class="rest-item-extra-inner"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

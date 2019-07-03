@@ -1,11 +1,13 @@
+Vue.component('star-rating', VueStarRating.default);
+
 new Vue({
     el: '#app',
     data: {
         city: "",
         area: "",
+        allRestaurants : [],
         activeRestaurants: [],
         deactivateRestaurants: [],
-        //categories: ['ساندویچ', 'برگر', 'پاستا', 'کباب', 'خورشت', 'غذای ایرانی', 'خوراک'],
         categories: [],
         dictionaryArr: [
             {key: "sandwich", value: 'ساندویچ'},
@@ -18,6 +20,7 @@ new Vue({
         ],
         processCategory: true,
     },
+
     methods: {
         translateEnglishToPersian(word) {
             for (let i = 0; i < this.dictionaryArr.length; i++) {
@@ -41,6 +44,17 @@ new Vue({
                     });
             }
         },
+        prepareRestaurants(restaurants){
+            var hour = new Date().getHours();
+            for(rest in restaurants){
+                restaurants[rest].display = true;
+                if(restaurants[rest].openingTime <= hour && hour <= restaurants[rest].closingTime)
+                    this.activeRestaurants.push(restaurants[rest]);
+                else
+                    this.deactivateRestaurants.push(restaurants[rest]);
+                this.allRestaurants.push(restaurants[rest]);
+            }
+        },
         handleListOfRestaurants(xhttp) {
             jsonDOM = JSON.parse(xhttp.responseText);
             restaurants_count = jsonDOM.length - 1;
@@ -48,7 +62,10 @@ new Vue({
             document.getElementById("text_address_rest").innerHTML = this.city + "،" + this.area;
             if (this.processCategory) {
                 this.prepareCategories(jsonDOM[jsonDOM.length - 1]);
+                this.processCategory = false;
             }
+            jsonDOM.pop();
+            this.prepareRestaurants(jsonDOM);
         },
         getDataFromServer(url, handleFunction, method, queryPart) {
             let xhttp = new XMLHttpRequest();
