@@ -82,13 +82,26 @@
 
                             <div class="filters-item-div" v-for="filter in categories">
                                 <fieldset class="filters-item-field-1 filters-item-field-2">
-                                    <input type="checkbox" class="filters-item-checkbox" value="{{filter}}">
+                                    <input type="checkbox" class="filters-item-checkbox" :id="filter" :value="filter">
                                     <label class="filters-item-label"></label>
                                 </fieldset>
-                                <label class="filters-item-label-2">
+                                <label class="filters-item-label-2" :for="filter">
                                     <span class="filters-item-label-span">{{filter}}</span>
                                 </label>
                             </div>
+
+<!--                            <div class="filters-item-div">-->
+<!--                                <fieldset class="filters-item-field-1 filters-item-field-2">-->
+<!--                                    <input type="checkbox" class="filters-item-checkbox" >-->
+<!--                                    <label class="filters-item-label">-->
+
+<!--                                    </label>-->
+<!--                                </fieldset>-->
+<!--                                <label class="filters-item-label-2" for="cuisine-iranian">-->
+<!--                                    <span class="filters-item-label-span">غذای ایرانی</span>-->
+<!--                                    <span class="_29ZS9">(67)</span>-->
+<!--                                </label>-->
+<!--                            </div>-->
 
                             <button class="filters-more-item">بیشتر</button>
                         </div>
