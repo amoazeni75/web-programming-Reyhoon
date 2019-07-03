@@ -38,27 +38,34 @@
                         <a href="/" class="Restaurant-overview-food-cat-item-a">
                             <span>ریحون</span>
                         </a>
-                        <span class="Restaurant-address-flash-1 Restaurant-address-flash-2 Restaurant-address-flash-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 20"><path fill="currentColor" fill-rule="evenodd" d="M9.17 19.708L.607 11.444a1.95 1.95 0 0 1 0-2.827L9.232.292c.4-.385 1.048-.39 1.454-.01a.976.976 0 0 1 .011 1.425L2.803 9.324a.975.975 0 0 0 0 1.414l7.831 7.557a.974.974 0 0 1 0 1.413c-.405.39-1.06.39-1.464 0z"></path></svg>
-                        </span>
+                        <span class="Flash-arrow-address-1 Flash-arrow-address-2 Flash-arrow-address-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 20"><path fill="currentColor" fill-rule="evenodd" d="M9.17 19.708L.607 11.444a1.95 1.95 0 0 1 0-2.827L9.232.292c.4-.385 1.048-.39 1.454-.01a.976.976 0 0 1 .011 1.425L2.803 9.324a.975.975 0 0 0 0 1.414l7.831 7.557a.974.974 0 0 1 0 1.413c-.405.39-1.06.39-1.464 0z"></path></svg></span>
+                        <a href="/" class="Restaurant-overview-food-cat-item-a">
+                            <span>{{this.restaurant_object.city}}</span>
+                        </a>
+                        <span class="Flash-arrow-address-1 Flash-arrow-address-2 Flash-arrow-address-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 20"><path fill="currentColor" fill-rule="evenodd" d="M9.17 19.708L.607 11.444a1.95 1.95 0 0 1 0-2.827L9.232.292c.4-.385 1.048-.39 1.454-.01a.976.976 0 0 1 .011 1.425L2.803 9.324a.975.975 0 0 0 0 1.414l7.831 7.557a.974.974 0 0 1 0 1.413c-.405.39-1.06.39-1.464 0z"></path></svg></span>
+                        <a href="/" class="Restaurant-overview-food-cat-item-a">
+                            <span>{{this.restaurant_object.area}}</span>
+                        </a>
                     </li>
                 </ol>
 
                 <div class="return-back-div">
-                    <a href="#" class="return-back-link">
+
+                 <a href="" class="return-back-link" onclick="window.history.back()">
                         بازگشت
                         <span class="Restaurant-address-flash-1 Restaurant-address-flash-2 Restaurant-address-flash-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 20"><path fill="currentColor" fill-rule="evenodd" d="M9.17 19.708L.607 11.444a1.95 1.95 0 0 1 0-2.827L9.232.292c.4-.385 1.048-.39 1.454-.01a.976.976 0 0 1 .011 1.425L2.803 9.324a.975.975 0 0 0 0 1.414l7.831 7.557a.974.974 0 0 1 0 1.413c-.405.39-1.06.39-1.464 0z"></path></svg>
                         </span>
-                    </a>
+                  </a>
+
                 </div>
 
                 <div class="Restaurant-logo-1 Restaurant-logo-2">
-                    <img src="https://dist.reyhoon-static.com/uploads/images/restaurants/logos/tehranpokht_6758_1550062899.jpeg@!branch_logo_web_default" class="_199RC" alt="کترینگ تهران پخت">
+                    <img :src=" 'http://restfulapi.test/img/' + this.restaurant_object.logo" class="_199RC" alt="کترینگ تهران پخت">
                 </div>
 
                 <div class="Restaurant-name-div">
                     <h1 class="Restaurant-name-h">
-                        <a class="Restaurant-link-itself" href="#">کترینگ تهران پخت</a>
+                        <a class="Restaurant-link-itself">{{this.restaurant_object.name}}</a>
                     </h1>
                 </div>
 
@@ -66,24 +73,25 @@
                 <div class="Restaurant-header-rating">
                     <div class="Restaurant-header-rating-1 Restaurant-header-rating-active Restaurant-header-rating-3">
                         <div class="Restaurant-header-rating-count">
-                            <span class="Restaurant-header-rating-count-value">(13)</span>
+                            <span class="Restaurant-header-rating-count-value">({{this.comments.length}})</span>
                         </div>
                         <div class="Restaurant-header-rating-star">
                             <div class="Restaurant-header-rating-star-content">
-                               <!-- star component here -->
+                                <star-rating style="direction: ltr" :star-size="20" :rating=this.restaurant_object.average_rating :read-only="true" :show-rating="false" :increment="0.01"></star-rating>
                             </div>
                         </div>
-                        <div class="Restaurant-header-rating-star-value-1 Restaurant-header-rating-star-value-2">3.9</div>
+                        <div class="Restaurant-header-rating-star-value-1 Restaurant-header-rating-star-value-2">{{this.restaurant_object.average_rating}}</div>
                     </div>
                 </div>
 
                 <div class="Restaurant-header-foods">
                     <ul class="Restaurant-header-foods-ul-1 Restaurant-header-foods-ul-2">
                         <!-- foods category here -->
-                        <li class="Restaurant-header-foods-li">غذای ایرانی</li>
+                        <li class="Restaurant-header-foods-li" v-for="cat in this.categories">{{cat.name}}</li>
+
                     </ul>
                 </div>
-                <address class="Restaurant-header-address" >تهران، آرژانتین، خیابان وزرا، جنب پارک ساعی، پلاک ۷۲</address>
+                <address class="Restaurant-header-address" >{{this.restaurant_object.addressLine}}</address>
             </div>
         </div>
     </section>
@@ -285,27 +293,28 @@
                     <div class="Restaurant-header-rating-1 Restaurant-header-rating-active Restaurant-header-rating-3">
                         <div class="Restaurant-header-rating-count">
                             <span class="Restaurant-header-rating-count-value">
-                                (13)
+                                ({{this.comments.length}})
                             </span>
                         </div>
                         <div class="Restaurant-header-rating-star">
                             <div class="Restaurant-header-rating-star-content">
-                                <!-- star component here -->
+                                <star-rating style="direction: ltr" :star-size="20" :rating=this.restaurant_object.average_rating :read-only="true" :show-rating="false" :increment="0.01"></star-rating>
                             </div>
                         </div>
-                        <div class="Restaurant-header-rating-star-value-1">3.9</div>
+                        <div class="Restaurant-header-rating-star-value-1">{{this.restaurant_object.average_rating}}</div>
                     </div>
                 </div>
                 <div class="Restaurant-rating-parameters">
                     <!-- item slider component here -->
-                    <div class="Restaurant-rating-parameters-item-1 Restaurant-rating-parameters-item-2">
+                    <div class="Restaurant-rating-parameters-item-1
+                     Restaurant-rating-parameters-item-2" v-for="rate in avg_ratings">
                         <div class="Restaurant-rpi-value-container">
                             <div class="Restaurant-rpi-value-slider">
                                 <div class="Restaurant-rpi-value-slider-inner" style="width: 70%;"></div>
                             </div>
-                            <div class="Restaurant-rpi-value-slider-number">3.5</div>
+                            <div class="Restaurant-rpi-value-slider-number">{{rate}}</div>
                         </div>
-                        <h3 class="Restaurant-rpi-value-slider-title">کیفیت غذا</h3>
+                        <h3 class="Restaurant-rpi-value-slider-title">{{translateEnglishToPersian(rate)}}</h3>
                     </div>
                 </div>
             </div>

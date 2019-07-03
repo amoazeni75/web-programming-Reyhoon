@@ -3607,3 +3607,25 @@ button {
     width: 1.5rem!important
 }
 
+.Flash-arrow-address-1{
+
+    display: inline-block;
+    width: 40px;
+    width: 2.5rem;
+    height: 40px;
+    height: 2.5rem;
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+    -webkit-transition: -webkit-transform .3s;
+    transition: -webkit-transform .3s;
+    -o-transition: transform .3s;
+    transition: transform .3s;
+    transition: transform .3s,-webkit-transform .3s;
+}
+.Flash-arrow-address-3 {
+    width: 6.4px!important;
+    width: .4rem!important;
+    margin: 0 16px;
+    margin: 0 1rem;
+}
