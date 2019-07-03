@@ -336,6 +336,7 @@ $restaurant['categories'] = $rest_foodset;
         }
         $average_rating /= sizeof($comments);
     }
+     $average_rating = intval( $average_rating * ($p = pow(10, 2))) / $p;
     $restaurant['average_rating'] = $average_rating;
     }
 
