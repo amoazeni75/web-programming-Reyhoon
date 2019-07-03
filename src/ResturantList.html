@@ -82,11 +82,11 @@
 
                             <div class="filters-item-div" v-for="filter in categories">
                                 <fieldset class="filters-item-field-1 filters-item-field-2">
-                                    <input type="checkbox" class="filters-item-checkbox" :id="filter" :value="filter">
+                                    <input type="checkbox" class="filters-item-checkbox" :id="filter.name" :value="filter.name">
                                     <label class="filters-item-label"></label>
                                 </fieldset>
-                                <label class="filters-item-label-2" :for="filter">
-                                    <span class="filters-item-label-span">{{filter}}</span>
+                                <label class="filters-item-label-2" :for="filter.name">
+                                    <span class="filters-item-label-span">{{filter.name}} ({{filter.quantity}})</span>
                                 </label>
                             </div>
 
