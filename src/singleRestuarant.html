@@ -244,10 +244,10 @@
                 <div class="Restaurant-info-inner">
                     <div class="Restaurant-info-inner-details">
                         <div class="Restaurant-info-inner-detail-1">
-                            <h3 class="Restaurant-info-name">کترینگ تهران پخت</h3>
+                            <h3 class="Restaurant-info-name">{{this.restaurant_object.name}}</h3>
                             <address class="Restaurant-info-address">
                                 <span class="Restaurant-info-address-span1 Restaurant-info-address-span2"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17"><path fill="currentColor" fill-rule="evenodd" d="M6 0C2.683 0 0 2.66 0 5.95 0 10.412 6 17 6 17s6-6.588 6-11.05C12 2.66 9.317 0 6 0zm0 8a2 2 0 1 1 .001-4.001A2 2 0 0 1 6 8z"></path></svg>
-                                </span>آرژانتین، خیابان وزرا، جنب پارک ساعی، پلاک ۷۲
+                                </span>{{this.restaurant_object.addressLine}}
                             </address>
                             <h3 class="Restaurant-info-time">
                                 <span class="Restaurant-fic-magn-inner1 Restaurant-info-address-span2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 14"><path fill="#000000" fill-rule="nonzero" d="M6.514.84C3.348.84.782 3.599.782 7s2.566 6.16 5.732 6.16c3.165 0 5.732-2.758 5.732-6.16S9.679.84 6.514.84zm0 2.133c.243 0 .44.212.44.473v3.08H9.38c.243 0 .44.212.44.474s-.197.474-.44.474H6.514c-.244 0-.441-.212-.441-.474V3.446c0-.261.197-.473.44-.473z"></path></svg>
@@ -258,14 +258,10 @@
                                     <p>همه روزه</p>
                                     <div>
                                         <p class="Restaurant-info-day-from">
-                                            <span>از</span>
-                                            <span>10</span>
-                                            <span>ظهر</span>
-                                            <span>تا</span>
-                                            <span>3:15</span>
-                                            <span>بعد</span>
-                                            <span>از</span>
-                                            <span>ظهر</span>
+                                            <span> از ساعت</span>
+                                            <span>{{this.restaurant_object.openingTime}}</span>
+                                            <span>الی ساعت</span>
+                                            <span>{{this.restaurant_object.closingTime}}</span>
                                         </p>
                                     </div>
                                 </li>
@@ -286,7 +282,7 @@
         <section id="branch-comment" class="Restaurant-comments-section">
             <div class="search-food-single-inner">
                 <div class="Restaurant-info-outer-text">
-                    <h2 class="Restaurant-info-outer-text-h"> نظرات کاربران در مورد کترینگ تهران پخت</h2>
+                    <h2 class="Restaurant-info-outer-text-h"> نظرات کاربران در مورد {{this.restaurant_object.name}}</h2>
                     <p class="Restaurant-comments-section-p">شما هم می‌توانید بعد از سفارش از این رستوران، نظر خود را درباره‌ی این رستوران ثبت کنید.</p>
                 </div>
                 <div class="Restaurant-comments-rating">
@@ -324,23 +320,23 @@
         <section class="Restaurant-user-comments-section">
             <div class="Restaurant-ucs-inner">
                 <!-- comment components here -->
-                <div class="Restaurant-ucs-user-comment" >
+                <div class="Restaurant-ucs-user-comment" v-for="com in this.comments">
                     <p class="Restaurant-ucs-user-name">
-                        <span>مهرشاد</span>
+                        <span>{{com.author}}</span>
                     </p>
                     <div class="Restaurant-ucs-rating">
-                        <p class="Restaurant-ucs-rating-value" >1.0</p>
+                        <p class="Restaurant-ucs-rating-value" >{{com.quality}}</p>
                         <div class="Restaurant-header-rating-star-content Restaurant-ucs-rating-star">
-                            <!-- star component here -->
+                            <star-rating style="direction: ltr" :star-size="16" :rating=com.quality :read-only="true" :show-rating="false" :increment="0.01"></star-rating>
                         </div>
                     </div>
                     <p class="Restaurant-ucs-message">
                         <span class="Restaurant-fic-magn-inner1 Restaurant-ucs-message-qu">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10"><g fill="none"><path fill="#d40062" d="M6 17h3l2-4V7H5v6h3l-2 4zm8 0h3l2-4V7h-6v6h3l-2 4z" transform="translate(-5 -7)"></path><path d="M-5-7h24v24H-5z"></path></g></svg>
                         </span>
-                        غذا خيلي خوش مزه و دورچين خوب و بسته بندي شيك ولي ولي ولي مهم اينكه دو ساعت طول كشيد و هر بار زنگ زدم الكي ميگفتن پيك تو راهه پس اگه اعصاب فولادي داريد و دوست داريد به شعورتان توهين بشه اين رستوران را امتحان كنيد
+                        {{com.text}}
                     </p>
-                    <p class="Restaurant-ucs-comment-time">10 روز قبل </p>
+                    <p class="Restaurant-ucs-comment-time">{{daysBetween(com.created_at)}} روز قبل </p>
                     <span class="Restaurant-ucs-comment-report">گزارش</span>
                 </div>
             </div>

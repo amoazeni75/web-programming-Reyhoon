@@ -23,8 +23,22 @@ new Vue({
     },
 
     methods: {
+        daysBetween(date2 ) {
+            date1 = new Date();
+            //Get 1 day in milliseconds
+            var one_day=1000*60*60*24;
+
+            // Convert both dates to milliseconds
+            var date1_ms = date1.getTime();
+            var date2_ms = Date.parse(date2);
+
+            // Calculate the difference in milliseconds
+            var difference_ms = date1_ms - date2_ms;
+
+            // Convert back to days and return
+            return Math.round(difference_ms/one_day);
+        },
         translateEnglishToPersian(word) {
-            console.log(word);
             for (let i = 0; i < this.dictionaryArr.length; i++) {
                 if (this.dictionaryArr[i].key == word)
                     return this.dictionaryArr[i].value
