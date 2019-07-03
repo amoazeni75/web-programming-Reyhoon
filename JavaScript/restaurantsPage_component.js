@@ -3,9 +3,9 @@ new Vue({
     data: {
         city: "",
         area: "",
-        activeRestaurants : [],
-        deactivateRestaurants : [],
-        categories: ['ساندویچ','برگر','پاستا','کباب','خورشت','غذای ایرانی','خوراک'],
+        activeRestaurants: [],
+        deactivateRestaurants: [],
+        categories: ['ساندویچ', 'برگر', 'پاستا', 'کباب', 'خورشت', 'غذای ایرانی', 'خوراک'],
 
     },
     methods: {
@@ -17,20 +17,19 @@ new Vue({
             this.area = page_url[1].slice(5);
         },
         handleListOfRestaurants(xhttp) {
-            console.log(JSON.parse(xhttp.responseText));
-            // jsonDOM = JSON.parse(xhttp.responseText);
-            // restaurants_count = jsonDOM.length - 1;
-            // document.getElementById("text_count_rest").innerHTML = restaurants_count + " رستوران امکان سرویس دهی به" ;
-            // document.getElementById("text_address_rest").innerHTML = this.city + "،" + this.area;
+            jsonDOM = JSON.parse(xhttp.responseText);
+            restaurants_count = jsonDOM.length - 1;
+            document.getElementById("text_count_rest").innerHTML = restaurants_count + " رستوران امکان سرویس دهی به" ;
+            document.getElementById("text_address_rest").innerHTML = this.city + "،" + this.area;
         },
         getDataFromServer(url, handleFunction, method, queryPart) {
             let xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     handleFunction(this);
                 }
             };
-            if(method == "GET"){
+            if (method == "GET") {
                 url += queryPart;
             }
             xhttp.open(method, url);
