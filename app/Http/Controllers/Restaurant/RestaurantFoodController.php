@@ -19,6 +19,7 @@ class RestaurantFoodController extends ApiController
      */
     public function store(Request $request, Restaurant $restaurant)
     {
+
         $rules = [
             'name'          => 'required',
             'foodSet'       => 'required',
@@ -27,6 +28,13 @@ class RestaurantFoodController extends ApiController
         ];
         $this->validate($request, $rules);
 
+        $food_rest_id = count(Food::all()) + 1;
+
+        $saved_image = null;
+        if($request->has('image')){
+            $saved_image  = $request->file('image')->storeAs('/foods_images/', $food_rest_id.'.png');
+        }
+
         DB::table('foods')->insert(
             [
                 'name'          => $request->name,
@@ -34,6 +42,7 @@ class RestaurantFoodController extends ApiController
                 'description'   => $request->description,   
                 'price'         => $request->price,
                 'restaurant_id' => $restaurant->id, 
+                'image'         => $saved_image,
             ]
         );
         

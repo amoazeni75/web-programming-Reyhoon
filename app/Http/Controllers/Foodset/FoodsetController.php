@@ -38,7 +38,7 @@ class FoodsetController extends ApiController
     public function store(Request $request)
     {
         $rules = [
-            'name'          => 'required',
+            'name' => 'required',
         ];
         $this->validate($request, $rules);
         
