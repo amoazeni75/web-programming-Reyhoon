@@ -41,7 +41,10 @@ class RestaurantController extends ApiController
                 $this->buildDetailsOfRestaurant($rest);
             }   
         }
-        return response()->json($restaurants, 200);
+        return response()->json($restaurants, 200)
+        ->header('Access-Control-Allow-Credentials', true)
+        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Headers', 'application/json');;
     }
 
     /**
@@ -49,10 +52,17 @@ class RestaurantController extends ApiController
     */
     public function search(Request $request){
         if(!($request->has('search') && $request->has('city'))){
-         return response()->json("empty", 404);
+         return response()
+         ->json("empty", 404)
+         ->header('Access-Control-Allow-Credentials', true)
+        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Headers', 'application/json');
         }
         $areas = $this->suggestArea($request->get('city'), $request->get('search'));
-        return response()->json($areas, 200);
+        return response()->json($areas, 200)
+        ->header('Access-Control-Allow-Credentials', true)
+        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Headers', 'application/json');
     }
 
     /**
@@ -273,29 +283,31 @@ class RestaurantController extends ApiController
         }
 
 
-        $foodsets_array = [
-           'sandwich' => 0,
-            'berger' => 0,
-            'khoresht'=> 0,
-            'kabab'=> 0,
-            'pasta'=> 0,
-            'irani'=> 0,
-            'khourak'=> 0,
-        ];
+        // $foodsets_array = [
+        //    'sandwich' => 0,
+        //     'berger' => 0,
+        //     'khoresht'=> 0,
+        //     'kabab'=> 0,
+        //     'pasta'=> 0,
+        //     'irani'=> 0,
+        //     'khourak'=> 0,
+        // ];
 
-        //prepare list of categoryies
-        foreach ($result as $res) {
-             foreach ($res->categories as $cate) {
-                 foreach ($foodsets_array as $key_set => $value_set)
-                 {
-                    if($cate['name'] == $key_set){
-                         $foodsets_array[$key_set] = $value_set + 1; 
-                    }
-                }
-            }
-        }
+        // //prepare list of categoryies
+        // foreach ($result as $res) {
+        //      foreach ($res->categories as $cate) {
+        //          foreach ($foodsets_array as $key_set => $value_set)
+        //          {
+        //             if($cate['name'] == $key_set){
+        //                  $foodsets_array[$key_set] = $value_set + 1; 
+        //             }
+        //         }
+        //     }
+        // }
         
-        array_push($result, $foodsets_array);
+        // array_push($result, $foodsets_array);
+        array_push($result, $this->appendListOfCategories($resturantsInCity));
+
         return $result;
     }
 
@@ -357,4 +369,38 @@ class RestaurantController extends ApiController
         return $input;
     }
 
+    private function appendListOfCategories($resturantsInCity){
+                //adding category
+        $result = array();
+
+        foreach ($resturantsInCity as $res_tmp) {
+        $rest = Restaurant::find($res_tmp->id);
+        $this->appendCategoryToRestaurant($rest);
+        array_push($result, $rest);
+        }
+
+
+        $foodsets_array = [
+            'sandwich' => 0,
+            'berger' => 0,
+            'khoresht'=> 0,
+            'kabab'=> 0,
+            'pasta'=> 0,
+            'irani'=> 0,
+            'khourak'=> 0,
+        ];
+
+        //prepare list of categoryies
+        foreach ($result as $res) {
+             foreach ($res->categories as $cate) {
+                 foreach ($foodsets_array as $key_set => $value_set)
+                 {
+                    if($cate['name'] == $key_set){
+                         $foodsets_array[$key_set] = $value_set + 1; 
+                    }
+                }
+            }
+        }
+        return $foodsets_array;
+    }
 }
