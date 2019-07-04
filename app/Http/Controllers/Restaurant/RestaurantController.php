@@ -52,18 +52,18 @@ class RestaurantController extends ApiController
     */
     public function search(Request $request){
         if(!($request->has('search') && $request->has('city'))){
-         return response()
-         ->json("empty", 404)
-         ->header('Access-Control-Allow-Credentials', true)
-        ->header('Access-Control-Allow-Origin', '*')
-        ->header('Access-Control-Allow-Headers', 'application/json');
-        }
-        $areas = $this->suggestArea($request->get('city'), $request->get('search'));
-        return response()->json($areas, 200)
-        ->header('Access-Control-Allow-Credentials', true)
-        ->header('Access-Control-Allow-Origin', '*')
-        ->header('Access-Control-Allow-Headers', 'application/json');
-    }
+           return response()
+           ->json("empty", 404)
+           ->header('Access-Control-Allow-Credentials', true)
+           ->header('Access-Control-Allow-Origin', '*')
+           ->header('Access-Control-Allow-Headers', 'application/json');
+       }
+       $areas = $this->suggestArea($request->get('city'), $request->get('search'));
+       return response()->json($areas, 200)
+       ->header('Access-Control-Allow-Credentials', true)
+       ->header('Access-Control-Allow-Origin', '*')
+       ->header('Access-Control-Allow-Headers', 'application/json');
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -105,7 +105,7 @@ class RestaurantController extends ApiController
             'background' => $request->file('background')->storeAs('/restaurants_background/', $newRestaurantID.'.png'),
             'openingTime' => $request->openingTime,
             'closingTime' => $request->closeTime,
-             );
+        );
         $restaurant = Restaurant::create($restaurant_data);
 
         //create address
@@ -142,10 +142,10 @@ class RestaurantController extends ApiController
     {
         $this->buildDetailsOfRestaurant($restaurant);
         return  response()->json($restaurant, 200)
-            ->header('Access-Control-Allow-Credentials', true)
-            ->header('Access-Control-Allow-Origin', '*')
-            ->header('Access-Control-Allow-Headers', 'application/json');
-       
+        ->header('Access-Control-Allow-Credentials', true)
+        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Headers', 'application/json');
+
     }
 
     /**
@@ -234,15 +234,15 @@ class RestaurantController extends ApiController
         $resturantsInCity = [];
         if($area == 1){
             $resturantsInCity = DB::table('restaurants')
-        ->join('addresses','restaurants.id', '=', 'addresses.restaurant_id')
-        ->where('addresses.city', '=', $city)
-        ->get();
+            ->join('addresses','restaurants.id', '=', 'addresses.restaurant_id')
+            ->where('addresses.city', '=', $city)
+            ->get();
         }else{
             $resturantsInCity = DB::table('restaurants')
-        ->join('addresses','restaurants.id', '=', 'addresses.restaurant_id')
-        ->where('addresses.city', '=', $city)
-        ->where('addresses.area' , '=', $area)
-        ->get();
+            ->join('addresses','restaurants.id', '=', 'addresses.restaurant_id')
+            ->where('addresses.city', '=', $city)
+            ->where('addresses.area' , '=', $area)
+            ->get();
 
         }
 
@@ -251,10 +251,10 @@ class RestaurantController extends ApiController
         $addAll = false;
         //check category
         if($categories[0] == 'empty'){
-         $addAll = true;
-        }
+           $addAll = true;
+       }
 
-     foreach ($resturantsInCity as $restaurant) {
+       foreach ($resturantsInCity as $restaurant) {
         $acceptable = false;
         $foods = DB::table('foods')
         ->where('foods.restaurant_id', '=', $restaurant->restaurant_id)
@@ -270,64 +270,40 @@ class RestaurantController extends ApiController
             $rest_foods = array_unique($rest_foods);
             array_push($result_temp, $restaurant);
         }
-        }
+    }
 
 
         //adding category
-        foreach ($result_temp as $res_tmp) {
+    foreach ($result_temp as $res_tmp) {
         $rest = Restaurant::find($res_tmp->id);
         $this->appendAddressToRestaurant($rest);
         $this->appendCategoryToRestaurant($rest);
         $this->appendAverageRatingToRestaurant($rest);
         array_push($result, $rest);
-        }
-
-
-        // $foodsets_array = [
-        //    'sandwich' => 0,
-        //     'berger' => 0,
-        //     'khoresht'=> 0,
-        //     'kabab'=> 0,
-        //     'pasta'=> 0,
-        //     'irani'=> 0,
-        //     'khourak'=> 0,
-        // ];
-
-        // //prepare list of categoryies
-        // foreach ($result as $res) {
-        //      foreach ($res->categories as $cate) {
-        //          foreach ($foodsets_array as $key_set => $value_set)
-        //          {
-        //             if($cate['name'] == $key_set){
-        //                  $foodsets_array[$key_set] = $value_set + 1; 
-        //             }
-        //         }
-        //     }
-        // }
-        
-        // array_push($result, $foodsets_array);
-        array_push($result, $this->appendListOfCategories($resturantsInCity));
-
-        return $result;
     }
 
-    private function appendAddressToRestaurant(Restaurant $restaurant){
+    array_push($result, $this->appendListOfCategories($resturantsInCity));
+
+    return $result;
+    }
+
+private function appendAddressToRestaurant(Restaurant $restaurant){
     $restaurant['city'] = $restaurant->address['city'];
     $restaurant['area'] = $restaurant->address['area'];
     $restaurant['addressLine'] = $restaurant->address['addressLine'];
-    }
+}
 
-    private function appendCategoryToRestaurant(Restaurant $restaurant){
-   $rest_foodset = array();
-   $categories = $restaurant->foodsets;
-   foreach($categories as $category){
+private function appendCategoryToRestaurant(Restaurant $restaurant){
+ $rest_foodset = array();
+ $categories = $restaurant->foodsets;
+ foreach($categories as $category){
     $temp_category = array("id"=>$category->id, "name"=>$category->name);
     array_push($rest_foodset, $temp_category);
-    }
-    $restaurant['categories'] = $rest_foodset;
-    }
+}
+$restaurant['categories'] = $rest_foodset;
+}
 
-    private function appendFoodsToRestaurant(Restaurant $restaurant){
+private function appendFoodsToRestaurant(Restaurant $restaurant){
     $rest_foods = array();
     $foods = $restaurant->foods;
     foreach($foods as $foo){
@@ -341,9 +317,9 @@ class RestaurantController extends ApiController
         array_push($rest_foods, $temp_category);
     }
     $restaurant['foods'] = $rest_foods;
-    }
+}
 
-    private function appendAverageRatingToRestaurant(Restaurant $restaurant){
+private function appendAverageRatingToRestaurant(Restaurant $restaurant){
     $comments = $restaurant->comments;
     $average_rating = 0.0;
     if(sizeof($comments) != 0){
@@ -356,51 +332,51 @@ class RestaurantController extends ApiController
     }
     $average_rating = intval( $average_rating * ($p = pow(10, 2))) / $p;
     $restaurant['average_rating'] = $average_rating;
-    }
+}
 
-    private function getListOfParemeterFromInput($input){
+private function getListOfParemeterFromInput($input){
         //echo $input;
-        $input = str_replace('[','',$input);
-        $input = str_replace(']','',$input);
-        $input = explode("|",$input);
+    $input = str_replace('[','',$input);
+    $input = str_replace(']','',$input);
+    $input = explode("|",$input);
         // foreach ($input as $inp) {
         //     echo $inp.'\n';
         // }
-        return $input;
-    }
+    return $input;
+}
 
-    private function appendListOfCategories($resturantsInCity){
+private function appendListOfCategories($resturantsInCity){
                 //adding category
-        $result = array();
+    $result = array();
 
-        foreach ($resturantsInCity as $res_tmp) {
+    foreach ($resturantsInCity as $res_tmp) {
         $rest = Restaurant::find($res_tmp->id);
         $this->appendCategoryToRestaurant($rest);
         array_push($result, $rest);
-        }
+    }
 
 
-        $foodsets_array = [
-            'sandwich' => 0,
-            'berger' => 0,
-            'khoresht'=> 0,
-            'kabab'=> 0,
-            'pasta'=> 0,
-            'irani'=> 0,
-            'khourak'=> 0,
-        ];
+    $foodsets_array = [
+        'sandwich' => 0,
+        'berger' => 0,
+        'khoresht'=> 0,
+        'kabab'=> 0,
+        'pasta'=> 0,
+        'irani'=> 0,
+        'khourak'=> 0,
+    ];
 
         //prepare list of categoryies
-        foreach ($result as $res) {
-             foreach ($res->categories as $cate) {
-                 foreach ($foodsets_array as $key_set => $value_set)
-                 {
-                    if($cate['name'] == $key_set){
-                         $foodsets_array[$key_set] = $value_set + 1; 
-                    }
-                }
-            }
-        }
-        return $foodsets_array;
-    }
+    foreach ($result as $res) {
+       foreach ($res->categories as $cate) {
+           foreach ($foodsets_array as $key_set => $value_set)
+           {
+            if($cate['name'] == $key_set){
+               $foodsets_array[$key_set] = $value_set + 1; 
+           }
+       }
+   }
+}
+return $foodsets_array;
+}
 }

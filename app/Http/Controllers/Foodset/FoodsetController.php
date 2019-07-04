@@ -37,7 +37,13 @@ class FoodsetController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name'          => 'required',
+        ];
+        $this->validate($request, $rules);
+        
+       
+        Foodset::create($request->all());
     }
 
     /**

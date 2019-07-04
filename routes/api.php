@@ -91,4 +91,4 @@ Route::resource('address','Address\AddressController', ['only' => ['index', 'sho
 /*
 Restaurant foodset
 */
-Route::resource('foodsets','Foodset\FoodsetController', ['only' => ['index', 'show']]);
+Route::resource('foodsets','Foodset\FoodsetController', ['only' => ['index', 'show', 'store']]);
