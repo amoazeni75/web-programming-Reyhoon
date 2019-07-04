@@ -25,6 +25,15 @@ new Vue({
         processCategory: true,
     },
     methods: {
+        checkTextBoxIsSelected(name) {
+            result = false;
+            childNodes = document.getElementById("container_checked_filters").childNodes;
+            for (let i = 0; i < childNodes.length; i++) {
+                if (childNodes[i].childNodes[0].childNodes[0].value == name) {
+                    return true;
+                }
+            }
+        },
         prepareQueryPart() {
             q_part = '';
             if (this.area == '') {
@@ -135,10 +144,14 @@ new Vue({
             var search_text = document.getElementById("branchNameSearch").value;
 
             for (cat in this.unChecked_categories) {
-                if (this.unChecked_categories[cat].name.includes(search_text) || search_text == '')
+                if (this.checkTextBoxIsSelected(this.unChecked_categories[cat].name)) {
                     this.unChecked_categories[cat].display = true;
-                else
-                    this.unChecked_categories[cat].display = false;
+                } else {
+                    if (this.unChecked_categories[cat].name.includes(search_text) || search_text == '')
+                        this.unChecked_categories[cat].display = true;
+                    else
+                        this.unChecked_categories[cat].display = false;
+                }
             }
         },
         translateEnglishToPersian(word) {

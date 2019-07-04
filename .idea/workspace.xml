@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7415bccb-9877-4c04-9af1-7facf312ba35" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaScript/restaurantsPage_component.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaScript/restaurantsPage_component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/restaurantList.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/restaurantList.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ResturantList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/ResturantList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/singleRestuarant.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/singleRestuarant.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,21 +67,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JavaScript/restaurantsPage_component.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="115" selection-start-line="115" selection-end-line="115" />
+            <state relative-caret-position="375">
+              <caret line="152" column="70" selection-start-line="152" selection-start-column="70" selection-end-line="152" selection-end-column="70" />
               <folding>
                 <element signature="e#90#767#0" />
                 <element signature="e#811#835#0" />
-                <element signature="e#878#902#0" />
-                <element signature="e#1725#2380#0" />
+                <element signature="e#789#1324#0" />
                 <element signature="e#837#1235#0" />
+                <element signature="e#4093#4816#0" />
                 <element signature="e#717#1070#0" />
-                <element signature="e#1374#1997#0" />
                 <element signature="e#700#901#0" />
                 <element signature="e#928#1182#0" />
                 <element signature="e#3419#3561#0" />
                 <element signature="e#1402#1684#0" />
                 <element signature="e#1725#2205#0" />
+                <element signature="e#2246#2821#0" />
+                <element signature="e#2889#3286#0" />
               </folding>
             </state>
           </provider>
@@ -189,11 +188,11 @@
       <find>handleListOfRestaurants</find>
       <find>price</find>
       <find>Restaurant-fic-image-img</find>
-      <find>data-</find>
       <find>quick-access-menu-a</find>
       <find>hint</find>
-      <find>prepareRestaurants</find>
       <find>allFoods</find>
+      <find>prepareRestaurants</find>
+      <find>data-</find>
     </findStrings>
     <replaceStrings>
       <replace>shop-section-off</replace>
@@ -349,7 +348,7 @@
       <workItem from="1562143679041" duration="1635000" />
       <workItem from="1562146716408" duration="2449000" />
       <workItem from="1562169638371" duration="7645000" />
-      <workItem from="1562215274626" duration="33349000" />
+      <workItem from="1562215274626" duration="35924000" />
     </task>
     <task id="LOCAL-00001" summary="- fundamental files added">
       <created>1561441747379</created>
@@ -491,16 +490,44 @@
       <option name="project" value="LOCAL" />
       <updated>1562265322062</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="- now we add a line as separation between selected category and unselected category">
+      <created>1562272311409</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1562272311410</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132483000" />
+    <option name="totallyTimeSpent" value="135058000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="1" weight="0.19969743" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="0" />
+      <window_info anchor="bottom" id="Database Changes" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50075644" side_tool="true" weight="0.2111293" />
+      <window_info anchor="bottom" id="Version Control" order="3" />
+      <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" sideWeight="0.49924356" weight="0.049099836" />
+      <window_info anchor="bottom" id="Run" order="7" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="11" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+    </layout>
+    <layout-to-restore>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="1" weight="0.19969743" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
@@ -520,7 +547,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -546,7 +573,8 @@
     <MESSAGE value="- now selected category go up in filter list" />
     <MESSAGE value="- filter restaurants by food category added" />
     <MESSAGE value="- quick access to menu, details, comments section in restaurant page added" />
-    <option name="LAST_COMMIT_MESSAGE" value="- quick access to menu, details, comments section in restaurant page added" />
+    <MESSAGE value="- now we add a line as separation between selected category and unselected category" />
+    <option name="LAST_COMMIT_MESSAGE" value="- now we add a line as separation between selected category and unselected category" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/JavaScript/footer-component.js">
@@ -622,28 +650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ResturantList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#star-rating#0;n#div#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#star-rating#0;n#div#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#stop#0;n#linearGradient#0;n#defs#0;n#svg#0;n#span#0;n#div#0;n#div#0;n#div#1;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#stop#1;n#linearGradient#0;n#defs#0;n#svg#0;n#span#0;n#div#0;n#div#0;n#div#1;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/singleRestuarant.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -698,23 +704,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ResturantList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#star-rating#0;n#div#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#star-rating#0;n#div#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#stop#0;n#linearGradient#0;n#defs#0;n#svg#0;n#span#0;n#div#0;n#div#0;n#div#1;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#stop#1;n#linearGradient#0;n#defs#0;n#svg#0;n#span#0;n#div#0;n#div#0;n#div#1;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/JavaScript/restaurantsPage_component.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="115" selection-start-line="115" selection-end-line="115" />
+        <state relative-caret-position="375">
+          <caret line="152" column="70" selection-start-line="152" selection-start-column="70" selection-end-line="152" selection-end-column="70" />
           <folding>
             <element signature="e#90#767#0" />
             <element signature="e#811#835#0" />
-            <element signature="e#878#902#0" />
-            <element signature="e#1725#2380#0" />
+            <element signature="e#789#1324#0" />
             <element signature="e#837#1235#0" />
+            <element signature="e#4093#4816#0" />
             <element signature="e#717#1070#0" />
-            <element signature="e#1374#1997#0" />
             <element signature="e#700#901#0" />
             <element signature="e#928#1182#0" />
             <element signature="e#3419#3561#0" />
             <element signature="e#1402#1684#0" />
             <element signature="e#1725#2205#0" />
+            <element signature="e#2246#2821#0" />
+            <element signature="e#2889#3286#0" />
           </folding>
         </state>
       </provider>
