@@ -133,7 +133,8 @@
                 <div class="search-food-single-inner">
                     <div class="search-food-single-inner-1 search-food-single-inner-2">
                         <div class="search-food-single-box search-food-single-box-1 search-food-single-box-2">
-                            <input placeholder="مثلا برگر" class="search-food-single-input" name="" required="" value="">
+                            <input placeholder="مثلا برگر" class="search-food-single-input"
+                                   id="search_rest_name_input" v-on:input="searchRestaurantByName">
                             <span class="search-food-single-input-span"></span>
                             <label class="search-food-single-label">جستجو در منوی این رستوران</label>
                             <div class="search-food-icon">
@@ -161,7 +162,7 @@
                         </div>
                         <div class="Restaurant-foods-in-category">
                             <!-- active food -->
-                            <div class="Restaurant-food-in-category" v-for="food in cat.foods">
+                            <div class="Restaurant-food-in-category" v-for="food in cat.foods" v-show="food.display">
                                 <div class="Restaurant-food-in-category-div">
                                     <div class="Restaurant-fic-name">
                                         <div class="Restaurant-fic-name-div">

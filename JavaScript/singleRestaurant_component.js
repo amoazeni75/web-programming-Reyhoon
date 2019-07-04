@@ -4,10 +4,9 @@ new Vue({
     el: '#app',
     data: {
         restaurant_object: "",
-        allFoods : [],
-        categories : [],
-        comments : [],
-        avg_ratings : [],
+        categories: [],
+        comments: [],
+        avg_ratings: [],
         dictionaryArr: [
             {key: "sandwich", value: 'ساندویچ'},
             {key: "berger", value: 'برگر'},
@@ -23,10 +22,21 @@ new Vue({
     },
 
     methods: {
-        daysBetween(date2 ) {
+        searchRestaurantByName() {
+            var search_text = document.getElementById("search_rest_name_input").value;
+            for (let i = 0; i < this.categories.length; i++) {
+                for (let j = 0; j < this.categories[i].foods.length; j++) {
+                    if (this.categories[i].foods[j].name.includes(search_text) || search_text == '')
+                        this.categories[i].foods[j].display = true;
+                    else
+                        this.categories[i].foods[j].display = false;
+                }
+            }
+        },
+        daysBetween(date2) {
             date1 = new Date();
             //Get 1 day in milliseconds
-            var one_day=1000*60*60*24;
+            var one_day = 1000 * 60 * 60 * 24;
 
             // Convert both dates to milliseconds
             var date1_ms = date1.getTime();
@@ -36,7 +46,7 @@ new Vue({
             var difference_ms = date1_ms - date2_ms;
 
             // Convert back to days and return
-            return Math.round(difference_ms/one_day);
+            return Math.round(difference_ms / one_day);
         },
         translateEnglishToPersian(word) {
             for (let i = 0; i < this.dictionaryArr.length; i++) {
@@ -52,17 +62,18 @@ new Vue({
         },
         prepareCategories(categories_server) {
             for (cat in categories_server) {
-               this.categories.push(
+                this.categories.push(
                     {
                         "name": this.translateEnglishToPersian(categories_server[cat].name),
-                        "foods" : [],
+                        "foods": [],
                     });
             }
         },
-        prepareFood(foods){
-            for(food in foods){
-                for (cat in this.categories){
-                    if(this.categories[cat].name == foods[food].foodSet){
+        prepareFood(foods) {
+            for (food in foods) {
+                for (cat in this.categories) {
+                    if (this.categories[cat].name == foods[food].foodSet) {
+                        foods[food].display = true;
                         this.categories[cat].foods.push(foods[food]);
                     }
                 }
@@ -73,17 +84,17 @@ new Vue({
             this.prepareCategories(jsonDOM.categories);
             this.prepareFood(jsonDOM.foods)
             this.restaurant_object = jsonDOM;
-            window.document.title = this.restaurant_object.name + " | مشاهده ی منو و سفارش" ;
+            window.document.title = this.restaurant_object.name + " | مشاهده ی منو و سفارش";
         },
-        handleListOfComments(xhttp){
+        handleListOfComments(xhttp) {
             jsonDOM = JSON.parse(xhttp.responseText);
             temp_rate = jsonDOM.pop();
-            for(rates_name in temp_rate){
+            for (rates_name in temp_rate) {
                 this.avg_ratings.push({key: rates_name, value: temp_rate[rates_name]});
             }
 
-            for (comment in jsonDOM){
-               this.comments.push(jsonDOM[comment]);
+            for (comment in jsonDOM) {
+                this.comments.push(jsonDOM[comment]);
             }
         },
         getDataFromServer(url, handleFunction, method, queryPart) {
@@ -104,12 +115,12 @@ new Vue({
     mounted() {
         this.parseQueryPart();
         this.getDataFromServer(
-            "http://restfulapi.test/api/restaurants/" + this.restaurant_id+"/",
+            "http://restfulapi.test/api/restaurants/" + this.restaurant_id + "/",
             this.handleListOfFoods,
             "GET",
             '');
         this.getDataFromServer(
-            "http://restfulapi.test/api/restaurants/" + this.restaurant_id+"/" + "comments",
+            "http://restfulapi.test/api/restaurants/" + this.restaurant_id + "/" + "comments",
             this.handleListOfComments,
             "GET",
             ''
