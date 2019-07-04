@@ -1,5 +1,4 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="fa-IR">
 <head>
     <meta charset="utf-8">
@@ -14,7 +13,7 @@
     <link rel="stylesheet" href="../assets/global.css">
     <link rel="stylesheet" href="../assets/main.css">
     <link rel="stylesheet" href="../assets/restaurantList.css">
-    <script src = "../JavaScript/restaurantsPage.js" defer="defer" ></script>
+    <script src="../JavaScript/restaurantsPage.js" defer="defer"></script>
 </head>
 <body>
 <!--header section-->
@@ -22,7 +21,7 @@
     <header-component></header-component>
 </div>
 <!--end of header section-->
-<div class="restaurant-page-container" id = "app">
+<div class="restaurant-page-container" id="app">
 
     <!-- banner -->
     <div class="restaurants-banner"></div>
@@ -32,8 +31,8 @@
         <div class="search-result-outer-2">
             <div class="search-result-outer-3">
                 <h1>
-                    <span class="result-text-span" id = "text_count_rest"> رستوران امکان سرویس دهی به</span>
-                    <span class="result-text-link" id = "text_address_rest"></span>
+                    <span class="result-text-span" id="text_count_rest"> رستوران امکان سرویس دهی به</span>
+                    <span class="result-text-link" id="text_address_rest"></span>
                     <span class="result-text-span">را دارند</span>
                 </h1>
                 <!-- search box component here -->
@@ -48,7 +47,8 @@
     <div class="container-div-search-area">
         <div class="search-text-field-inner-1 search-text-field-inner-2 search-margin">
             <input name="restaurant-name" placeholder=""
-                   class="search-input-1 search-input-2" id="search_rest_name_input" v-on:input="searchRestaurantByName()">
+                   class="search-input-1 search-input-2" id="search_rest_name_input"
+                   v-on:input="searchRestaurantByName()">
             <label class="search-text-hint">جست‌و‌‌جوی رستوران‌ در این محدوده</label>
             <div class="search-text-span-outer">
                                 <span class="search-text-span-inner-1 search-text-span-inner-2">
@@ -81,14 +81,46 @@
                         </div>
                         <div class="filters-checkbox-container">
                             <!-- category item -->
-                            <div class="filters-item-div" v-for="filter in categories" v-show="filter.display">
-                                <fieldset class="filters-item-field-1 filters-item-field-2">
-                                    <input type="checkbox" class="filters-item-checkbox" :id="filter.name" :value="filter.name">
-                                    <label class="filters-item-label"></label>
-                                </fieldset>
-                                <label class="filters-item-label-2" :for="filter.name">
-                                    <span class="filters-item-label-span">{{filter.name}} ({{filter.quantity}})</span>
-                                </label>
+
+                            <div id="container_checked_filters">
+                                <div class="filters-item-div"
+                                     v-for="filter in checked_categories"
+                                     v-show="filter.display"
+                                     :quantity="filter.quantity"
+                                >
+                                    <fieldset  class="filters-item-field-1 filters-item-field-2">
+                                        <input type="checkbox"
+                                               class="filters-item-checkbox" :id="filter.name"
+                                               :value="filter.name"
+                                               v-on:change="handleSelectionOfCategory"
+                                        >
+                                        <label class="filters-item-label"></label>
+                                    </fieldset>
+                                    <label class="filters-item-label-2" :for="filter.name">
+                                        <span class="filters-item-label-span">{{filter.name}} ({{filter.quantity}})</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="container_unchecked_filters">
+                                <div class="filters-item-div"
+                                     v-for="filter in unChecked_categories"
+                                     v-show="filter.display"
+                                     :quantity="filter.quantity"
+                                >
+                                    <fieldset class="filters-item-field-1 filters-item-field-2">
+                                        <input type="checkbox"
+                                               class="filters-item-checkbox"
+                                               :id="filter.name"
+                                               :value="filter.name"
+                                               v-on:change="handleSelectionOfCategory"
+                                        >
+                                        <label class="filters-item-label"></label>
+                                    </fieldset>
+                                    <label class="filters-item-label-2" :for="filter.name">
+                                        <span class="filters-item-label-span">{{filter.name}} ({{filter.quantity}})</span>
+                                    </label>
+                                </div>
                             </div>
 
                             <button class="filters-more-item">بیشتر</button>
@@ -104,7 +136,8 @@
                     <!--- active --->
                     <div class="inactive-active-rest-item-div" v-for="rest in activeRestaurants" v-show="rest.display">
                         <div class="rest-item-inner-1 rest-item-inner-2 branch-card">
-                            <a :href="'singleRestuarant.html?restaurant_id=' + rest.id" class="rest-item-a-link-1" target="_blank">
+                            <a :href="'singleRestuarant.html?restaurant_id=' + rest.id" class="rest-item-a-link-1"
+                               target="_blank">
                                 <div class="rest-item-details-div">
                                     <div class="rest-item-image-section">
                                         <div class="rest-item-image-inner-1 rest-item-image-inner-2 rest-item-image-inner-3">
@@ -117,13 +150,18 @@
                                         <div class="rest-item-rating-section" style="padding-right: 28%">
 
                                             <div class="rest-item-rating-star" style="display: inline">
-                                                <star-rating style="direction: ltr" :star-size="14" :rating=rest.average_rating :read-only="true" :show-rating="false" :increment="0.01"></star-rating>
+                                                <star-rating style="direction: ltr" :star-size="14"
+                                                             :rating=rest.average_rating :read-only="true"
+                                                             :show-rating="false" :increment="0.01"></star-rating>
                                             </div>
-                                            <p class="rest-item-rating-count" style="padding-top: 9px">{{rest.average_rating}}</p>
+                                            <p class="rest-item-rating-count" style="padding-top: 9px">
+                                                {{rest.average_rating}}</p>
                                         </div>
                                         <div class="rest-item-food-list-div">
                                             <ul class="rest-item-food-ul">
-                                                <li class="rest-item-food-li" v-for="category in rest.categories"> {{translateEnglishToPersian(category.name)}} </li>
+                                                <li class="rest-item-food-li" v-for="category in rest.categories">
+                                                    {{translateEnglishToPersian(category.name)}}
+                                                </li>
                                             </ul>
                                             <address class="rest-item-address">
                                                 {{rest.addressLine}}
@@ -147,9 +185,11 @@
                 <p class="disable-p" v-show=isThereAnayDeactive()>رستوران های بسته</p>
                 <div class="all-restaurant-active close-branches">
                     <!--- inactive --->
-                    <div class="inactive-active-rest-item-div" v-for="rest in deactivateRestaurants" v-show="rest.display">
+                    <div class="inactive-active-rest-item-div" v-for="rest in deactivateRestaurants"
+                         v-show="rest.display">
                         <div class="rest-item-inner-1 rest-item-inner-2 branch-card rest-item-inner-3">
-                            <a :href="'singleRestuarant.html?restaurant_id=' + rest.id"  class="rest-item-a-link-1 rest-item-a-link-2">
+                            <a :href="'singleRestuarant.html?restaurant_id=' + rest.id"
+                               class="rest-item-a-link-1 rest-item-a-link-2">
                                 <div class="rest-item-details-div">
                                     <div class="rest-item-image-section">
                                         <div class="rest-item-image-inner-1 rest-item-image-inner-2 rest-item-image-inner-3">
@@ -161,13 +201,18 @@
                                         <h2 class="rest-item-name-p">{{rest.name}}</h2>
                                         <div class="rest-item-rating-section" style="padding-right: 28%">
                                             <div class="rest-item-rating-star">
-                                                <star-rating style="direction: ltr" :star-size="14" :rating=rest.average_rating :read-only="true" :show-rating="false" :increment="0.01"></star-rating>
+                                                <star-rating style="direction: ltr" :star-size="14"
+                                                             :rating=rest.average_rating :read-only="true"
+                                                             :show-rating="false" :increment="0.01"></star-rating>
                                             </div>
-                                            <p class="rest-item-rating-count" style="padding-top: 9px">{{rest.average_rating}}</p>
+                                            <p class="rest-item-rating-count" style="padding-top: 9px">
+                                                {{rest.average_rating}}</p>
                                         </div>
                                         <div class="rest-item-food-list-div">
                                             <ul class="rest-item-food-ul">
-                                                <li class="rest-item-food-li" v-for="category in rest.categories"> {{translateEnglishToPersian(category.name)}} </li>
+                                                <li class="rest-item-food-li" v-for="category in rest.categories">
+                                                    {{translateEnglishToPersian(category.name)}}
+                                                </li>
                                             </ul>
                                             <address class="rest-item-address">{{rest.addressLine}}</address>
                                         </div>
@@ -176,10 +221,17 @@
                                 <div class="rest-start-order">
                                     <div class="button-closedRestauran-1">
                                         <div class="button-closedRestauran-5">
-                                            <span class="button-closedRestauran-2 button-closedRestauran-3 button-closedRestauran-4" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" ><defs ><linearGradient id="innerGradiant" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#50d258;stop-opacity:0.3;" ></stop><stop offset="100%" style="stop-color:#0dd0af;stop-opacity:0.3;"></stop></linearGradient></defs>
+                                            <span class="button-closedRestauran-2 button-closedRestauran-3 button-closedRestauran-4"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><defs><linearGradient
+                                                    id="innerGradiant" x1="0%" y1="0%" x2="100%" y2="0%"><stop
+                                                    offset="0%" style="stop-color:#50d258;stop-opacity:0.3;"></stop><stop
+                                                    offset="100%"
+                                                    style="stop-color:#0dd0af;stop-opacity:0.3;"></stop></linearGradient></defs>
                                                 <circle class="button-closedRestauran-6" cx="50%" cy="50%" r="7.5">
-                                                </circle><circle class="button-closedRestauran-7" cx="50%" cy="50%" r="3.5" fill="url(#innerGradiant)"></circle></svg></span>
-                                            شروع سفارش از  {{rest.openingTime}}
+                                                </circle><circle class="button-closedRestauran-7" cx="50%" cy="50%"
+                                                                 r="3.5"
+                                                                 fill="url(#innerGradiant)"></circle></svg></span>
+                                            شروع سفارش از {{rest.openingTime}}
                                         </div>
                                     </div>
                                 </div>

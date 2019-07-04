@@ -5,11 +5,13 @@ new Vue({
     data: {
         city: "",
         area: "",
-        searchRest : "",
-        allRestaurants : [],
+        searchRest: "",
+        allRestaurants: [],
         activeRestaurants: [],
         deactivateRestaurants: [],
         categories: [],
+        unChecked_categories: [],
+        checked_categories: [],
         dictionaryArr: [
             {key: "sandwich", value: 'ساندویچ'},
             {key: "berger", value: 'برگر'},
@@ -23,36 +25,83 @@ new Vue({
     },
 
     methods: {
-        searchRestaurantByName(){
+        handleSelectionOfCategory(event){
+            this.changeCheckBoxSelection(event);
+            this.sortFilters();
+
+        },
+        changeCheckBoxSelection(event){
+            if (event.currentTarget.checked) {
+                this.removeAndAddCheckBox(event.target,
+                    document.getElementById("container_unchecked_filters"),
+                    document.getElementById("container_checked_filters"),
+                    this.unChecked_categories,
+                    this.checked_categories);
+            }
+            else {
+                this.removeAndAddCheckBox(event.target,
+                    document.getElementById("container_checked_filters"),
+                    document.getElementById("container_unchecked_filters"),
+                    this.checked_categories,
+                    this.unChecked_categories);
+            }
+        },
+        removeAndAddCheckBox(check_box, should_remove, should_add, should_remove_e, should_add_e) {
+            for (let i = 0; i < should_remove.childNodes.length; i++) {
+                if (should_remove.childNodes[i] == check_box.parentNode.parentNode) {
+                    should_add.appendChild(should_remove.childNodes[i]);
+                    break;
+                }
+            }
+            // for (let i = 0; i < should_remove_e.length; i++) {
+            //     if(should_remove_e[i].name == check_box.value){
+            //         etemp = should_remove_e[i];
+            //         should_remove_e.splice(i, 1);
+            //         should_add_e.push(etemp);
+            //         break;
+            //     }
+            // }
+        },
+        sortFiltersList(childNodes) {
+            for (let i = 0; i < childNodes.length - 1; i++) {
+                for (let j = 0; j < childNodes.length - 1 - i; j++) {
+                    if (childNodes[j].getAttribute('quantity') < childNodes[j + 1].getAttribute('quantity')) {
+                        childNodes[j + 1].parentNode.insertBefore(childNodes[j + 1], childNodes[j]);
+                    }
+                }
+            }
+        },
+        sortFilters() {
+            checked_box = document.getElementById("container_checked_filters").childNodes;
+            unchecked_box = document.getElementById("container_unchecked_filters").childNodes;
+
+            this.sortFiltersList(checked_box);
+            this.sortFiltersList(unchecked_box);
+        },
+        searchRestaurantByName() {
             var search_text = document.getElementById("search_rest_name_input").value;
-            if(search_text == ''){
-                for (rest in this.allRestaurants){
+            if (search_text == '') {
+                for (rest in this.allRestaurants) {
                     this.allRestaurants[rest].display = true;
                 }
                 return;
             }
 
-            for (rest in this.allRestaurants){
-                if(this.allRestaurants[rest].name.includes(search_text))
-                    this.allRestaurants[rest].display  = true;
+            for (rest in this.allRestaurants) {
+                if (this.allRestaurants[rest].name.includes(search_text))
+                    this.allRestaurants[rest].display = true;
                 else
-                    this.allRestaurants[rest].display  = false;
+                    this.allRestaurants[rest].display = false;
             }
         },
-        searchFilterByName(){
+        searchFilterByName() {
             var search_text = document.getElementById("branchNameSearch").value;
-            if(search_text == ''){
-                for (cat in this.categories){
-                    this.categories[cat].display = true;
-                }
-                return;
-            }
 
-            for (cat in this.categories){
-                if(this.categories[cat].name.includes(search_text))
-                    this.categories[cat].display  = true;
+            for (cat in this.unChecked_categories) {
+                if (this.unChecked_categories[cat].name.includes(search_text) || search_text =='')
+                    this.unChecked_categories[cat].display = true;
                 else
-                    this.categories[cat].display  = false;
+                    this.unChecked_categories[cat].display = false;
             }
         },
         translateEnglishToPersian(word) {
@@ -68,8 +117,8 @@ new Vue({
             this.city = page_url[0].slice(5);
             this.area = page_url[1].slice(5);
         },
-        isThereAnayDeactive(){
-            if(this.deactivateRestaurants.length == 0)
+        isThereAnayDeactive() {
+            if (this.deactivateRestaurants.length == 0)
                 return false;
             else
                 return true;
@@ -80,15 +129,22 @@ new Vue({
                     {
                         "name": this.translateEnglishToPersian(cat),
                         "quantity": categories_server[cat],
-                        "display" : true,
+                        "display": true,
                     });
+                this.unChecked_categories.push(
+                    {
+                        "name": this.translateEnglishToPersian(cat),
+                        "quantity": categories_server[cat],
+                        "display": true,
+                    });
+
             }
         },
-        prepareRestaurants(restaurants){
+        prepareRestaurants(restaurants) {
             var hour = new Date().getHours();
-            for(rest in restaurants){
+            for (rest in restaurants) {
                 restaurants[rest].display = true;
-                if(restaurants[rest].openingTime <= hour && hour <= restaurants[rest].closingTime)
+                if (restaurants[rest].openingTime <= hour && hour <= restaurants[rest].closingTime)
                     this.activeRestaurants.push(restaurants[rest]);
                 else
                     this.deactivateRestaurants.push(restaurants[rest]);
