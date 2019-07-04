@@ -62,8 +62,8 @@ new Vue({
         prepareFood(foods){
             for(food in foods){
                 for (cat in this.categories){
-                    if(cat.name == foods[food].foodSet){
-                        cat.foods.push(foods[food]);
+                    if(this.categories[cat].name == foods[food].foodSet){
+                        this.categories[cat].foods.push(foods[food]);
                     }
                 }
             }
@@ -73,6 +73,7 @@ new Vue({
             this.prepareCategories(jsonDOM.categories);
             this.prepareFood(jsonDOM.foods)
             this.restaurant_object = jsonDOM;
+            window.document.title = this.restaurant_object.name + " | مشاهده ی منو و سفارش" ;
         },
         handleListOfComments(xhttp){
             jsonDOM = JSON.parse(xhttp.responseText);

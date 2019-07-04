@@ -3629,3 +3629,13 @@ button {
     margin: 0 16px;
     margin: 0 1rem;
 }
+
+.restaurant_logo_class, .Z-XQR {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: transparent;
+}
+body{
+    background-color: #fafafa;
+}

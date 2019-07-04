@@ -26,7 +26,8 @@
     <!-- banner / restaurant details -->
     <section class="Banner-section">
         <div class="Banner-Background-image">
-            <img class="Banner-Background-image-inner" :src=" 'http://restfulapi.test/img/'+ this.restaurant_object.background" alt="">
+            <img class="Banner-Background-image-inner"
+                 :src=" 'http://restfulapi.test/img/'+ this.restaurant_object.background">
         </div>
         <div class="Restaurant-overview-div">
             <div class="Restaurant-overview-inner">
@@ -44,7 +45,7 @@
                         </a>
                         <span class="Flash-arrow-address-1 Flash-arrow-address-2 Flash-arrow-address-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 20"><path fill="currentColor" fill-rule="evenodd" d="M9.17 19.708L.607 11.444a1.95 1.95 0 0 1 0-2.827L9.232.292c.4-.385 1.048-.39 1.454-.01a.976.976 0 0 1 .011 1.425L2.803 9.324a.975.975 0 0 0 0 1.414l7.831 7.557a.974.974 0 0 1 0 1.413c-.405.39-1.06.39-1.464 0z"></path></svg></span>
                         <a href="/" class="Restaurant-overview-food-cat-item-a">
-                            <span>{{this.restaurant_object.area}}</span>
+                            <span style="color:#777">{{this.restaurant_object.area}}</span>
                         </a>
                     </li>
                 </ol>
@@ -60,7 +61,8 @@
                 </div>
 
                 <div class="Restaurant-logo-1 Restaurant-logo-2">
-                    <img :src=" 'http://restfulapi.test/img/' + this.restaurant_object.logo" class="_199RC" alt="کترینگ تهران پخت">
+                    <img :src=" 'http://restfulapi.test/img/' + this.restaurant_object.logo"
+                         class="restaurant_logo_class">
                 </div>
 
                 <div class="Restaurant-name-div">
@@ -88,7 +90,6 @@
                     <ul class="Restaurant-header-foods-ul-1 Restaurant-header-foods-ul-2">
                         <!-- foods category here -->
                         <li class="Restaurant-header-foods-li" v-for="cat in this.categories">{{cat.name}}</li>
-
                     </ul>
                 </div>
                 <address class="Restaurant-header-address" >{{this.restaurant_object.addressLine}}</address>
@@ -120,7 +121,9 @@
                 <ul class="quick-access-menu-ul-1 quick-access-menu-ul-2 quick-access-menu-ul-3">
                     <!-- food menu category component here -->
                     <li class="quick-access-menu-li">
-                        <a class="quick-access-menu-a" href="#53608">غذای هفتگی</a>
+                        <a class="quick-access-menu-a" :href="'#category_' + cat.name" v-for="cat in this.categories">
+                            {{cat.name}}
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -145,36 +148,37 @@
                 </div>
             </div>
 
-            <div id="section-53608" class="search-food-single">
+            <!-- each food category -->
+            <div :id="'category_' + cat.name" class="search-food-single" v-for="cat in this.categories">
                 <div class="search-food-single-inner">
                     <div class="search-food-single-inner-1 search-food-single-inner-2">
                         <div class="search-food-single-inner-4">
                             <span class="search-food-span-present"></span>
                             <div class="search-food-category-name-div">
-                                <h2 class="search-food-category-name-h" >غذای هفتگی</h2>
+                                <h2 class="search-food-category-name-h" >{{cat.name}}</h2>
                                 <span class="Restaurant-address-flash-1 Restaurant-address-flash-2 Restaurant-address-flash-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 20"><path fill="currentColor" fill-rule="evenodd" d="M9.17 19.708L.607 11.444a1.95 1.95 0 0 1 0-2.827L9.232.292c.4-.385 1.048-.39 1.454-.01a.976.976 0 0 1 .011 1.425L2.803 9.324a.975.975 0 0 0 0 1.414l7.831 7.557a.974.974 0 0 1 0 1.413c-.405.39-1.06.39-1.464 0z"></path></svg></span>
                             </div>
                         </div>
                         <div class="Restaurant-foods-in-category">
                             <!-- active food -->
-                            <div class="Restaurant-food-in-category">
+                            <div class="Restaurant-food-in-category" v-for="food in cat.foods">
                                 <div class="Restaurant-food-in-category-div">
                                     <div class="Restaurant-fic-name">
                                         <div class="Restaurant-fic-name-div">
                                             <p class="Restaurant-fic-name-p">
-                                                سبزی پلو با ماهی قزل آلا
+                                                {{food.name}}
                                             </p>
                                         </div>
                                         <div class="Restaurant-fic-price-inactive">
                                             <div>
-                                                <p class="Restaurant-fic-price" content="37500">37,500</p>
+                                                <p class="Restaurant-fic-price" :content=food.price>{{food.price.toLocaleString()}}</p>
                                                 <span content="تومان" class="Restaurant-fic-currency" >تومان</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="Restaurant-fic-details">
                                         <div class="Restaurant-fic-details-inner">
-                                            <div class="Restaurant-fic-details-text">شنبه ها و چهارشنبه ها، برنج درجه ۱ ایرانی، ۴۵۰ گرم ماهی قزل آلا تازه و ته چین</div>
+                                            <div class="Restaurant-fic-details-text">{{food.description}}</div>
                                             <div class="Restaurant-fic-finish-message">
                                                 <div class="Restaurant-fic-add-shop Restaurant-fic-add-shop-2">
                                                     <button class="Restaurant-fic-add-shop-button Restaurant-fic-add-shop-button-2 Restaurant-fic-add-shop-button-3">
@@ -185,7 +189,10 @@
                                             </div>
                                         </div>
                                         <div class="Restaurant-fic-image">
-                                            <img class="Restaurant-fic-image-img" src="https://dist.reyhoon-static.com/uploads/images/restaurants/menu_items/tehranpokht_7470/499306_1550927986.jpeg?x-oss-process=image/resize,s_90/crop,w_90,h_90,g_center/quality,q_80" alt="سبزی پلو با ماهی قزل آلا">
+                                            <img class="Restaurant-fic-image-img" src="">
+<!--                                            <img class="Restaurant-fic-image-img"-->
+<!--                                                 :src=" 'http://restfulapi.test/img/'+ food.image">-->
+
                                             <span class="Restaurant-fic-magn">
                                                 <span class="Restaurant-fic-magn-inner1 Restaurant-fic-magn-inner2"><svg viewBox="0 0 18 18" class="Restaurant-fic-magn-inner2"><g fill="none" fill-rule="evenodd"><path d="M0 0h18v18H0z"></path><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" transform="translate(2 2)"><circle cx="6.125" cy="6.125" r="6.125"></circle><path d="M13.373 13.373l-2.767-2.767"></path></g><path d="M0 0h18v18H0z"></path></g></svg>
                                                 </span>
@@ -195,43 +202,45 @@
                                 </div>
                             </div>
 
-                            <!--finished food-->
-                            <div class="Restaurant-food-in-category">
-                                <div itemscope="" itemtype="http://schema.org/Product" role="presentation" class="Restaurant-food-in-category-div Restaurant-food-inactive">
-                                    <div class="Restaurant-fic-name">
-                                        <div class="Restaurant-fic-name-div">
-                                            <p class="Restaurant-fic-name-p">
-                                                باقالی پلو با ماهیچه گوسفندی
-                                            </p>
-                                        </div>
-                                        <div class="Restaurant-fic-price-inactive">
-                                            <div>
-                                                <p class="Restaurant-fic-price" content="84000">84,000</p>
-                                                <span content="تومان" class="Restaurant-fic-currency" >تومان</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="Restaurant-fic-details">
-                                        <div class="Restaurant-fic-details-inner">
-                                            <div class="Restaurant-fic-details-text">دوشنبه ها، برنج درجه ۱ ایرانی، دم کشیده با شوید تازه، باقالی تازه، ماهیچه تازه گوسفندی ۴۵۰ الی ۵۰۰ گرمی و ته چین</div>
-                                            <div class="Restaurant-fic-finish-message">
-                                                <span class="Restaurant-fic-finish-text">تمام شد!</span>
-                                            </div>
-                                        </div>
-                                        <div class="Restaurant-fic-image">
-                                            <img class="Restaurant-fic-image-img" src="https://dist.reyhoon-static.com/web-assets/images/default_menu_item.jpg?x-oss-process=image/resize,s_90/crop,w_90,h_90,g_center/quality,q_80" alt="باقالی پلو با ماهیچه گوسفندی">
-                                            <span class="Restaurant-fic-magn">
-                                                <span class="Restaurant-fic-magn-inner1 Restaurant-fic-magn-inner2"><svg viewBox="0 0 18 18" class="Restaurant-fic-magn-inner2"><g fill="none" fill-rule="evenodd"><path d="M0 0h18v18H0z"></path><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" transform="translate(2 2)"><circle cx="6.125" cy="6.125" r="6.125"></circle><path d="M13.373 13.373l-2.767-2.767"></path></g><path d="M0 0h18v18H0z"></path></g></svg>
-                                                </span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            &lt;!&ndash;finished food&ndash;&gt;-->
+<!--                            <div class="Restaurant-food-in-category">-->
+<!--                                <div itemscope="" itemtype="http://schema.org/Product" role="presentation" class="Restaurant-food-in-category-div Restaurant-food-inactive">-->
+<!--                                    <div class="Restaurant-fic-name">-->
+<!--                                        <div class="Restaurant-fic-name-div">-->
+<!--                                            <p class="Restaurant-fic-name-p">-->
+<!--                                                باقالی پلو با ماهیچه گوسفندی-->
+<!--                                            </p>-->
+<!--                                        </div>-->
+<!--                                        <div class="Restaurant-fic-price-inactive">-->
+<!--                                            <div>-->
+<!--                                                <p class="Restaurant-fic-price" content="84000">84,000</p>-->
+<!--                                                <span content="تومان" class="Restaurant-fic-currency" >تومان</span>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="Restaurant-fic-details">-->
+<!--                                        <div class="Restaurant-fic-details-inner">-->
+<!--                                            <div class="Restaurant-fic-details-text">دوشنبه ها، برنج درجه ۱ ایرانی، دم کشیده با شوید تازه، باقالی تازه، ماهیچه تازه گوسفندی ۴۵۰ الی ۵۰۰ گرمی و ته چین</div>-->
+<!--                                            <div class="Restaurant-fic-finish-message">-->
+<!--                                                <span class="Restaurant-fic-finish-text">تمام شد!</span>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="Restaurant-fic-image">-->
+<!--                                            <img class="Restaurant-fic-image-img" src="https://dist.reyhoon-static.com/web-assets/images/default_menu_item.jpg?x-oss-process=image/resize,s_90/crop,w_90,h_90,g_center/quality,q_80" alt="باقالی پلو با ماهیچه گوسفندی">-->
+<!--                                            <span class="Restaurant-fic-magn">-->
+<!--                                                <span class="Restaurant-fic-magn-inner1 Restaurant-fic-magn-inner2"><svg viewBox="0 0 18 18" class="Restaurant-fic-magn-inner2"><g fill="none" fill-rule="evenodd"><path d="M0 0h18v18H0z"></path><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" transform="translate(2 2)"><circle cx="6.125" cy="6.125" r="6.125"></circle><path d="M13.373 13.373l-2.767-2.767"></path></g><path d="M0 0h18v18H0z"></path></g></svg>-->
+<!--                                                </span>-->
+<!--                                            </span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        -->
                         </div>
                     </div>
                 </div>
             </div>
+
 
         </section>
 
