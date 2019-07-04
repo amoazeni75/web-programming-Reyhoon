@@ -103,10 +103,10 @@ new Vue({
             unchecked_box = document.getElementById("container_unchecked_filters").childNodes;
 
 
-            for (let i = 0; i < checked_box.length - 1; i++)
+            for (let i = 0; i < checked_box.length; i++)
                 checked_box[i].classList.remove("lastSelected");
 
-            for (let i = 0; i < unchecked_box.length - 1; i++)
+            for (let i = 0; i < unchecked_box.length; i++)
                 unchecked_box[i].classList.remove("lastSelected");
 
             this.sortFiltersList(checked_box);
