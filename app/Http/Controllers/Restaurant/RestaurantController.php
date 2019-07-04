@@ -20,13 +20,13 @@ class RestaurantController extends ApiController
     {   
 
         $restaurants = array();
-        if($request->has('area') && $request->has('city')){
+        if($request->has('city')){
             $cate = 'empty';
             $area = true;
             if( $request->has('categories')){
                 $cate = $request->get('categories');
             }
-            if($request->get('area') != ''){
+            if($request->has('area') && $request->get('area') != ''){
                 $area = $request->area;
             }
             $restaurants = $this->filterRestaurants(
