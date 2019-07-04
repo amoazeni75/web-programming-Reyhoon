@@ -77,11 +77,11 @@
                         </div>
                         <div class="filters-div-hint">
                             <input class="filters-input-hint" placeholder="جست‌و‌‌جوی دسته‌بندی غذاها"
-                                   id="branchNameSearch">
+                                   id="branchNameSearch" v-on:input="searchFilterByName">
                         </div>
                         <div class="filters-checkbox-container">
                             <!-- category item -->
-                            <div class="filters-item-div" v-for="filter in categories">
+                            <div class="filters-item-div" v-for="filter in categories" v-show="filter.display">
                                 <fieldset class="filters-item-field-1 filters-item-field-2">
                                     <input type="checkbox" class="filters-item-checkbox" :id="filter.name" :value="filter.name">
                                     <label class="filters-item-label"></label>

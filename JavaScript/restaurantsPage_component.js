@@ -25,7 +25,35 @@ new Vue({
     methods: {
         searchRestaurantByName(){
             var search_text = document.getElementById("search_rest_name_input").value;
-            console.log(search_text);
+            if(search_text == ''){
+                for (rest in this.allRestaurants){
+                    this.allRestaurants[rest].display = true;
+                }
+                return;
+            }
+
+            for (rest in this.allRestaurants){
+                if(this.allRestaurants[rest].name.includes(search_text))
+                    this.allRestaurants[rest].display  = true;
+                else
+                    this.allRestaurants[rest].display  = false;
+            }
+        },
+        searchFilterByName(){
+            var search_text = document.getElementById("branchNameSearch").value;
+            if(search_text == ''){
+                for (cat in this.categories){
+                    this.categories[cat].display = true;
+                }
+                return;
+            }
+
+            for (cat in this.categories){
+                if(this.categories[cat].name.includes(search_text))
+                    this.categories[cat].display  = true;
+                else
+                    this.categories[cat].display  = false;
+            }
         },
         translateEnglishToPersian(word) {
             for (let i = 0; i < this.dictionaryArr.length; i++) {
@@ -51,7 +79,8 @@ new Vue({
                 this.categories.push(
                     {
                         "name": this.translateEnglishToPersian(cat),
-                        "quantity": categories_server[cat]
+                        "quantity": categories_server[cat],
+                        "display" : true,
                     });
             }
         },
