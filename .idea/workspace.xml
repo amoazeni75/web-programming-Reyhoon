@@ -4,7 +4,6 @@
     <list default="true" id="7415bccb-9877-4c04-9af1-7facf312ba35" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaScript/restaurantsPage_component.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaScript/restaurantsPage_component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ResturantList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/ResturantList.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,11 +68,16 @@
         <entry file="file://$PROJECT_DIR$/JavaScript/restaurantsPage_component.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="182">
-              <caret line="54" column="12" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
+              <caret line="211" column="30" selection-start-line="211" selection-start-column="30" selection-end-line="211" selection-end-column="30" />
               <folding>
+                <element signature="e#90#767#0" />
+                <element signature="e#811#835#0" />
+                <element signature="e#878#902#0" />
+                <element signature="e#1725#2380#0" />
                 <element signature="e#837#1235#0" />
                 <element signature="e#1673#2468#0" />
                 <element signature="e#717#1070#0" />
+                <element signature="e#1374#1997#0" />
                 <element signature="e#700#901#0" />
                 <element signature="e#928#1182#0" />
                 <element signature="e#3419#3561#0" />
@@ -164,8 +168,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>_3_2Li</find>
-      <find>_3zhlN</find>
       <find>_2EpRH</find>
       <find>1024</find>
       <find>1024px</find>
@@ -194,6 +196,8 @@
       <find>Restaurant-fic-image-img</find>
       <find>hint</find>
       <find>data-</find>
+      <find>handleListOfRestaurants</find>
+      <find>prepareRestaurants</find>
     </findStrings>
     <replaceStrings>
       <replace>shop-section-off</replace>
@@ -349,7 +353,7 @@
       <workItem from="1562143679041" duration="1635000" />
       <workItem from="1562146716408" duration="2449000" />
       <workItem from="1562169638371" duration="7645000" />
-      <workItem from="1562215274626" duration="20429000" />
+      <workItem from="1562215274626" duration="23938000" />
     </task>
     <task id="LOCAL-00001" summary="- fundamental files added">
       <created>1561441747379</created>
@@ -470,11 +474,25 @@
       <option name="project" value="LOCAL" />
       <updated>1562223338183</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="- now selected category go up in filter list">
+      <created>1562244120894</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1562244120894</updated>
+    </task>
+    <task id="LOCAL-00019" summary="- filter restaurants by food category added">
+      <created>1562247561493</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1562247561493</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119563000" />
+    <option name="totallyTimeSpent" value="123072000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -543,7 +561,9 @@
     <MESSAGE value="- all categories of a restaurant processed and their foods component added" />
     <MESSAGE value="- listener for restaurant search added" />
     <MESSAGE value="- search by name in restaurants and filters completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="- search by name in restaurants and filters completed" />
+    <MESSAGE value="- now selected category go up in filter list" />
+    <MESSAGE value="- filter restaurants by food category added" />
+    <option name="LAST_COMMIT_MESSAGE" value="- filter restaurants by food category added" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/JavaScript/footer-component.js">
@@ -685,11 +705,16 @@
     <entry file="file://$PROJECT_DIR$/JavaScript/restaurantsPage_component.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
-          <caret line="54" column="12" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
+          <caret line="211" column="30" selection-start-line="211" selection-start-column="30" selection-end-line="211" selection-end-column="30" />
           <folding>
+            <element signature="e#90#767#0" />
+            <element signature="e#811#835#0" />
+            <element signature="e#878#902#0" />
+            <element signature="e#1725#2380#0" />
             <element signature="e#837#1235#0" />
             <element signature="e#1673#2468#0" />
             <element signature="e#717#1070#0" />
+            <element signature="e#1374#1997#0" />
             <element signature="e#700#901#0" />
             <element signature="e#928#1182#0" />
             <element signature="e#3419#3561#0" />

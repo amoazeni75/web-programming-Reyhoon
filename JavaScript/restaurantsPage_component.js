@@ -24,17 +24,14 @@ new Vue({
         ],
         processCategory: true,
     },
-
     methods: {
-        handleSelectionOfCategory(event){
+        prepareQueryPart(){
             q_part = '';
             if(this.area == ''){
                 q_part = "?city=" + this.city + "&area";
             }else{
                 q_part = "?city=" + this.city + "&area=" + this.area;
             }
-            this.changeCheckBoxSelection(event);
-            this.sortFilters();
             if(this.selectedCategory_query.length != 0){
                 q_part += "&categories=[";
                 for (let i = 0; i < this.selectedCategory_query.length; i++) {
@@ -42,11 +39,16 @@ new Vue({
                 }
                 q_part += "]";
             }
+            return q_part;
+        },
+        handleSelectionOfCategory(event){
+            this.changeCheckBoxSelection(event);
+            this.sortFilters();
             this.getDataFromServer(
                 "http://restfulapi.test/api/restaurants",
                 this.handleListOfRestaurants,
                 "GET",
-                q_part);
+                this.prepareQueryPart());
         },
         changeCheckBoxSelection(event){
             if (event.currentTarget.checked) {
@@ -208,16 +210,10 @@ new Vue({
     },
     mounted() {
         this.parseQueryPart();
-        q_part = '';
-        if(this.area == ''){
-            q_part = "?city=" + this.city + "&area";
-        }else{
-            q_part = "?city=" + this.city + "&area=" + this.area;
-        }
         this.getDataFromServer(
             "http://restfulapi.test/api/restaurants",
             this.handleListOfRestaurants,
             "GET",
-            q_part);
+            this.prepareQueryPart());
     }
 })
