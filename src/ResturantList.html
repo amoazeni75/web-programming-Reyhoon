@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../assets/main.css">
     <link rel="stylesheet" href="../assets/restaurantList.css">
     <script src="../JavaScript/restaurantsPage.js" defer="defer"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 <!--header section-->
@@ -25,7 +26,6 @@
 
     <!-- banner -->
     <div class="restaurants-banner"></div>
-
     <!-- search result -->
     <div class="search-result-outer-1">
         <div class="search-result-outer-2">
@@ -107,6 +107,7 @@
                                      v-for="filter in unChecked_categories"
                                      v-show="filter.display"
                                      :quantity="filter.quantity"
+
                                 >
                                     <fieldset class="filters-item-field-1 filters-item-field-2">
                                         <input type="checkbox"

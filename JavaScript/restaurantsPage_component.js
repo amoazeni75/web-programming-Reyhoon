@@ -193,7 +193,8 @@ new Vue({
             }
             jsonDOM.pop();
             this.prepareRestaurants(jsonDOM);
-            this.sortFilters();
+
+            setTimeout(this.sortFilters, 50);
         },
         getDataFromServer(url, handleFunction, method, queryPart) {
             let xhttp = new XMLHttpRequest();
@@ -218,3 +219,4 @@ new Vue({
             this.prepareQueryPart());
     }
 })
+

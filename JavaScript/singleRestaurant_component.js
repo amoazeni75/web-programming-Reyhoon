@@ -159,3 +159,7 @@ $("#link_comments_restaurant").click(function() {
         scrollTop: $("#branch-comment").offset().top - 70
     }, 800);
 });
+
+$(document).ready(function(){
+    $("#link_menu_restaurant").addClass("selected_menu_section")
+});
