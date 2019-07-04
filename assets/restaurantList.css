@@ -2144,3 +2144,6 @@ section {
     -webkit-box-shadow: 0 2px 4px 0 #26d18f;
     box-shadow: 0 2px 4px 0 #26d18f;
 }
+.lastSelected{
+    border-bottom: 3px solid #cbcbcb;
+}

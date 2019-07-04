@@ -12,7 +12,7 @@ new Vue({
         categories: [],
         unChecked_categories: [],
         checked_categories: [],
-        selectedCategory_query : [],
+        selectedCategory_query: [],
         dictionaryArr: [
             {key: "sandwich", value: 'ساندویچ'},
             {key: "berger", value: 'برگر'},
@@ -25,14 +25,14 @@ new Vue({
         processCategory: true,
     },
     methods: {
-        prepareQueryPart(){
+        prepareQueryPart() {
             q_part = '';
-            if(this.area == ''){
+            if (this.area == '') {
                 q_part = "?city=" + this.city + "&area";
-            }else{
+            } else {
                 q_part = "?city=" + this.city + "&area=" + this.area;
             }
-            if(this.selectedCategory_query.length != 0){
+            if (this.selectedCategory_query.length != 0) {
                 q_part += "&categories=[";
                 for (let i = 0; i < this.selectedCategory_query.length; i++) {
                     q_part += this.selectedCategory_query[i] + "|";
@@ -41,7 +41,7 @@ new Vue({
             }
             return q_part;
         },
-        handleSelectionOfCategory(event){
+        handleSelectionOfCategory(event) {
             this.changeCheckBoxSelection(event);
             this.sortFilters();
             this.getDataFromServer(
@@ -50,7 +50,7 @@ new Vue({
                 "GET",
                 this.prepareQueryPart());
         },
-        changeCheckBoxSelection(event){
+        changeCheckBoxSelection(event) {
             if (event.currentTarget.checked) {
                 this.removeAndAddCheckBox(event.target,
                     document.getElementById("container_unchecked_filters"),
@@ -58,8 +58,7 @@ new Vue({
                     this.unChecked_categories,
                     this.checked_categories);
                 this.selectedCategory_query.push(event.target.value);
-            }
-            else {
+            } else {
                 this.removeAndAddCheckBox(event.target,
                     document.getElementById("container_checked_filters"),
                     document.getElementById("container_unchecked_filters"),
@@ -67,7 +66,7 @@ new Vue({
                     this.unChecked_categories);
                 tmp = [];
                 for (let i = 0; i < this.selectedCategory_query.length; i++) {
-                    if(this.selectedCategory_query[i] != event.target.value){
+                    if (this.selectedCategory_query[i] != event.target.value) {
                         tmp.push(this.selectedCategory_query[i]);
                     }
                 }
@@ -103,8 +102,18 @@ new Vue({
             checked_box = document.getElementById("container_checked_filters").childNodes;
             unchecked_box = document.getElementById("container_unchecked_filters").childNodes;
 
+
+            for (let i = 0; i < checked_box.length - 1; i++)
+                checked_box[i].classList.remove("lastSelected");
+
+            for (let i = 0; i < unchecked_box.length - 1; i++)
+                unchecked_box[i].classList.remove("lastSelected");
+
             this.sortFiltersList(checked_box);
             this.sortFiltersList(unchecked_box);
+            if (checked_box.length != 0) {
+                checked_box[checked_box.length - 1].className += " lastSelected";
+            }
         },
         searchRestaurantByName() {
             var search_text = document.getElementById("search_rest_name_input").value;
@@ -126,7 +135,7 @@ new Vue({
             var search_text = document.getElementById("branchNameSearch").value;
 
             for (cat in this.unChecked_categories) {
-                if (this.unChecked_categories[cat].name.includes(search_text) || search_text =='')
+                if (this.unChecked_categories[cat].name.includes(search_text) || search_text == '')
                     this.unChecked_categories[cat].display = true;
                 else
                     this.unChecked_categories[cat].display = false;
@@ -170,7 +179,7 @@ new Vue({
         },
         prepareRestaurants(restaurants) {
             var hour = new Date().getHours();
-            this.allRestaurants =  [];
+            this.allRestaurants = [];
             this.activeRestaurants = [];
             this.deactivateRestaurants = [];
             for (rest in restaurants) {
