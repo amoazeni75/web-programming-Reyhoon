@@ -12,6 +12,7 @@ new Vue({
         categories: [],
         unChecked_categories: [],
         checked_categories: [],
+        selectedCategory_query : [],
         dictionaryArr: [
             {key: "sandwich", value: 'ساندویچ'},
             {key: "berger", value: 'برگر'},
@@ -26,9 +27,26 @@ new Vue({
 
     methods: {
         handleSelectionOfCategory(event){
+            q_part = '';
+            if(this.area == ''){
+                q_part = "?city=" + this.city + "&area";
+            }else{
+                q_part = "?city=" + this.city + "&area=" + this.area;
+            }
             this.changeCheckBoxSelection(event);
             this.sortFilters();
-
+            if(this.selectedCategory_query.length != 0){
+                q_part += "&categories=[";
+                for (let i = 0; i < this.selectedCategory_query.length; i++) {
+                    q_part += this.selectedCategory_query[i] + "|";
+                }
+                q_part += "]";
+            }
+            this.getDataFromServer(
+                "http://restfulapi.test/api/restaurants",
+                this.handleListOfRestaurants,
+                "GET",
+                q_part);
         },
         changeCheckBoxSelection(event){
             if (event.currentTarget.checked) {
@@ -37,6 +55,7 @@ new Vue({
                     document.getElementById("container_checked_filters"),
                     this.unChecked_categories,
                     this.checked_categories);
+                this.selectedCategory_query.push(event.target.value);
             }
             else {
                 this.removeAndAddCheckBox(event.target,
@@ -44,6 +63,13 @@ new Vue({
                     document.getElementById("container_unchecked_filters"),
                     this.checked_categories,
                     this.unChecked_categories);
+                tmp = [];
+                for (let i = 0; i < this.selectedCategory_query.length; i++) {
+                    if(this.selectedCategory_query[i] != event.target.value){
+                        tmp.push(this.selectedCategory_query[i]);
+                    }
+                }
+                this.selectedCategory_query = tmp;
             }
         },
         removeAndAddCheckBox(check_box, should_remove, should_add, should_remove_e, should_add_e) {
@@ -142,6 +168,9 @@ new Vue({
         },
         prepareRestaurants(restaurants) {
             var hour = new Date().getHours();
+            this.allRestaurants =  [];
+            this.activeRestaurants = [];
+            this.deactivateRestaurants = [];
             for (rest in restaurants) {
                 restaurants[rest].display = true;
                 if (restaurants[rest].openingTime <= hour && hour <= restaurants[rest].closingTime)
@@ -179,10 +208,16 @@ new Vue({
     },
     mounted() {
         this.parseQueryPart();
+        q_part = '';
+        if(this.area == ''){
+            q_part = "?city=" + this.city + "&area";
+        }else{
+            q_part = "?city=" + this.city + "&area=" + this.area;
+        }
         this.getDataFromServer(
             "http://restfulapi.test/api/restaurants",
             this.handleListOfRestaurants,
             "GET",
-            "?city=" + this.city + "&area=" + this.area);
+            q_part);
     }
 })
