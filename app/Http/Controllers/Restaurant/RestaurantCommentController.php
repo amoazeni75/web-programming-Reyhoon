@@ -80,7 +80,8 @@ class RestaurantCommentController extends ApiController
             'quality'       => $request->quality,
             'packing'       => $request->packing,
             'deliveryRate'  => $request->deliveryRate,
-            'text'          => $request->text,            
+            'text'          => $request->text, 
+            'created_at'    => date("Y-m-d H:i:s"),           
          );
          
         $comment = Comment::create($data);
