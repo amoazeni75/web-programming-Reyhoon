@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../assets/global.css">
     <link rel="stylesheet" href="../assets/main.css">
     <link rel="stylesheet" href="../assets/singleRestaurant.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 <!--header section-->
@@ -100,15 +101,24 @@
     <div style="">
         <!-- quick access menu -->
         <div class="quick-access-menu-div" id="horizontal-navigation-menu">
-            <ul class="quick-access-menu-ul-1 quick-access-menu-ul-2">
+            <ul class="quick-access-menu-ul-1 quick-access-menu-ul-2" id="quick_access_list">
                 <li class="quick-access-menu-li">
-                    <a class="quick-access-menu-a" href="#Restaurant-quick-category-div">منوی رستوران</a>
+                    <a class="quick-access-menu-a"
+                       id ="link_menu_restaurant"
+                       v-on:click="addRedLineSelectionQuick"
+                    >منوی رستوران</a>
                 </li>
                 <li class="quick-access-menu-li">
-                    <a class="quick-access-menu-a" href="#branch-info">اطلاعات رستوران</a>
+                    <a class="quick-access-menu-a"
+                       id="link_information_restaurant"
+                       v-on:click="addRedLineSelectionQuick"
+                    >اطلاعات رستوران</a>
                 </li>
                 <li class="quick-access-menu-li">
-                    <a class="quick-access-menu-a" href="#branch-comment">نظرات کاربران</a>
+                    <a class="quick-access-menu-a"
+                       id="link_comments_restaurant"
+                       v-on:click="addRedLineSelectionQuick"
+                    >نظرات کاربران</a>
                 </li>
             </ul>
         </div>
@@ -134,9 +144,12 @@
                     <div class="search-food-single-inner-1 search-food-single-inner-2">
                         <div class="search-food-single-box search-food-single-box-1 search-food-single-box-2">
                             <input placeholder="مثلا برگر" class="search-food-single-input"
-                                   id="search_rest_name_input" v-on:input="searchRestaurantByName">
+                                   id="search_rest_name_input"
+                                   v-on:input="searchRestaurantByName"
+                                   v-on:focusout="clearContent"
+                            >
                             <span class="search-food-single-input-span"></span>
-                            <label class="search-food-single-label">جستجو در منوی این رستوران</label>
+                            <label class="search-food-single-label" style="top:27%;right: 5%;font-size: 14px">جستجو در منوی این رستوران</label>
                             <div class="search-food-icon">
                                 <span class="search-food-span-1"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><g fill="none" fill-rule="evenodd"><path d="M0 0h18v18H0z"></path><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" transform="translate(2 2)"><circle cx="6.125" cy="6.125" r="6.125"></circle><path d="M13.373 13.373l-2.767-2.767"></path></g><path d="M0 0h18v18H0z"></path></g></svg></span>
                             </div>

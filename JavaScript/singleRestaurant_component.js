@@ -22,6 +22,19 @@ new Vue({
     },
 
     methods: {
+        addRedLineSelectionQuick(event){
+            event.target.className += " selected_menu_section";
+            selection_list = document.getElementById("quick_access_list").childNodes;
+            for (let i = 0; i < selection_list.length; i+=2) {
+                if(event.target.parentNode != selection_list[i]){
+                    selection_list[i].childNodes[0].classList.remove("selected_menu_section");
+                }
+            }
+        },
+        clearContent(event){
+            event.target.value = '';
+            this.searchRestaurantByName();
+        },
         searchRestaurantByName() {
             var search_text = document.getElementById("search_rest_name_input").value;
             for (let i = 0; i < this.categories.length; i++) {
@@ -127,3 +140,22 @@ new Vue({
         );
     }
 })
+
+
+$("#link_menu_restaurant").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#Restaurant-quick-category-div").offset().top - 70
+    }, 800);
+});
+
+$("#link_information_restaurant").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#branch-info").offset().top - 70
+    }, 800);
+});
+
+$("#link_comments_restaurant").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#branch-comment").offset().top - 70
+    }, 800);
+});

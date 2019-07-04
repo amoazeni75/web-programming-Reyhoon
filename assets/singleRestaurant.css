@@ -3641,3 +3641,18 @@ button {
 body{
     background-color: #fafafa;
 }
+
+.selected_menu_section:before{
+    content: "";
+    position: absolute;
+    bottom: -20.8px;
+    bottom: -1.3rem;
+    left: 50%;
+    margin-left: -25.6px;
+    margin-left: -1.6rem;
+    width: 51.2px;
+    width: 3.2rem;
+    height: 3.2px;
+    height: .2rem;
+    background-color: #d40062;
+}
