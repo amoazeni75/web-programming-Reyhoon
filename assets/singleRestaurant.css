@@ -1897,7 +1897,9 @@
 .Restaurant-fic-image,
 .Restaurant-fic-image-img {
     width: 144px;
-    width: 9rem
+    height: 144px;
+    width: 9rem;
+    height: 9rem;
 }
 
 .Restaurant-fic-magn {

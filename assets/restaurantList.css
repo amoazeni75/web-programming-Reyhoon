@@ -1134,11 +1134,7 @@ section {
     }
 }
 
-.search-input-1,
-.empty-p,
-.search-text-hint {
-    color: #e2e2e2!important
-}
+
 .search-text-span-inner-1 {
     width: 40px;
     width: 2.5rem;

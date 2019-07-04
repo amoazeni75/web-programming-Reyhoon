@@ -47,7 +47,8 @@
     <!-- restaurant search -->
     <div class="container-div-search-area">
         <div class="search-text-field-inner-1 search-text-field-inner-2 search-margin">
-            <input name="restaurant-name" placeholder="" class="search-input-1 search-input-2" value="">
+            <input name="restaurant-name" placeholder=""
+                   class="search-input-1 search-input-2" id="search_rest_name_input" v-on:input="searchRestaurantByName()">
             <label class="search-text-hint">جست‌و‌‌جوی رستوران‌ در این محدوده</label>
             <div class="search-text-span-outer">
                                 <span class="search-text-span-inner-1 search-text-span-inner-2">

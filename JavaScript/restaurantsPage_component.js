@@ -5,6 +5,7 @@ new Vue({
     data: {
         city: "",
         area: "",
+        searchRest : "",
         allRestaurants : [],
         activeRestaurants: [],
         deactivateRestaurants: [],
@@ -22,6 +23,10 @@ new Vue({
     },
 
     methods: {
+        searchRestaurantByName(){
+            var search_text = document.getElementById("search_rest_name_input").value;
+            console.log(search_text);
+        },
         translateEnglishToPersian(word) {
             for (let i = 0; i < this.dictionaryArr.length; i++) {
                 if (this.dictionaryArr[i].key == word)
