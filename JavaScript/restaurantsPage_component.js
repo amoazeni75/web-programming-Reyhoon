@@ -13,6 +13,8 @@ new Vue({
         unChecked_categories: [],
         checked_categories: [],
         selectedCategory_query: [],
+        numberOfShowingCategories : 4,
+        showAllCatgory : false,
         dictionaryArr: [
             {key: "sandwich", value: 'ساندویچ'},
             {key: "berger", value: 'برگر'},
@@ -25,6 +27,13 @@ new Vue({
         processCategory: true,
     },
     methods: {
+        expandCategories(event){
+          event.target.style.display = "none";
+            for (let i = 0; i < this.unChecked_categories.length; i++) {
+                this.unChecked_categories[i].display = true;
+            }
+            this.showAllCatgory = true;
+        },
         checkTextBoxIsSelected(name) {
             result = false;
             childNodes = document.getElementById("container_checked_filters").childNodes;
@@ -63,16 +72,12 @@ new Vue({
             if (event.currentTarget.checked) {
                 this.removeAndAddCheckBox(event.target,
                     document.getElementById("container_unchecked_filters"),
-                    document.getElementById("container_checked_filters"),
-                    this.unChecked_categories,
-                    this.checked_categories);
+                    document.getElementById("container_checked_filters"));
                 this.selectedCategory_query.push(event.target.value);
             } else {
                 this.removeAndAddCheckBox(event.target,
                     document.getElementById("container_checked_filters"),
-                    document.getElementById("container_unchecked_filters"),
-                    this.checked_categories,
-                    this.unChecked_categories);
+                    document.getElementById("container_unchecked_filters"));
                 tmp = [];
                 for (let i = 0; i < this.selectedCategory_query.length; i++) {
                     if (this.selectedCategory_query[i] != event.target.value) {
@@ -82,21 +87,13 @@ new Vue({
                 this.selectedCategory_query = tmp;
             }
         },
-        removeAndAddCheckBox(check_box, should_remove, should_add, should_remove_e, should_add_e) {
+        removeAndAddCheckBox(check_box, should_remove, should_add) {
             for (let i = 0; i < should_remove.childNodes.length; i++) {
                 if (should_remove.childNodes[i] == check_box.parentNode.parentNode) {
                     should_add.appendChild(should_remove.childNodes[i]);
                     break;
                 }
             }
-            // for (let i = 0; i < should_remove_e.length; i++) {
-            //     if(should_remove_e[i].name == check_box.value){
-            //         etemp = should_remove_e[i];
-            //         should_remove_e.splice(i, 1);
-            //         should_add_e.push(etemp);
-            //         break;
-            //     }
-            // }
         },
         sortFiltersList(childNodes) {
             for (let i = 0; i < childNodes.length - 1; i++) {
@@ -108,6 +105,8 @@ new Vue({
             }
         },
         sortFilters() {
+            if(this.showAllCatgory)
+                document.getElementById("button_expand").style.display ="none";
             checked_box = document.getElementById("container_checked_filters").childNodes;
             unchecked_box = document.getElementById("container_unchecked_filters").childNodes;
 
@@ -174,18 +173,24 @@ new Vue({
                 return true;
         },
         prepareCategories(categories_server) {
+
+            let i = 0;
             for (cat in categories_server) {
+                showing = false;
+                if(i < this.numberOfShowingCategories)
+                    showing = true;
+                i++;
                 this.categories.push(
                     {
                         "name": this.translateEnglishToPersian(cat),
                         "quantity": categories_server[cat],
-                        "display": true,
+                        "display": showing,
                     });
                 this.unChecked_categories.push(
                     {
                         "name": this.translateEnglishToPersian(cat),
                         "quantity": categories_server[cat],
-                        "display": true,
+                        "display": showing,
                     });
 
             }

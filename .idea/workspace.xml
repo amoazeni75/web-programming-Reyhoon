@@ -4,6 +4,7 @@
     <list default="true" id="7415bccb-9877-4c04-9af1-7facf312ba35" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaScript/restaurantsPage_component.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaScript/restaurantsPage_component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ResturantList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/ResturantList.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ResturantList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
+            <state relative-caret-position="307">
+              <caret line="128" column="109" selection-start-line="128" selection-start-column="96" selection-end-line="128" selection-end-column="109" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -67,15 +68,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JavaScript/restaurantsPage_component.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="152" column="70" selection-start-line="152" selection-start-column="70" selection-end-line="152" selection-end-column="70" />
+            <state relative-caret-position="283">
+              <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
               <folding>
-                <element signature="e#90#767#0" />
+                <element signature="e#820#844#0" />
                 <element signature="e#811#835#0" />
                 <element signature="e#789#1324#0" />
+                <element signature="e#878#902#0" />
+                <element signature="e#1725#2380#0" />
                 <element signature="e#837#1235#0" />
-                <element signature="e#4093#4816#0" />
                 <element signature="e#717#1070#0" />
+                <element signature="e#1374#1997#0" />
                 <element signature="e#700#901#0" />
                 <element signature="e#928#1182#0" />
                 <element signature="e#3419#3561#0" />
@@ -91,7 +94,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/restaurantList.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="308">
               <caret line="2146" column="13" selection-start-line="2146" selection-start-column="1" selection-end-line="2146" selection-end-column="13" />
             </state>
           </provider>
@@ -163,7 +166,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>1024px</find>
       <find>@media</find>
       <find>restaurant-food-cat-slide</find>
       <find>filters-item-div</find>
@@ -189,9 +191,10 @@
       <find>price</find>
       <find>Restaurant-fic-image-img</find>
       <find>quick-access-menu-a</find>
-      <find>hint</find>
       <find>allFoods</find>
       <find>prepareRestaurants</find>
+      <find>hint</find>
+      <find>removeAndAddCheckBox</find>
       <find>data-</find>
     </findStrings>
     <replaceStrings>
@@ -248,8 +251,8 @@
         <option value="$PROJECT_DIR$/assets/singleRestaurant.css" />
         <option value="$PROJECT_DIR$/JavaScript/singleRestaurant_component.js" />
         <option value="$PROJECT_DIR$/src/singleRestuarant.html" />
-        <option value="$PROJECT_DIR$/src/ResturantList.html" />
         <option value="$PROJECT_DIR$/assets/restaurantList.css" />
+        <option value="$PROJECT_DIR$/src/ResturantList.html" />
         <option value="$PROJECT_DIR$/JavaScript/restaurantsPage_component.js" />
       </list>
     </option>
@@ -348,7 +351,7 @@
       <workItem from="1562143679041" duration="1635000" />
       <workItem from="1562146716408" duration="2449000" />
       <workItem from="1562169638371" duration="7645000" />
-      <workItem from="1562215274626" duration="35924000" />
+      <workItem from="1562215274626" duration="39105000" />
     </task>
     <task id="LOCAL-00001" summary="- fundamental files added">
       <created>1561441747379</created>
@@ -497,11 +500,18 @@
       <option name="project" value="LOCAL" />
       <updated>1562272311410</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="- search in category list improved, we will fix selected category now">
+      <created>1562274450935</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1562274450935</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135058000" />
+    <option name="totallyTimeSpent" value="138239000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -574,7 +584,8 @@
     <MESSAGE value="- filter restaurants by food category added" />
     <MESSAGE value="- quick access to menu, details, comments section in restaurant page added" />
     <MESSAGE value="- now we add a line as separation between selected category and unselected category" />
-    <option name="LAST_COMMIT_MESSAGE" value="- now we add a line as separation between selected category and unselected category" />
+    <MESSAGE value="- search in category list improved, we will fix selected category now" />
+    <option name="LAST_COMMIT_MESSAGE" value="- search in category list improved, we will fix selected category now" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/JavaScript/footer-component.js">
@@ -678,13 +689,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/restaurantList.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="2146" column="13" selection-start-line="2146" selection-start-column="1" selection-end-line="2146" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/JavaScript/singleRestaurant_component.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -704,10 +708,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/restaurantList.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="2146" column="13" selection-start-line="2146" selection-start-column="1" selection-end-line="2146" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ResturantList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
+        <state relative-caret-position="307">
+          <caret line="128" column="109" selection-start-line="128" selection-start-column="96" selection-end-line="128" selection-end-column="109" />
           <folding>
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -728,15 +739,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JavaScript/restaurantsPage_component.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="152" column="70" selection-start-line="152" selection-start-column="70" selection-end-line="152" selection-end-column="70" />
+        <state relative-caret-position="283">
+          <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
           <folding>
-            <element signature="e#90#767#0" />
+            <element signature="e#820#844#0" />
             <element signature="e#811#835#0" />
             <element signature="e#789#1324#0" />
+            <element signature="e#878#902#0" />
+            <element signature="e#1725#2380#0" />
             <element signature="e#837#1235#0" />
-            <element signature="e#4093#4816#0" />
             <element signature="e#717#1070#0" />
+            <element signature="e#1374#1997#0" />
             <element signature="e#700#901#0" />
             <element signature="e#928#1182#0" />
             <element signature="e#3419#3561#0" />
