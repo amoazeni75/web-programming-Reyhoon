@@ -17,7 +17,7 @@ Vue.component('home-search-component', {
         '                                                <select class="m_banner_city_box city_selectBox" id = "select_city">\n' +
         '                                                    <option value="تهران">تهران</option>\n' +
         '                                                    <option value="اصفهان">اصفهان</option>\n' +
-        '                                                    <option value="شیراز">شیراز</option>\n' +
+        '                                                    <option value="شیراز">شیراز</option><option value="مشهد">مشهد</option><option value="تبریز">تبریز</option>\n' +
         '                                                </select>\n' +
         '                                            </div>\n' +
         '                                            <div class="m_banner_empty"></div>\n' +
