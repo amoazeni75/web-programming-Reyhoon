@@ -72,7 +72,6 @@
                     </h1>
                 </div>
 
-
                 <div class="Restaurant-header-rating">
                     <div class="Restaurant-header-rating-1 Restaurant-header-rating-active Restaurant-header-rating-3">
                         <div class="Restaurant-header-rating-count">
@@ -93,6 +92,7 @@
                         <li class="Restaurant-header-foods-li" v-for="cat in this.categories">{{cat.name}}</li>
                     </ul>
                 </div>
+
                 <address class="Restaurant-header-address" >{{this.restaurant_object.addressLine}}</address>
             </div>
         </div>
@@ -128,10 +128,16 @@
 
             <!-- category list -->
             <div class="restaurant-food-cat-slide">
-                <ul class="quick-access-menu-ul-1 quick-access-menu-ul-2 quick-access-menu-ul-3">
+                <ul class="quick-access-menu-ul-1 quick-access-menu-ul-2 quick-access-menu-ul-3"
+                    id="list_category_container">
                     <!-- food menu category component here -->
-                    <li class="quick-access-menu-li">
-                        <a class="quick-access-menu-a" :href="'#category_' + cat.name" v-for="cat in this.categories">
+                    <li class="quick-access-menu-li"
+                        v-for="cat in this.categories"
+                    >
+                        <a class="quick-access-menu-a"
+                           :href = "'#category_' + cat.name"
+                           :id = "'link_category_' + cat.name"
+                        >
                             {{cat.name}}
                         </a>
                     </li>

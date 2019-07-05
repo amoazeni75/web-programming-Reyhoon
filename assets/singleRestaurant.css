@@ -1137,7 +1137,8 @@
 
 .quick-access-menu-a,
 .quick-access-menu-a:hover {
-    color: #202020
+    color: #202020;
+    cursor: pointer;
 }
 
 .quick-access-menu-a-selected .quick-access-menu-a:before {
@@ -3655,4 +3656,10 @@ body{
     height: 3.2px;
     height: .2rem;
     background-color: #d40062;
+}
+.selected_category_menu{
+    margin-right: 10px;
+    border-style: solid;
+    border-width: 0px 0px 2px 0px;
+    border-color: #d40062;
 }

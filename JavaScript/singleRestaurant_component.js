@@ -22,16 +22,16 @@ new Vue({
     },
 
     methods: {
-        addRedLineSelectionQuick(event){
+        addRedLineSelectionQuick(event) {
             event.target.className += " selected_menu_section";
             selection_list = document.getElementById("quick_access_list").childNodes;
-            for (let i = 0; i < selection_list.length; i+=2) {
-                if(event.target.parentNode != selection_list[i]){
+            for (let i = 0; i < selection_list.length; i += 2) {
+                if (event.target.parentNode != selection_list[i]) {
                     selection_list[i].childNodes[0].classList.remove("selected_menu_section");
                 }
             }
         },
-        clearContent(event){
+        clearContent(event) {
             event.target.value = '';
             this.searchRestaurantByName();
         },
@@ -141,25 +141,66 @@ new Vue({
     }
 })
 
+$(document).ready(function () {
+    $("#link_menu_restaurant").addClass("selected_menu_section");
 
-$("#link_menu_restaurant").click(function() {
-    $('html, body').animate({
-        scrollTop: $("#Restaurant-quick-category-div").offset().top - 70
-    }, 800);
-});
+    //set scroll quick access for top menu
+    setScrollTo("#link_menu_restaurant", "#Restaurant-quick-category-div", 500);
+    setScrollTo("#link_information_restaurant", "#branch-info", 500);
+    setScrollTo("#link_comments_restaurant", "#branch-comment", 500);
 
-$("#link_information_restaurant").click(function() {
-    $('html, body').animate({
-        scrollTop: $("#branch-info").offset().top - 70
-    }, 800);
-});
+    //set scroll quick access for category menu
+    setTimeout(function () {
+        category_list = document.getElementById("list_category_container").childNodes;
+        id_list = [];
+        for (let i = 0; i < category_list.length; i++) {
+            init_id = "#" + category_list[i].childNodes[0].id
 
-$("#link_comments_restaurant").click(function() {
-    $('html, body').animate({
-        scrollTop: $("#branch-comment").offset().top - 70
-    }, 800);
-});
+            dest_id = category_list[i].childNodes[0].href;
+            dest_id = decodeURI(dest_id.substr(dest_id.indexOf('#')));
+            id_list.push(dest_id);
+            setScrollTo(init_id, dest_id, 300);
+        }
 
-$(document).ready(function(){
-    $("#link_menu_restaurant").addClass("selected_menu_section")
-});
+        //checking scroll entered into section or not
+        $(document).on('scroll', function () {
+            position_scroll = $(this).scrollTop();
+            offset = $("#Restaurant-quick-category-div").position().top
+            position_scroll -= offset;
+            position_scroll += $(id_list[0]).position().top + 12;
+
+
+            console.log(position_scroll);
+            console.log("s : " + $(id_list[0]).position().top);
+            for (let i = 0; i < category_list.length; i++) {
+
+                top_s = $(id_list[i]).position().top;
+                bottom_s = $(id_list[i]).height() + top_s;
+                //
+                // console.log("scroll is : " + position_scroll);
+                // console.log("top is : " + top_s);
+                // console.log("bottom is : " + bottom_s);
+
+                if (position_scroll >= top_s - 50 && position_scroll <= bottom_s - 30) {
+                    category_list[i].className += " selected_category_menu";
+                    console.log(category_list[i]);
+                } else {
+                    category_list[i].classList.remove("selected_category_menu");
+                }
+            }
+
+        })
+
+    }, 3500);
+})
+;
+
+
+function setScrollTo(id_init, id_dest, animate_time) {
+    $(id_init).click(function () {
+        $('html, body').animate({
+            scrollTop: $(id_dest).offset().top - 70
+        }, animate_time);
+    })
+}
+
