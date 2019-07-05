@@ -1,0 +1,13 @@
+sandwich 
+berger   
+khoresht 
+kabab    
+pasta    
+irani   
+khourak  
+fastfood 
+salad    
+mahi    
+stake    
+pizza    
+soup     

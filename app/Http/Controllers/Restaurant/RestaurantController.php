@@ -357,13 +357,19 @@ private function appendListOfCategories($resturantsInCity){
 
 
     $foodsets_array = [
-        'sandwich' => 0,
-        'berger' => 0,
-        'khoresht'=> 0,
-        'kabab'=> 0,
-        'pasta'=> 0,
-        'irani'=> 0,
-        'khourak'=> 0,
+        'sandwich'      => 0,
+        'berger'        => 0,
+        'khoresht'      => 0,
+        'kabab'         => 0,
+        'pasta'         => 0,
+        'irani'         => 0,
+        'khourak'       => 0,
+        'fastfood'      => 0,
+        'salad'         => 0,
+        'mahi'          => 0,
+        'stake'         => 0,
+        'pizza'         => 0,
+        'soup'          => 0,
     ];
 
         //prepare list of categoryies
