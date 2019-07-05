@@ -61,3 +61,17 @@ function navigateToRestaurantsPage(){
     window.open("../src/ResturantList.html?city=" + city + "&area=" + area , '_blank');
 
 }
+
+$(document).ready(function() {
+    $('select').niceSelect();
+    $('select').width = 140;
+    $('.nice-select').click(function(){
+        if($('.dimmer').is(":visible")){
+            $('.dimmer').hide();
+        }else
+            $('.dimmer').show();
+    });
+    $('.dimmer').click(function(){
+        $('.dimmer').hide();
+    });
+});
