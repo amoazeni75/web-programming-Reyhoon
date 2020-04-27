@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fa-IR">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>سفارش آنلاین غذا از بهترین رستوران‌ها و فست فودها | ریحون</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="9423110">
+    <meta name="copyright" content="9423110">
+    <meta name="description"
+          content="ریحون سریعترین راه سفارش آنلاین غذا است. منو عکس دار رستوران ها و فست فودهای اطرافتان را به صورت اینترتنی مشاهده کنید و غذایتان را به صورت شبانه روزی سفارش دهید">
+    <link rel="icon" type="image/ico" href="../mocks/favicon.ico">
+    <link rel="stylesheet" href="../assets/global.css">
+    <link rel="stylesheet" href="../assets/main.css">
+    <link rel="stylesheet" href="../assets/restaurantList.css">
+    <script src="../JavaScript/restaurantsPage.js" defer="defer"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<!--header section-->
+<div id="header-c">
+    <header-component></header-component>
+</div>
+<!--end of header section-->
+<div class="restaurant-page-container" id="app">
+
+    <!-- banner -->
+    <div class="restaurants-banner"></div>
+    <!-- search result -->
+    <div class="search-result-outer-1">
+        <div class="search-result-outer-2">
+            <div class="search-result-outer-3">
+                <h1>
+                    <span class="result-text-span" id="text_count_rest"> رستوران امکان سرویس دهی به</span>
+                    <span class="result-text-link" id="text_address_rest"></span>
+                    <span class="result-text-span">را دارند</span>
+                </h1>
+                <!-- search box component here -->
+                <div class="m_banner_outer_3" id="home_search" style="display: none;">
+                    <home-search-component></home-search-component>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- restaurant search -->
+    <div class="container-div-search-area">
+        <div class="search-text-field-inner-1 search-text-field-inner-2 search-margin">
+            <input name="restaurant-name" placeholder=""
+                   class="search-input-1 search-input-2" id="search_rest_name_input"
+                   v-on:input="searchRestaurantByName()">
+            <label class="search-text-hint">جست‌و‌‌جوی رستوران‌ در این محدوده</label>
+            <div class="search-text-span-outer">
+                                <span class="search-text-span-inner-1 search-text-span-inner-2">
+                                    <svg viewBox="0 0 18 18" class="search-text-span-inner-2"><g fill="none"
+                                                                                                 fill-rule="evenodd"><path
+                                            d="M0 0h18v18H0z"></path><g stroke="currentColor" stroke-linecap="round"
+                                                                        stroke-linejoin="round" stroke-width="2"
+                                                                        transform="translate(2 2)"><circle cx="6.125"
+                                                                                                           cy="6.125"
+                                                                                                           r="6.125"></circle><path
+                                            d="M13.373 13.373l-2.767-2.767"></path></g><path
+                                            d="M0 0h18v18H0z"></path></g></svg></span></div>
+        </div>
+
+    </div>
+
+    <!-- restaurants and food filters -->
+    <div class="restaurants-fliters-section">
+        <!-- filters -->
+        <div class="filters-section" id="side-bar">
+            <div class="filters-div-outer-1 filters-div-outer-2">
+                <div class="filters-div-inner-1">
+                    <div class="filters-div-inner-2">
+                        <div class="filters-div-label">
+                            <label class="filters-div-label-2" for="branchNameSearch">فیلتر بر اساس انواع غذا</label>
+                        </div>
+                        <div class="filters-div-hint">
+                            <input class="filters-input-hint" placeholder="جست‌و‌‌جوی دسته‌بندی غذاها"
+                                   id="branchNameSearch" v-on:input="searchFilterByName">
+                        </div>
+                        <div class="filters-checkbox-container">
+                            <!-- category item -->
+
+                            <div id="container_checked_filters">
+
+                                <div class="filters-item-div"
+                                     v-for="filter in checked_categories"
+                                     v-show="filter.display"
+                                     :quantity="filter.quantity"
+                                >
+                                    <fieldset  class="filters-item-field-1 filters-item-field-2">
+                                        <input type="checkbox"
+                                               class="filters-item-checkbox" :id="filter.name"
+                                               :value="filter.name"
+                                               v-on:change="handleSelectionOfCategory"
+                                        >
+                                        <label class="filters-item-label"></label>
+                                    </fieldset>
+                                    <label class="filters-item-label-2" :for="filter.name">
+                                        <span class="filters-item-label-span">{{filter.name}} ({{filter.quantity}})</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="container_unchecked_filters">
+
+                                <div class="filters-item-div"
+                                     v-for="filter in unChecked_categories"
+                                     v-show="filter.display"
+                                     :quantity="filter.quantity"
+
+                                >
+                                    <fieldset class="filters-item-field-1 filters-item-field-2">
+                                        <input type="checkbox"
+                                               class="filters-item-checkbox"
+                                               :id="filter.name"
+                                               :value="filter.name"
+                                               v-on:change="handleSelectionOfCategory"
+                                        >
+                                        <label class="filters-item-label"></label>
+                                    </fieldset>
+                                    <label class="filters-item-label-2" :for="filter.name">
+                                        <span class="filters-item-label-span">{{filter.name}} ({{filter.quantity}})</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button class="filters-more-item" v-on:click="expandCategories" id="button_expand">بیشتر</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- restaurants -->
+        <div class="all-restaurant-container">
+            <div>
+                <div class="all-restaurant-active open-branches">
+                    <!--- active --->
+                    <div class="inactive-active-rest-item-div" v-for="rest in activeRestaurants" v-show="rest.display">
+                        <div class="rest-item-inner-1 rest-item-inner-2 branch-card">
+                            <a :href="'singleRestuarant.html?restaurant_id=' + rest.id" class="rest-item-a-link-1"
+                               target="_blank">
+                                <div class="rest-item-details-div">
+                                    <div class="rest-item-image-section">
+                                        <div class="rest-item-image-inner-1 rest-item-image-inner-2 rest-item-image-inner-3">
+                                            <img :src=" 'http://restfulapi.test/img/' + rest.logo"
+                                                 class="rest-item-image-inner-4 rest-item-image-inner-3"></div>
+                                        <div class="rest-item-image-empty"></div>
+                                    </div>
+                                    <div class="rest-item-name-outer">
+                                        <h2 class="rest-item-name-p">{{rest.name}}</h2>
+                                        <div class="rest-item-rating-section" style="padding-right: 28%">
+
+                                            <div class="rest-item-rating-star" style="display: inline">
+                                                <star-rating style="direction: ltr" :star-size="14"
+                                                             :rating=rest.average_rating :read-only="true"
+                                                             :show-rating="false" :increment="0.01"></star-rating>
+                                            </div>
+                                            <p class="rest-item-rating-count" style="padding-top: 9px">
+                                                {{rest.average_rating}}</p>
+                                        </div>
+                                        <div class="rest-item-food-list-div">
+                                            <ul class="rest-item-food-ul">
+                                                <li class="rest-item-food-li" v-for="category in rest.categories">
+                                                    {{translateEnglishToPersian(category.name)}}
+                                                </li>
+                                            </ul>
+                                            <address class="rest-item-address">
+                                                {{rest.addressLine}}
+                                            </address>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rest-item-extra-1">
+                                    <div class="rest-item-extra-inner">
+                                        <button class="rey-btn rest-item-button-order-1 rest-item-button-order-2 rest-item-button-order-3">
+                                            شروع سفارش
+                                        </button>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <p class="disable-p" v-show=isThereAnayDeactive()>رستوران های بسته</p>
+                <div class="all-restaurant-active close-branches">
+                    <!--- inactive --->
+                    <div class="inactive-active-rest-item-div" v-for="rest in deactivateRestaurants"
+                         v-show="rest.display">
+                        <div class="rest-item-inner-1 rest-item-inner-2 branch-card rest-item-inner-3">
+                            <a :href="'singleRestuarant.html?restaurant_id=' + rest.id"
+                               class="rest-item-a-link-1 rest-item-a-link-2" target="_blank">
+                                <div class="rest-item-details-div">
+                                    <div class="rest-item-image-section">
+                                        <div class="rest-item-image-inner-1 rest-item-image-inner-2 rest-item-image-inner-3">
+                                            <img :src=" 'http://restfulapi.test/img/' + rest.logo"
+                                                 class="rest-item-image-inner-4 rest-item-image-inner-3"></div>
+                                        <div class="rest-item-image-empty"></div>
+                                    </div>
+                                    <div class="rest-item-name-outer">
+                                        <h2 class="rest-item-name-p">{{rest.name}}</h2>
+                                        <div class="rest-item-rating-section" style="padding-right: 28%">
+                                            <div class="rest-item-rating-star">
+                                                <star-rating style="direction: ltr" :star-size="14"
+                                                             :rating=rest.average_rating :read-only="true"
+                                                             :show-rating="false" :increment="0.01"></star-rating>
+                                            </div>
+                                            <p class="rest-item-rating-count" style="padding-top: 9px">
+                                                {{rest.average_rating}}</p>
+                                        </div>
+                                        <div class="rest-item-food-list-div">
+                                            <ul class="rest-item-food-ul">
+                                                <li class="rest-item-food-li" v-for="category in rest.categories">
+                                                    {{translateEnglishToPersian(category.name)}}
+                                                </li>
+                                            </ul>
+                                            <address class="rest-item-address">{{rest.addressLine}}</address>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rest-start-order">
+                                    <div class="button-closedRestauran-1">
+                                        <div class="button-closedRestauran-5">
+                                            <span class="button-closedRestauran-2 button-closedRestauran-3 button-closedRestauran-4"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><defs><linearGradient
+                                                    id="innerGradiant" x1="0%" y1="0%" x2="100%" y2="0%"><stop
+                                                    offset="0%" style="stop-color:#50d258;stop-opacity:0.3;"></stop><stop
+                                                    offset="100%"
+                                                    style="stop-color:#0dd0af;stop-opacity:0.3;"></stop></linearGradient></defs>
+                                                <circle class="button-closedRestauran-6" cx="50%" cy="50%" r="7.5">
+                                                </circle><circle class="button-closedRestauran-7" cx="50%" cy="50%"
+                                                                 r="3.5"
+                                                                 fill="url(#innerGradiant)"></circle></svg></span>
+                                            شروع سفارش از {{rest.openingTime}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!--footer section-->
+<div id="footer-c">
+    <footer-component></footer-component>
+</div>
+
+<script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="../JavaScript/home-search-component.js"></script>
+<script src="../JavaScript/header-component.js"></script>
+<script src="../JavaScript/footer-component.js"></script>
+<script src="../JavaScript/restaurantsPage_component.js"></script>
+</body>
+</html>
